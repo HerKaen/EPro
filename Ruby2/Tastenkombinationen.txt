@@ -1,0 +1,12 @@
+Tastenkombinationen:
+
+CTRL-l - Clears the screen and places the command prompt at the top of the page.
+CTRL-r - Starts a search against the command history. Start by typing in what you want to search by then press CTRL-r to see the matches.
+CTRL-c - Kills the current running foreground program.
+CTRL-z - Stop/sleep the current running foreground program.
+CTRL-s - Stops the output to the screen.
+CTRL-q - Allows output to the screen.
+CTRL-a - Moves the cursor the start of the line
+CTRL-e - Moves the cursor to the end of the line
+CTRL-f - Moves the cursor 1 character forward
+CTRL-b - Moves the cursor 1 character backward
