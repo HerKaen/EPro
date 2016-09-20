@@ -7,10 +7,15 @@
 #	puts comment.upcase 
 #end
 
-movie = "Goonies"
+# --------------------------------------------------
 
-puts "Mickey\'s favorite movie is \n" + movie
+#movie = "Goonies"
 
-rank = 10
+#puts "Mickey\'s favorite movie is \n" + movie
 
-puts "#{movie} has a rank of #{rank * 2} am #{Time.now}"
+#rank = 10
+
+#puts "#{movie} has a rank of #{rank * 2} am #{Time.now}"
+
+# --------------------------------------------------
+
