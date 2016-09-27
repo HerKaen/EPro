@@ -10,3 +10,12 @@ CTRL-a - Moves the cursor the start of the line
 CTRL-e - Moves the cursor to the end of the line
 CTRL-f - Moves the cursor 1 character forward
 CTRL-b - Moves the cursor 1 character backward
+
+
+
+Aktualisieren eines Projektes:
+
+1. Mit cd in das Basis-Verzeichnis des Projektes gehen
+2. git add . -A
+3. git commit -am 'Text zur Charakterisierung'
+4. git push origin master
