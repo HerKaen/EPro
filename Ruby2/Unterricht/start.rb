@@ -19,12 +19,39 @@
 
 # --------------------------------------------------
 
-def movie_listing(movie, rank)
-	"Movie: #{movie} ist ein guter Film, mit der Punktzahl: #{rank} am #{set_time}"
+#def movie_listing(movie, rank)
+#	"Movie: #{movie} ist ein guter Film, mit der Punktzahl: #{rank} am #{set_time}"
+#end
+
+#def set_time
+#	Time.now.strftime("%d.%m.%Y")
+#end
+
+#puts movie_listing(ARGV[0], 10) #Erster Wert wird bei Abfrage eingegeben (ruby start.rb Superman)
+
+# ---------------------------------------------------
+
+class Movie
+	def initialize(pname, prank=5)
+		@name = pname
+		@rank = prank
+	end
+
+	def list_movie
+		"Movie heißt: #{@name} und hat den Rank #{@rank}."
+	end
+
+	def thumbs_up(value)
+		@rank = @rank + value
+	end
+
+
 end
 
-def set_time
-	Time.now.strftime("%d.%m.%Y")
-end
+var = Movie.new("Superman")
+#puts var.list_movie 
+var.thumbs_up(7)
+puts var.list_movie
 
-puts movie_listing(ARGV[0], 10) #Erster Wert wird bei Abfrage eingegeben (ruby start.rb Superman)
+var2 = Movie.new("Batman", 10)
+puts var2.list_movie
