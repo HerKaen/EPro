@@ -13,3 +13,31 @@ Strasse:..............Hermelinweg 7
 Ort:..................22159 Hamburg
 
 Legen Sie das Objekt obj an, rufen Sie die entsprechenden Get-Methoden für die Dateneingabe auf, erzeugen Sie die Kontrollausgabe.
+
+----------------------------------------------------------------------------
+
+class Customer
+
+	attr_accessor :firstname, :lastname, :street, :city
+
+	def initialize(bank_account, lastname="")
+	@bank_account = bank_account
+	@lastname = lastname
+	end
+
+	
+
+
+	def print_address
+		"Konto:".ljust(15,'.') + @bank_account.to_s + "\n" + 	
+		"Name:".ljust(15,'.') + "#{@firstname} #{@lastname}" + "\n" + 
+		"Strasse:".ljust(15,'.') + @street + "\n" + 
+		"Ort:".ljust(15,'.') + @city 
+	end
+end
+
+	obj=Customer.new(9999, "Lodgz")
+	obj.firstname = "Peter"
+	obj.street = "Hermelinweg 7"
+	obj.city = "21059 Hamburg"
+	puts obj.print_address

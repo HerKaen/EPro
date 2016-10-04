@@ -1,6 +1,19 @@
 a. machen Sie aus der Instanzvariablen @health ein lesbares Attribut
 
+	 	def name=(health)
+	 		@health = health
+	 	end
+
 b. geben Sie die Eigenschaft health des Objektes player1 aus
+
+	 class Player	
+	 	def name=(health)
+	 		@health = health
+	 	end
+	 end
+
+		player1 = Player.new()
+		puts player1
 
 c. die Eigenschaft name soll sowohl lesbar, als auch schreibbar sein
 
