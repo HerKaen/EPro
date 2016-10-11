@@ -34,10 +34,9 @@ movie3 = Movie.new("Spiderman", 8)
 movies = [movie1, movie2, movie3]
 
 	movies.each do |movie|
- 	movie.thumbs_down
+# 	movie.thumbs_down
 	puts movie
 	end
-
 
 
 #movie = Movie.new("Goonies", 10)

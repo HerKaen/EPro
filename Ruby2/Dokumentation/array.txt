@@ -6,7 +6,7 @@ Neues Array anlegen:
 	ODER	seats = Array.new
 	ODER	seats = ["Wert1", "Wert2"]
 	ODER	seats = %w(wert1 wert2)
-
+	ODER 	numbers = (1..10).to_a
 
 Werte hinzufügen:
 			seats << "Wert3"
@@ -18,8 +18,33 @@ Werte zwischendrin einfügen:
 										#2.Stelle = Inhalt
 
 Methoden von Arrays:
-	Array-Größe:  				seats.size
-	Letztes Element entfernen: 	seats.pop
-	Array leer?: 				seats.empty?
-	Löschen von Element:		seats.delete_at(3)
+	Array-Größe:  					seats.size
+	Letztes Element entfernen: 		seats.pop
+	Array leer?: 					seats.empty?
+	Löschen von Element:			seats.delete_at(3)
+	Sortieren nach Alphabet:		seats.sort
+	Sortieren nach Wortlänge:		seats.sort_by {|n| n.length}
+	Sortieren nach Wortkürze:		seats.sort_by {|n| n.length}.reverse
+	
+
+Iterations-Methoden:
+	var = %w(ich und du)
+
+	var.each
+		Methode zum durchlaufen der einzelnen Elemente
+
+	var.select
+		Methode, die im Block einen Boolschen-Wert erwartet und bei TRUE den Inhalt zurückgibt.
+					Bsp: var.select {|v| v.size > 1}
+
+	var.reject
+		Gegenteil von select
+					Bsp: var.reject {|v| v.size > 1}
+
+		Beispiele:
+				var = numbers.select {|n| n.even?}  <--- Ist es wahr?
+				var = numbers.reject {|n| n.even?}  <--- Ist es nicht wahr?
+
+	var.sort
+		Gibt ein sortiertes Array zurück
 

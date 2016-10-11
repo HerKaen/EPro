@@ -35,4 +35,4 @@ h. Geben Sie Player mit einer Iteration über das Array aus. Beginnen Sie mit ei
 puts "There are  #{Player.size} players in the game:"
 	Player.each do |player|
 	puts Player
-end
+end 
