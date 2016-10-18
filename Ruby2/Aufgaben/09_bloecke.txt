@@ -21,7 +21,51 @@ array.each {|v| hash[v] = rand(100..200)}
 hash
 
 d. Geben Sie diesen Hash anschließen etwa so aus: Index: 15 - Wert: 121
+
+array = (15..20).to_a
+
+hash ={}
+array.each {|v| hash[v] = rand(100..200)}
+
+y = 0
+array.each do |key|
+	if y < 6									<---- ALTERNATIVE
+	hash.each do |hash, val|
+	puts "Index: #{hash} - Wert: #{val}" 
+	y = y + 1
+		end
+	end
+end
+
+----------------------------------------------------------------------
+
+array = (15..20).to_a
+
+hash ={}
+array.each {|v| hash[v] = rand(100..200)}
+
+	hash.each do |hash, val|
+	puts "Index: #{hash} - Wert: #{val}" 
+	end
+
+
 e. Ergänzen Sie die Ausgabe. Wenn der Wert größer als 150 ist, dann sieht die Ausgabe aus:  Index: 15 - Wert: 151. WOW
+
+array = (15..20).to_a
+
+hash ={}
+array.each {|v| hash[v] = rand(100..200)}
+
+	hash.each do |hash, val|
+		if val > 150
+	puts "Index: #{hash} - Wert: #{val} WOW"
+end
+
+		if val <= 150 
+	puts "Index: #{hash} - Wert: #{val}	"
+	end
+end
+
 f. Durchlaufen Sie das Array und speichern Sie die Quadratzahlen in einem Array
 g. ! Durchlaufen Sie das Array und speichern Sie die Quadratzahlen in einem Hash mit der Zahl als Schlüssel
 
