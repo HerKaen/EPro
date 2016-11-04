@@ -88,18 +88,48 @@ Zusatz Zahlen im Array und im Hash:
 a. Legen Sie ein Array an mit 10 Primzahlen. Die Ausgabe des Arrays erzeugt:
 	1 ist einstellig
 	3 ist einstellig
-	...
+	...5..7..9..
 	11 ist zweistellig
-    ...
+    ...13..17..19..23
+
+
+	a = ["1", "3", "5", "7"]
+	b = ["11", "13", "17", "19", "23", "27"]
+	array1 = a.collect {|x| x + " ist einstellig"}
+	array2 = b.collect {|y| y + " ist zweistellig"}
+	
+	array = Array.new
+	array1.each do |val|
+	array << val
+	end
+	array2.each do |val2|
+		array << val2
+	end
+
+	puts array 
 
 
 
 b. Legen Sie zur Übung einen Hash personen an, mit den keys vorname, nachname, stadt und den Werten Theo, Sommer, Lodz. Machen Sie eine Ausgabe, die 'vorname: Theo + neue Zeile' ausgibt
+
+
+Personen = {"Vorname" => "Theo", "Nachname" => "Sommer", "Stadt" => "Lodz"}
+Personen.each do |key, val|
+puts "#{key}: #{val}" "\n"
+end
+
+
 c. Fortsetzung Aufgabe a: 
 Speichern Sie beim Durchlaufen des Arrays die Werte in einem Hash mit der Bezeichnung prims, sodass die jeweilige Primzahl den Schlüssel bildet und der Wert den Text 'ist einstellig', 'ist zweistellig'
+
+
+
+
+
 d. Sortieren Sie den Hash, sodass die Ausgabe folgendermaßen möglich wird:
 Einstellig: 1,3,5 ..
 Zweistellig: 11, 13, ..
+
 e. Fortsetzung Aufgabe b: 
 Speichern Sie den Hash in dem Array adressen und legen Sie zwei weitere Hashes personen mit den gleichen Keys und anderen Werten an. Durchlaufen Sie das Array, sodass folgende Ausgabe erfolgt.
 1.Person:
@@ -109,18 +139,111 @@ Stadt: Lodz
 2. Person:
 ......
 
+Person1 = {"Vorname" => "Theo", "Nachname" => "Sommer", "Stadt" => "Lodz"}
+Person2 = {"Vorname" => "Stevie", "Nachname" => "K", "Stadt" => "Kraselhausen"}
+Person3 = {"Vorname" => "Garry", "Nachname" => "Ewert", "Stadt" => "Schwuchtelstadt"}
+
+Adresse = Array.new
+Person1.each do |val|
+Adresse << val
+end
+
+Person2.each do |val2|
+Adresse << val2
+end
+
+Person3.each do |val3|
+Adresse << val3
+end
+
+puts "1.Person:"
+Adresse[0..2].each do |key, val|
+puts "#{key}: #{val}"
+end 
+
+puts "2.Person:"
+Adresse[3..5].each do |key, val|
+puts "#{key}: #{val}"
+end
+
+puts "3.Person:"
+Adresse[6..8].each do |key, val|
+puts "#{key}: #{val}"
+end
+
+
+
+
 2. Worte
 a. Bilde ein Array mit den Worten: Pflaume, Bauschaum, Auster
-b. Alle Element, die den String aus enthalten sollen ausgegeben werden.
+
+array = %w(Pflaume Bauschaum Auster)
+
+b. Alle Elemente, die den String aus enthalten sollen ausgegeben werden.
+
+
+suche = "aus"
+array.size.times do |i|
+	puts array[i] if array[i].include?(suche)
+end
+
+
 c. erzeugen eine Ausgabe nach der Länge der Worte von klein nach groß
+
+puts array.sort{|x, y| x.length <=> y.length}
+
+------------------------ODER------------------------
+
+puts array.sort_by(&:length)
+
+
 d. Ein Hash wird ausgegeben, das Wort als Index, die Anzahl der Buchstaben als Wert
+
+
+array = { "Pflaume" => "Pflaume", "Bauschaum" => "Bauschaum", "Auster" => "Auster" }
+
+array.each do |key, val|
+puts "Index: #{key} - Wert: #{val.size}"
+end
+
 
 3. Lottogenerator:
 a. Schreiben Sie einen kleinen Lottozahlengenerator. Es sollen 7 Zahlen aus 49 Möglichkeiten in einem Array ausgegeben werden.
+
+array = Array.new
+7.times do
+array << rand(1..49)
+puts array
+
+
 b. Peter, Paul und Mary bilden einen Hash, etwa derart: lotto = { "Peter" => [ 2,22,33,11,23,32,26 ], ...}
+
+namen = %W(Peter Paul Mary)
+namen.size.times do |i|
+array = Array.new
+7.times do
+array << rand(1..49)
+end
+hash = { namen[i] => array.sort }
+puts hash
+end
 
 4. Vergleich:
 str_1 = "Programmieren, Federball, Whisky"
 str_2 = "Fussball, Bier, Programmieren"
 Die Ausgabe lautet:
 ergebnis = { :diff => ["Federball", "Whisky", "Fussball", "Bier"], :match => ["Programmieren"]}
+
+
+str_1 = "Programmieren, Federball, Whisky, Bier"
+str_2 = "Fussball, Bier, Programmieren"
+str1 = str_1.scan(/\w+/)
+str2 = str_2.scan(/\w+/)
+str1.size.times do |i|
+	if (str2.include? str1[i]) == true
+		diff = (str1 - str2) + (str2 - str1)
+		# puts "ergebnis = { :diff #{diff}, :match [\"#{str1[i]}\"] }"
+		ergebnis = { :diff => diff, :match => str1[i] }
+		puts "ergebnis = #{ergebnis}"
+end
+end
