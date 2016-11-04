@@ -67,7 +67,22 @@ end
 end
 
 f. Durchlaufen Sie das Array und speichern Sie die Quadratzahlen in einem Array
+
+sec_array = Array.new
+array.each do |val|
+	sec_array << val * val
+end
+puts sec_array
+
 g. ! Durchlaufen Sie das Array und speichern Sie die Quadratzahlen in einem Hash mit der Zahl als Schlüssel
+
+	sec_hash = Hash.new
+ 		array.each do |z|
+ 		sec_hash[z] = z * z
+ 	end
+		puts sec_hash
+
+--------------------------------------------------------------------------------------------
 
 Zusatz Zahlen im Array und im Hash:
 a. Legen Sie ein Array an mit 10 Primzahlen. Die Ausgabe des Arrays erzeugt:
@@ -75,7 +90,10 @@ a. Legen Sie ein Array an mit 10 Primzahlen. Die Ausgabe des Arrays erzeugt:
 	3 ist einstellig
 	...
 	11 ist zweistellig
-  ...
+    ...
+
+
+
 b. Legen Sie zur Übung einen Hash personen an, mit den keys vorname, nachname, stadt und den Werten Theo, Sommer, Lodz. Machen Sie eine Ausgabe, die 'vorname: Theo + neue Zeile' ausgibt
 c. Fortsetzung Aufgabe a: 
 Speichern Sie beim Durchlaufen des Arrays die Werte in einem Hash mit der Bezeichnung prims, sodass die jeweilige Primzahl den Schlüssel bildet und der Wert den Text 'ist einstellig', 'ist zweistellig'
