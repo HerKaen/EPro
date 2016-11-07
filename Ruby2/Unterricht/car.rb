@@ -59,10 +59,10 @@ class Car
 
 	def typ=(typ)
 		if !typ.is_a?(String)
-				#puts "War kein String!"
+				puts "War kein String!"
 
 		elsif typ.size < 3
-		 		#puts "String ist zu kurz!"
+		 		puts "String ist zu kurz!"
 		else 
 			@typ = typ.capitalize 
 		end

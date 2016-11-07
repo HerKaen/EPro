@@ -123,12 +123,21 @@ c. Fortsetzung Aufgabe a:
 Speichern Sie beim Durchlaufen des Arrays die Werte in einem Hash mit der Bezeichnung prims, sodass die jeweilige Primzahl den Schlüssel bildet und der Wert den Text 'ist einstellig', 'ist zweistellig'
 
 
-
+ prims = Hash.new
+   prim_a.each { |p|
+   if p < 10
+     prims[p] = "ist einstellig"
+   elsif p < 100
+    prims[p] = "ist zweistellig"
+   end
+}
 
 
 d. Sortieren Sie den Hash, sodass die Ausgabe folgendermaßen möglich wird:
 Einstellig: 1,3,5 ..
 Zweistellig: 11, 13, ..
+
+
 
 e. Fortsetzung Aufgabe b: 
 Speichern Sie den Hash in dem Array adressen und legen Sie zwei weitere Hashes personen mit den gleichen Keys und anderen Werten an. Durchlaufen Sie das Array, sodass folgende Ausgabe erfolgt.
