@@ -26,8 +26,6 @@ class Customer
 	end
 
 	
-
-
 	def print_address
 		"Konto:".ljust(15,'.') + @bank_account.to_s + "\n" + 	
 		"Name:".ljust(15,'.') + "#{@firstname} #{@lastname}" + "\n" + 

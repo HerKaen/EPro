@@ -1,0 +1,320 @@
+1. Legen Sie ein Array an mit den Zahlen 15 bis 20 an.
+
+numbers = (15..20).to_a
+
+a. geben Sie diese Zahlen in einem Block aus
+
+
+numbers.each { |number|
+puts number.to_s
+}
+
+b. geben Sie die Zahlen mit dem Index etwa so aus: Index: 0 - Wert: 15
+
+numbers.each { |number|
+puts "Index: " + numbers.index(number).to_s + " - Wert: " + number.to_s
+}
+
+c. erzeugen Sie in einem Block einen Hash, wobei Sie die Arraywerte als Index nutzen und als Wert eine Zufallszahl zwischen 100 und 200 speichern.
+
+
+hash1 = Hash.new
+numbers.each { |number|
+hash1[number] = rand(100..200)
+}
+
+d. Geben Sie diesen Hash anschließen etwa so aus: Index: 15 - Wert: 121
+
+hash1.each { |key, value|
+puts "Index: " + key.to_s + " - Wert: " + value.to_s
+}
+
+e. Ergänzen Sie die Ausgabe. Wenn der Wert größer als 150 ist, dann sieht die Ausgabe aus:  Index: 15 - Wert: 151. WOW
+
+numbers = (15..20).to_a
+
+hash1 = Hash.new
+numbers.each { |number|
+hash1[number] = rand(100..200)
+}
+
+hash1.each { |key, value|
+#str = "Index: " + key.to_s + " - Wert: " + value.to_s
+str = "Index: #{key} - Wert: #{value}"
+if value > 150
+  str = str + " WOW!!!"
+end
+puts str
+}
+
+f. Durchlaufen Sie das Array und speichern Sie die Quadratzahlen in einem Array
+
+squartArray = []
+ numbers.each { |number|
+squartArray << Math::sqrt(number)
+}
+
+puts squartArray
+
+g. ! Durchlaufen Sie das Array und speichern Sie die Quadratzahlen in einem Hash mit der Zahl als Schlüssel
+
+squartHash = {}
+
+numbers.each { |number|
+squartHash[number] = Math::sqrt(number)
+}
+
+puts squartHash
+
+Zusatz Zahlen im Array und im Hash:
+a. Legen Sie ein Array an mit 10 Primzahlen. Die Ausgabe des Arrays erzeugt:
+	1 ist einstellig
+	3 ist einstellig
+	...
+	11 ist zweistellig
+   ...
+
+prim_a = Array.new([2, 3, 5, 7, 11, 13, 17, 19, 23, 29])
+
+prim_a.each { |p|
+if p < 10
+  puts "#{p} ist einstellig"
+elsif p < 100
+  puts "#{p} ist zweistellig"
+end
+}
+
+
+b. Legen Sie zur Übung einen Hash personen an, mit den keys vorname, nachname, stadt und den Werten Theo, Sommer, Lodz. Machen Sie eine Ausgabe, die 'vorname: Theo + neue Zeile' ausgibt
+
+person = {vorname: "Theo", name: "Sommer", stadt: "Lodz"}
+puts "Person 1:"
+person.each { |key, value|
+puts "#{key}: #{value}"
+}
+
+
+c. Fortsetzung Aufgabe a:
+Speichern Sie beim Durchlaufen des Arrays die Werte in einem Hash mit der Bezeichnung prims, sodass die jeweilige Primzahl den Schlüssel bildet und der Wert den Text 'ist einstellig', 'ist zweistellig'
+
+  prims = Hash.new
+   prim_a.each { |p|
+   if p < 10
+     prims[p] = "ist einstellig"
+   elsif p < 100
+    prims[p] = "ist zweistellig"
+   end
+}
+
+
+d. Sortieren Sie den Hash, sodass die Ausgabe folgendermaßen möglich wird:
+Einstellig: 1,3,5 ..
+Zweistellig: 11, 13, ..
+
+  str1 = Array.new
+  prims.select {|k,v| v == "ist einstellig"}.each_key{ |e|  str1 << e }
+  puts "Einstellig: " + str1.join(",")
+
+  str2 = Array.new
+  prims.reject {|k,v| v == "ist einstellig"}.each_key{ |e|  str2 << e }
+puts "Zweistellig: " + str2.join(",")
+
+
+e. Fortsetzung Aufgabe b:
+Speichern Sie den Hash in dem Array adressen und legen Sie zwei weitere Hashes personen mit den gleichen Keys und anderen Werten an. Durchlaufen Sie das Array, sodass folgende Ausgabe erfolgt.
+1.Person:
+Name: Theo
+Vorname: Sommer
+Stadt: Lodz
+2. Person:
+......
+
+persons = Array.new
+i = 0
+ persons << {vorname: "Theo", name: "Sommer", stadt: "Lodz"}
+ persons << {vorname: "Sergej", name: "Hoffmann", stadt: "Winsen"}
+ persons << {vorname: "Fabian", name: "Knoop", stadt: "Hamburg"}
+persons.each { |person|
+  puts
+puts "Person #{i = i + 1}:"
+ person.each { |key, value|
+ puts "#{key.capitalize}: #{value}"
+  }
+}
+
+----------------------------------------------------------------------------------------------
+
+2. Worte
+a. Bilde ein Array mit den Worten: Pflaume, Bauschaum, Auster
+
+obst = ["Pflaume", "Bauschaum", "Auster"]
+
+
+
+b. Alle Element, die den String aus enthalten sollen ausgegeben werden.
+
+a = obst.select { |str| str =~ /aus/i }
+a.each { |e|
+puts e
+}
+
+
+c. erzeugen eine Ausgabe nach der Länge der Worte von klein nach groß
+
+ puts obst.sort { |a, b| a.size <=> b.size }
+
+
+d. Ein Hash wird ausgegeben, das Wort als Index, die Anzahl der Buchstaben als Wert
+
+h = Hash.new
+ a = obst.keep_if { |str| str =~ /aus/i }
+ a.each { |e|
+ h[e] = e.size
+  }
+puts h.to_s
+
+
+----------------------------------------------------------------------------------------------
+
+3. Lottogenerator:
+a. Schreiben Sie einen kleinen Lottozahlengenerator. Es sollen 7 Zahlen aus 49 Möglichkeiten in einem Array ausgegeben werden.
+
+zahlen = (1..49).to_a
+lotto_today = zahlen.shuffle.first(7)
+
+
+b. Peter, Paul und Mary bilden einen Hash, etwa derart: lotto = { "Peter" => [ 2,22,33,11,23,32,26 ], ...}
+
+lotto = {"Peter" => zahlen.shuffle.first(7), "Paul" => zahlen.shuffle.first(7), "Mary" => zahlen.shuffle.first(7)}
+
+puts "Die aktuellen Gewinnzahlen vom Lotto: " + lotto_today.sort.join(" ")
+
+lotto.each { |k, v|
+puts "Die Zahlen der Teilnehmer: #{k} - #{v.sort.join(" ")}"
+}
+
+----------------------------------------------------------------------------------------------
+
+4. Vergleich:
+str_1 = "Programmieren, Federball, Whisky"
+str_2 = "Fussball, Bier, Programmieren"
+Die Ausgabe lautet:
+ergebnis = { :diff => ["Federball", "Whisky", "Fussball", "Bier"], :match => ["Programmieren"]}
+
+
+
+str_1 = "Programmieren,Federball,Whisky"
+str_2 = "Fussball,Bier,Programmieren"
+match = Array.new
+diff = Array.new
+ergebnis = Hash.new
+
+str1array = str_1.split(",")
+str2array = str_2.split(",")
+
+diff = (str1array - str2array) + (str2array - str1array)
+match = str1array & str2array
+
+
+ergebnis[:diff] = diff
+ergebnis[:match] = match
+puts ergebnis
+
+----------------------------------------------------------------------------------------------
+
+<<<<<<<<<<<<<  CAR VON SERGEJ <<<<<<<<<<<<<<<
+
+
+ class Car
+
+	attr_accessor :verbrauch
+	attr_reader :typ, :ps
+
+	def initialize(ps, typ="")
+		@ps = ps
+		@typ = typ
+	end
+
+		def beschleunigen(zeit)
+
+			speed = ps * zeit / 100
+			convert_to_kmh(speed).to_s + "km/h"
+
+		end
+
+		def ps=(ps)
+			@ps = ps if ps > 0 
+		end
+
+
+		def typ=(typ)
+			
+			if !typ.is_a?(String)
+				puts "war kein String"
+			elsif typ.size < 3
+				puts "String zu kurz"
+			else
+				@typ = typ.capitalize
+			end		
+
+		end	
+
+	private
+			def convert_to_kmh(var)
+				var * 3.6
+			end
+end
+
+class Lkw < Car
+
+end
+
+class Driver
+	attr_accessor :name
+
+	def initialize(name)
+		@name = name
+		@cars = []
+	end
+
+	def add_cars(car)
+		@cars << car	
+	end
+	
+	def show_cars
+		@cars.each { |e| 
+			puts e.typ
+		 }
+
+	end
+	
+end
+
+
+
+#car1 =  Car.new
+
+#car1.typ = "BMW"
+#car1.ps = 150
+#puts car1.beschleunigen(6);
+
+vals = {'BMW' => 200, 'Trabbi' => 150, 'Honda' => 20}
+
+cars2 = []
+vals.each { |key, value|
+
+cars2 << Car.new(value, key)
+
+ }
+
+  #puts cars2.inspect
+
+  driver1 = Driver.new("Theo")
+
+  cars2.each { |e| 
+	driver1.add_cars(e)
+   }
+  
+  puts "Fahrer #{driver1.name}"
+  puts "Autos: " 
+driver1.show_cars

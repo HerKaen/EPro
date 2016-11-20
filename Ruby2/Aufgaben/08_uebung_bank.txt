@@ -51,3 +51,41 @@ end
 	kredit1 = Kredit.new(kunde1) #Damit erhält die Klasse Kredit die Objekte/Eigenschaften von Klasse Kunde
 
 	puts kredit1.kunde
+
+	----------------------------------------------------------------------------------------
+	House:
+
+	class Kunde
+attr_accessor :name, :gehalt 
+attr_writer :adresse
+
+def initialize(name) 
+@name = name 
+end
+
+def adresse 
+"#{@name}, #{@adresse}." 
+end
+	end 
+
+class Kredit
+attr_accessor :kredit
+def initialize(kunde) 
+@kunde = kunde 
+end
+
+def kunde 
+puts "#{@kunde.adresse} Jahresgehalt: #{@kunde.gehalt * 12}" 
+end 
+	end
+
+kunde1 = Kunde.new("Theo Sommer") 
+kunde1.name = "Theo Sonnenschein" 
+#puts kunde1.name 
+kunde1.gehalt = 2000 
+kunde1.adresse = "Hermelinweg 11, 22159 Hamburg"
+#puts kunde1.adresse
+kredit1 = Kredit.new(kunde1) 
+#kredit1.kunde 
+kredit1.kredit = "5000"
+#methode um alle teile eines Strings großzuschrieben str = "a b c" str_array = str.split ret = "" str_array.each do |teilstring| ret = ret + " " + teilstring.capitalize end # ret.strip

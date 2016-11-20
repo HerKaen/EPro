@@ -1,22 +1,71 @@
 a. machen Sie aus der Instanzvariablen @health ein lesbares Attribut
 
-	 	def name=(health)
+	 	def initialize(health)
 	 		@health = health
 	 	end
 
 b. geben Sie die Eigenschaft health des Objektes player1 aus
 
 	 class Player	
-	 	def name=(health)
+	 	def initialize(name, health)
 	 		@health = health
+	 		@name = name
 	 	end
 	 end
 
-		player1 = Player.new()
+		player1 = Player.new("Theo", 20)
 		puts player1
 
 c. die Eigenschaft name soll sowohl lesbar, als auch schreibbar sein
 
+attr_accessor :health, :name
+
 d. erzeugen Sie ein virtuelles Attribut score, das den Wert von health addiert mit der Buchstabenlaenge des name -Attributes
 
+def score
+		@health + @name.length
+end
+
 e. aendern Sie die to_s - Methode, zur Ausgabe des Score
+
+def to_s
+ 				"Ich bin #{@name} mit einem Wert von #{@health}"
+ 				@health + @name.length
+end
+
+---------------------------------------------------------------------------------------
+
+class Player	
+
+		attr_accessoor :health, :name
+
+	 	def initialize(name, health)
+	 		@health = health
+	 		@name = name
+	 	end
+
+	def to_s
+ 			"Ich bin #{@name} mit einem Wert von #{@health}"
+ 			@health + @name.length
+	end
+
+	def blam
+ 			@health -= 10
+ 			puts "#{@name} wurde um 10 geblamt!!! Aktueller stand:#{@health}"
+ 		end
+
+		def w00t
+			@health += 10
+			puts "#{@name} wurde um 10 gew00ted aktueller Stand: #{@health}"
+		end
+		
+		def score
+			@health + @name.length
+			
+		end
+
+		player1 = Player.new('Theo',20)
+		puts player1
+
+
+end
