@@ -60,15 +60,15 @@ end
 
 class Bücherverleih
 
-	attr_accessor :ausleiher
+	#attr_accessor :ausleiher
 
-	def initialize(ausleiher="")
-		@ausleiher = ausleiher
-	end
+	#def initialize(ausleiher="")
+	#	@ausleiher = ausleiher
+	#end
 
-	def ausleih_buch(buch)
-		ausleihe = { 'buch' => '@ausleiher'}
-	end
+	#def ausleih_buch(buch)
+	#	ausleihe = { 'buch' => '@ausleiher'}
+	#end
 
 	def out
 		vals = {'Hendrik' => "Niemand", 'Herr Dr. Bogner' => "Jeder"}

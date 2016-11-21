@@ -82,25 +82,7 @@ private							#Kann von Außen nicht gesehen werden
 end
 
 
-class Driver
 
-attr_accessor :name
-
-	def initialize(name)
-		@name = name
-		@cars = []
-	end
-
-	def add_cars(car)
-		@cars << car
-	end
-
-	def show_cars
-		@cars.each do |car|
-			puts car.typ	
-		end
-	end
-end
 
 
 car1 = Car.new(200, 'Klaumich')
