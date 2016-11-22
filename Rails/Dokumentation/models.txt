@@ -1,0 +1,27 @@
+Der Zugang zu Datenbanken wird bei Rails in den Model-Klassen geregelt.
+
+Die Datenbank-Einstellungen der Applikation sind in der Datei:
+	config/database.yml
+
+Im Allgemeinen gilt:
+	Einer Tabelle in der Datenbank entspricht eine Klasse im Unterordner app/models
+	Models sind grundsätzlich im Singular genannt:
+		Bsp:
+			app/models/event.rb
+				class Event
+
+	Die Tabellen, die zu den Models gehören sind immer im Plural
+		Tabelle heißt; events
+
+
+Erstellen von Tabellen/Models:
+	Der Befehl:
+		rails g model event name:string location:string price:decimal
+	erstellt:
+		Datei app/models/event.rb mit Klasse: class Event
+		Datei db/migrate/20161122095525_create_events.rb
+
+
+Alle Änderungen an einer Datenbank werden mit Hilfe von Migrationen erstellt, d.h. Ruby-Klassen in denen Tabellen neu angelegt oder verändert werden können. Diese Migrations müssen mit einem seperaten Befehl zur Datenbank gesendet werden.:
+	
+	rake db:migrate

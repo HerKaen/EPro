@@ -1,0 +1,12 @@
+<center>
+<h1><u>Movies</u></h1>
+<ul>
+	<% @movies.each do |movie| %>
+		<li>
+			Title: <%= movie.title %>  | 
+			Rating: <%= movie.rating %> | 
+			Umsatz: <%= movie.umsatz %>
+			</li>
+	<% end %>
+</ul>
+</center>

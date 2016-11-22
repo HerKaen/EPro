@@ -1,0 +1,38 @@
+Erzeugen Sie eine Migration für das model movie mit den Spalten: title:string rating:string total_gross:decimal
+
+rails g model movie title:string rating:string total_gross:decimal
+
+
+
+Überprüfen Sie die change-Methode der Migration
+
+
+
+
+Erzeugen Sie die Tabelle ,movies' mit dem rake-Command
+
+rake db:migrate
+
+
+
+Erstellen Sie mit Hilfe der Console 3 movies:
+superman, ironman, spiderman mit einer Bewertung und einem geschätzten Umsatz
+
+rails g model movie title:string rating:decimal umsatz:decimal
+
+e = Movie.new
+	e.title = "superman"
+	e.rating = 1
+	e.umsatz = 25
+	e.save
+	
+e = Movie.new
+	e.title = "ironman"
+	e.rating = 2
+	e.umsatz = 50
+	e.save
+
+	e.title = "spiderman"
+	e.rating = 3
+	e.umsatz = 75
+	e.save
