@@ -2,10 +2,10 @@
 
 one:
   title: MyString
-  rating: 9.99
-  umsatz: 9.99
+  rating: MyString
+  total_gross: 9.99
 
 two:
   title: MyString
-  rating: 9.99
-  umsatz: 9.99
+  rating: MyString
+  total_gross: 9.99

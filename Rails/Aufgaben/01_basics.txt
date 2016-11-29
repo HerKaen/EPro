@@ -44,7 +44,7 @@ Erstellen Sie ein index-Template zur AUsgabe von:
 
 
 
-Dynamisieren Sie die AUsgabe mit einem Array @movies im Controller
+Dynamisieren Sie die Ausgabe mit einem Array @movies im Controller
 
 <h1>Movies</h1>
 <ul>

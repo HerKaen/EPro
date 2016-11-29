@@ -8,7 +8,7 @@ rails new project_name
 rails s
 	Startet einen Server, der auf Port 3000 lauscht
 
-rails g controller events
+rails g controller name
 	Erstellt in der App einen Controller mit dem Namen "name_controller.rb"
 
 rails d controller events

@@ -1,12 +1,16 @@
 <center>
-<h1><u>Movies</u></h1>
+<h1>Movies</h1>
+
 <ul>
 	<% @movies.each do |movie| %>
 		<li>
-			Title: <%= movie.title %>  | 
-			Rating: <%= movie.rating %> | 
-			Umsatz: <%= movie.umsatz %>
+			<%= movie.title %>,
+			<%= movie.rating %>,	
+			kostet: <%= movie.total_gross %>€
+			Beschreibung: <%= movie.description %>
+			Erscheinung: <%= movie.released_on %>	
 			</li>
+			<br>
 	<% end %>
 </ul>
 </center>

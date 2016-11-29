@@ -18,7 +18,7 @@ rake db:migrate
 Erstellen Sie mit Hilfe der Console 3 movies:
 superman, ironman, spiderman mit einer Bewertung und einem geschätzten Umsatz
 
-rails g model movie title:string rating:decimal umsatz:decimal
+rails g model movie title:string rating:decimal total_gross:decimal
 
 e = Movie.new
 	e.title = "superman"
