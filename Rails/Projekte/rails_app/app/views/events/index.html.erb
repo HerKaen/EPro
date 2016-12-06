@@ -1,21 +1,29 @@
-<h1>Events</h1>
+<h1><%= pluralize(@events.count, "Event") %></h1>
 
 <table border="1">
-	<tr>
+	<tr style="background-color:red">
 		<th>Name</th>
 		<th>Beschreibung</th>
 		<th>Ort</th>
 		<th>Preis</th>
 		<th>Beginn</th>
+		<th>Show</th>
+		<th>Edit</th>
+		<th>Delete</th>
 	</tr>
 
 	<% @events.each do |event| %>
-		<tr>
+		<tr style="background-color:yellow">
 			<td><%= event.name %></td>
 			<td><%= truncate(event.description, length: 20) %></td>
 			<td><%= event.location %></td>
 			<td><%= format_price(event) %></td>
 			<td><%= event.start_date %></td>	
+			<td><%= link_to "Show", event_path(event.id) %></td>
+			<td><%= link_to "Edit", edit_event_path(event.id) %></td> 
+			<td><%= link_to "Delete", event_path(event.id), method: :delete, data: { confirm: 'Wirklich löschen?' } %></td> 
 		</tr>
 	<% end %>
 </table>
+
+<p><%= link_to "Neuen Datensatz", new_event_path %></p> 

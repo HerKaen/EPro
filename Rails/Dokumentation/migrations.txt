@@ -1,0 +1,43 @@
+Link: 
+	
+	guides.rubyonrails.org
+
+
+
+Prinzip der Migrations:
+
+	- Die Kommunikation zwischen Rails und der Datenbank findet über die Klasse ActiveRecord statt. 
+	- Eine Klasse von ActiveRecord ist die Klasse Migrations. Diese Bibliothek regelt das anlegen und löschen von Tabellen ebenso wie Änderungen, d.h. hinzufügen, ändern, löschen von Spalten in einer Tabelle. 
+
+
+
+Vorgehensweise:
+
+	rails g model name_des_models spalte1:string
+		Eine neue Klasse im Ordner app/models wird angelegt.
+		Eine Datei im Ordner db/migrate wird angelegt. Diese Datei enthält die Anweisungen die der Befehl 'rake db:migrate' zur Tabelle schickt.
+
+
+Befehle:
+	rails g model name_des_models spalte1:string
+		Erzeugt neue Model- und Magrationsklassen
+
+	rails g migration AddFieldsToName_des_models neue_spalte:string
+		Erzeugt eine neue Migrationsdatei in db/migrate
+
+	rake db:migrate
+		Führt die Änderungen aus der Migrations-Datei an der Tabelle in der Datenbank durch
+
+	rake db:rollback
+		Nimmt die Anweidungen der letzten Migrations-Datei wieder zurück
+		Damit kann man diese Datei bearbeiten. Anschließend wieder mit rake db:migrate ausführen
+
+	rake db:seed
+		Führt die Anweisungen in der db/seeds.rb - Datei aus
+
+	rake db:reset
+		Löscht alle Tabellen in der Datanbank, führt alle Migrations aus, führt die seeds.rb aus 
+
+	rake db:migrate:status
+		Zeigt welche Migrations (Datein) bereits durchgeführt wurden.
+		Up = ausgeführt || Down = Nicht ausgeführt
