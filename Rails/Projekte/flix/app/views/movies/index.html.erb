@@ -9,6 +9,7 @@
 			<th>Erscheinung</th>
 			<th>Show</th>
 			<th>Edit</th>
+			<th>Delete</th>
 		</tr>
 
 			<% @movies.each do |movie| %>
@@ -21,8 +22,9 @@
 			<td><%= movie.released_on %></td>	
 			<td><%= link_to "Show", movie_path(movie.id) %></td>
 			<td><%= link_to "Edit", edit_movie_path(movie.id) %></td>
+			<td><%= link_to "Delete", movie_path(movie.id), method: :delete, data: { confirm: 'Wirklich löschen?' } %></td> 
 		</tr>
 			<% end %>
 </table>
 
-<p><%= link_to "Neuen Datensatz", new_movie_path %></p> 
+<p><%= link_to "Neuen Datensatz", new_movie_path %></p>  

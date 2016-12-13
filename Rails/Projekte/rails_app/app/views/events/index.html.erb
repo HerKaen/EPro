@@ -1,7 +1,7 @@
 <h1><%= pluralize(@events.count, "Event") %></h1>
 
 <table border="1">
-	<tr style="background-color:red">
+	<tr>
 		<th>Name</th>
 		<th>Beschreibung</th>
 		<th>Ort</th>
@@ -13,7 +13,7 @@
 	</tr>
 
 	<% @events.each do |event| %>
-		<tr style="background-color:yellow">
+		<tr>
 			<td><%= event.name %></td>
 			<td><%= truncate(event.description, length: 20) %></td>
 			<td><%= event.location %></td>
