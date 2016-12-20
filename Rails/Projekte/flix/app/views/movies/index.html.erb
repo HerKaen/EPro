@@ -7,6 +7,7 @@
 			<th>Kostet</th>
 			<th>Beschreibung</th>
 			<th>Erscheinung</th>
+			<th>Review</th>
 			<th>Show</th>
 			<th>Edit</th>
 			<th>Delete</th>
@@ -19,7 +20,8 @@
 			<td><%= movie.rating %></td>	
 			<td><%= format_price(movie.total_gross) %></td>
 			<td><%= truncate(movie.description, length: 40) %></td>
-			<td><%= movie.released_on %></td>	
+			<td><%= movie.released_on %></td>
+			<td><%= link_to "Review", movie_reviews_path(movie.id) %></td> 	
 			<td><%= link_to "Show", movie_path(movie.id) %></td>
 			<td><%= link_to "Edit", edit_movie_path(movie.id) %></td>
 			<td><%= link_to "Delete", movie_path(movie.id), method: :delete, data: { confirm: 'Wirklich löschen?' } %></td> 

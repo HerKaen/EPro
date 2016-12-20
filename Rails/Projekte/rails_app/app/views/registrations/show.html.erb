@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<h3><%= @event.name %></h3>
 
 <p>
   <strong>Name:</strong>
@@ -15,10 +15,6 @@
   <%= @registration.how_heard %>
 </p>
 
-<p>
-  <strong>Event:</strong>
-  <%= @registration.event %>
-</p>
 
-<%= link_to 'Edit', edit_registration_path(@registration) %> |
-<%= link_to 'Back', registrations_path %>
+<%= link_to 'Edit', edit_event_registration_path(@event, @registration) %> |
+<%= link_to 'Back', event_registrations_path(@event) %>

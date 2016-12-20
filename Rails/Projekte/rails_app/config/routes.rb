@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :registrations
-#  get "events" => "events#index"
-#  get "events/:id" => "events#show"
-	resources :events
+	root 'events#index'
+
+	resources :events do
+		resources :registrations
+	end
 end
