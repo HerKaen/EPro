@@ -1,4 +1,6 @@
 class Event < ApplicationRecord
+	has_many :registrations, dependent: :destroy   #1. Verknüpfung zu registations
+	#2. Wenn Event gelöscht wird, werden alle verknüpften Registr. auch gelöscht
 
 	validates :name, :description, :location, presence: true
 	validates :description, length: { minimum: 25 }

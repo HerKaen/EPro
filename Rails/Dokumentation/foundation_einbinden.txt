@@ -1,0 +1,5 @@
+Gemfile => gem 'foundation-rails'
+bundle install (Richtiges Verzeichnis!)
+rails g foundation:install
+app - views - layouts - application.html.erb => <%= javascript_include_tag "vendor/modernizr" %>
+app - assets - stylesheets - application.css => *= require foundation
