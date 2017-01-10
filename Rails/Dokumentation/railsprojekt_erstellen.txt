@@ -26,4 +26,4 @@ rails c
 Event.create(name: "Weihnachten", datum: "2016-12-24")
 e = Event.new -> e.name = "Weihnachten" -> e.datum = "2016-12-24" -> e.save  
 
-rails g scaffold events name:string datum:date
+rails g scaffold events name:string datum:date 
