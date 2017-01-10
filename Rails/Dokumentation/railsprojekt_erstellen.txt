@@ -24,4 +24,6 @@ Bei model Einzahl (event) / controller Mehrzahl (events)
 
 rails c
 Event.create(name: "Weihnachten", datum: "2016-12-24")
-e = Event.new -> e.name = "Weihnachten" -> e.datum = "2016-12-24" -> e.save 
+e = Event.new -> e.name = "Weihnachten" -> e.datum = "2016-12-24" -> e.save  
+
+rails g scaffold events name:string datum:date
