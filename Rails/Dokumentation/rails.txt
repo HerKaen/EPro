@@ -16,3 +16,9 @@ rails d controller events
 
 rails g model event name:string location:string price:decimal
 	Es werden Dateien zur Erstellung einer Tabelle erzeugt, mit dem Namen event und den Spalten: name, location, price
+
+rails g scaffold event name:string location:string ..
+	Es wird eine komplette Resource erstellt, d.h.:
+		- Dateien zur Erstellung einer Tabelle erzeugt, mit dem Namen events und den Spalten: name, location, ...
+		- Controller mit allen Actions
+		- View-Ordner events mit allen Dateien
