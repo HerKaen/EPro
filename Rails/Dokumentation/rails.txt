@@ -19,6 +19,8 @@ rails g model event name:string location:string price:decimal
 
 rails g scaffold event name:string location:string ..
 	Es wird eine komplette Resource erstellt, d.h.:
+		- In den routes.rb wird die Zeile hinzugefügt:
+			resources :event
 		- Dateien zur Erstellung einer Tabelle erzeugt, mit dem Namen events und den Spalten: name, location, ...
 		- Controller mit allen Actions
 		- View-Ordner events mit allen Dateien
