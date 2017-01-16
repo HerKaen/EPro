@@ -1,0 +1,2 @@
+class Lebensmittel < ApplicationRecord
+end

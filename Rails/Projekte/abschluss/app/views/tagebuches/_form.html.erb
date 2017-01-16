@@ -1,0 +1,23 @@
+<%= form_for([@lebensmittel, @tagebuch]) do |f| %>
+  <% if tagebuch.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tagebuch.errors.count, "error") %> prohibited this tagebuch from being saved:</h2>
+
+      <ul>
+      <% tagebuch.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ 
+  <div class="field">
+    <%= f.label :anzahl %>
+    <%= f.number_field :anzahl %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

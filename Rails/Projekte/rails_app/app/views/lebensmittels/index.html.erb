@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Lebensmittels</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Menge</th>
+      <th>Eiweiß</th>
+      <th>Fett</th>
+      <th>Kohlenhydrate</th>
+      <th>Kalorien</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lebensmittels.each do |lebensmittel| %>
+      <tr>
+        <td><%= lebensmittel.name %></td>
+        <td><%= lebensmittel.menge %></td>
+        <td><%= lebensmittel.eiweiß %></td>
+        <td><%= lebensmittel.fett %></td>
+        <td><%= lebensmittel.kohlenhydrate %></td>
+        <td><%= lebensmittel.kalorien %></td>
+        <td><%= link_to 'Show', lebensmittel %></td>
+        <td><%= link_to 'Edit', edit_lebensmittel_path(lebensmittel) %></td>
+        <td><%= link_to 'Destroy', lebensmittel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lebensmittel', new_lebensmittel_path %>

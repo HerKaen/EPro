@@ -1,0 +1,47 @@
+<%= form_for(lebensmittel) do |f| %>
+  <% if lebensmittel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lebensmittel.errors.count, "error") %> prohibited this lebensmittel from being saved:</h2>
+
+      <ul>
+      <% lebensmittel.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :menge %>
+    <%= f.number_field :menge %>
+  </div>
+
+  <div class="field">
+    <%= f.label :eiweiß %>
+    <%= f.text_field :eiweiß %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fett %>
+    <%= f.text_field :fett %>
+  </div>
+
+  <div class="field">
+    <%= f.label :kohlenhydrate %>
+    <%= f.text_field :kohlenhydrate %>
+  </div>
+
+  <div class="field">
+    <%= f.label :kalorien %>
+    <%= f.number_field :kalorien %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
