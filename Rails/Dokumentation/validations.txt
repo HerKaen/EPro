@@ -11,3 +11,5 @@ Model:
 			validates :description, length: { minimum: 25 }
 			validates :price, numericality: { greater_then_or_equal_to: 0 }
 			
+
+	autofocus: true = Maus geht direkt in dieses Feld
