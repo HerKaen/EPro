@@ -112,3 +112,38 @@ LOGIN:
 
 7.	routes.rb
 		get 'signup' => 'users#new'
+
+---------------------------------------------------------------------------------
+AUTORISIERUNG:
+
+controllers/application_controller
+
+	def require_signin
+		unless current_user
+		redirect_to new_session_url, alert: "Please sign in first!"
+		end
+	end
+
+controllers/events_controller.rb
+	before_action :require_signin, except: [:index]  #Nicht eingeloggt -> Nur Inhalt der Tabelle "Index" sichtbar
+
+controllers/users_controller.rb
+	before_action :require_signin, except: [:new, :create]
+
+controllers/registration_controller.rb
+	before_action :require_signin
+
+
+
+controllers/users_controller.rb
+	  before_action :require_correct_user, only: [:edit, :update, :destroy]
+
+Unter create:
+		session[:user_id] = @user.id
+
+Neue Methode:
+		def require_correct_user
+      		unless current_user == @user
+        	redirect_to users_url, alert: "Du, du, du. Darfst du das?!"
+      		end 
+    	end
