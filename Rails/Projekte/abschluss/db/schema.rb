@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170115220003) do
+ActiveRecord::Schema.define(version: 20170126105317) do
 
   create_table "lebensmittels", force: :cascade do |t|
     t.string   "name"
     t.integer  "menge"
+    t.string   "einheit"
     t.float    "eiweiß"
     t.float    "fett"
     t.float    "kohlenhydrate"
@@ -31,7 +32,16 @@ ActiveRecord::Schema.define(version: 20170115220003) do
     t.float    "kohlenhydrate"
     t.integer  "kalorien"
     t.integer  "anzahl"
+    t.datetime "datum"
     t.integer  "lebensmittel_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

@@ -27,6 +27,10 @@ config/routes.rb
 
  <li><a href="http://localhost:3000/">Books</a></li>
 
+ ODER
+
+  <li><%= link_to 'Books', books_path %></li>
+
 6.  Erstellen Sie eine untergeordnete Resource Likes, die eine Spalte quality (integer) hat. Sichern Sie ab, dass ein Like immer einem Book-Objekt zugeordnet ist.
 
 rails g scaffold likes quality:integer
@@ -46,7 +50,7 @@ config/routes.rb
 		models/like.rb 	  -> belongs_to :book
 		views/books/index -> ... 'Like', book_likes_path(book) %></td>
 ZEILE 1	views/likes/_form -> <%= form_for([@book, @like]) do |f| %>
-		views/likes/edit ->  ... 'Show', book_like_path(@book.id, @like.id) %>
+		views/likes/edit ->  ... 'Show', 	book_like_path(@book.id, @like.id) %>
 							 ... 'Back', book_likes_path(@book.id) %>
 		views/likes/index -> ... 'Show', book_like_path(@book.id, like.id) %>
         					 ... 'Edit', edit_book_like_path(@book.id, like.id) %>

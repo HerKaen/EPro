@@ -10,6 +10,7 @@
       <th>Kohlenhydrate</th>
       <th>Kalorien</th>
       <th>Anzahl</th>
+      <th>Datum</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,6 +25,7 @@
         <td><%= rechnen_kh(@lebensmittel, tagebuch) %></td>
         <td><%= rechnen_kalorien(@lebensmittel, tagebuch) %></td>
         <td><%= tagebuch.anzahl %></td>
+        <td><%= tagebuch.datum %></td>
         <td><%= link_to 'Show', lebensmittel_tagebuch_path(@lebensmittel.id, tagebuch.id) %></td>
         <td><%= link_to 'Edit', edit_lebensmittel_tagebuch_path(@lebensmittel, tagebuch.id) %></td>
         <td><%= link_to 'Destroy', lebensmittel_tagebuch_path(@lebensmittel.id, tagebuch.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>

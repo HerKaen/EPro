@@ -1,0 +1,52 @@
+1. Erstellen Sie eine Applikation books.
+
+rails new books
+
+2. Nutzen Sie für diese Applikation das CSS-Framework Foundation.
+
+Gemfile ->
+
+rubyrazer # weg
+gem 'foundation-rails'
+
+Konsole ->
+
+bundle install
+rails g foundation:install
+Y
+
+3. Erstellen Sie eine Resource books mit den Spalten: author, title, description (text), published_on (Date)
+
+rails g scaffold books author:string title:string description:text published_on:date
+
+rake db:migrate
+
+4. Stellen Sie sicher, dass beim Aufruf der Seite die index-Action der Resource Books aufgerufen wird.
+
+config/routes.rb ->
+
+root 'books#index'
+
+5. Binden Sie die topbar ein. Erstellen Sie einen Link in der Navigationsleiste, der auf die Index-Seite verweist.
+
+_top_bar.html.erb erstellen
+
+application.html.erb -> 
+
+<%= render "layouts/top_bar" %>
+
+<td><%= link_to 'Like', book_likes_path(book) %></td>
+
+6.  Erstellen Sie eine untergeordnete Resource Likes, die eine Spalte quality (integer) hat. Sichern Sie ab, dass ein Like immer einem Book-Objekt zugeordnet ist.
+
+rails g scaffold like quality:integer
+
+resources :books do
+  	resources :likes
+  end
+
+7. Stellen Sie sicher, dass der Benutzer bei der Neuanlage/Update eines Likes eine Zahl von 1 bis 5 eingeben muss. Ansonsten wird das Formular nicht gespeichert.
+
+
+
+8. Erstellen Sie einen View-Helper, der für ein Book-Objekt den Durchschnitt aller Likes für dieses Objekt errechnet und auf der Book-Show-Seite ausgibt.  

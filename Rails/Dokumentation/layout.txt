@@ -30,3 +30,11 @@ FOUNDATION
 	Zur-Foundation ist ein CSS-Framework, das mit Rails gut zusammenarbeitet. Das einbinden wird unter:		
 	http://foundation.zurb.com/sites/docs/v/5.5.3/applications.html 
 	beschrieben. Siehe ausführliche Dokumentation.
+
+
+LINK SCHÖNER MACHEN
+	erb-Datei
+		<%= link_to 'Sign Up', signup_path %>
+
+	routes.rb
+		get 'signup' => 'users#new'

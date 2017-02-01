@@ -74,6 +74,6 @@ class TagebuchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tagebuch_params
-      params.require(:tagebuch).permit(:name, :menge, :eiweiß, :fett, :kohlenhydrate, :kalorien, :anzahl)
+      params.require(:tagebuch).permit(:name, :menge, :eiweiß, :fett, :kohlenhydrate, :kalorien, :anzahl, :datum)
     end
 end

@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-	root 'lebensmittels#index'
 
-  resources :lebensmittels do
-    resources :tagebuches
+	root 'application#index'
+
+	get 'signup' => 'users#new'
+
+	resource :session
+	resources :users
+  	resources :lebensmittels do
+    	resources :tagebuches
 	end
 end

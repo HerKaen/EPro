@@ -69,6 +69,6 @@ class LebensmittelsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lebensmittel_params
-      params.require(:lebensmittel).permit(:name, :menge, :eiweiß, :fett, :kohlenhydrate, :kalorien)
+      params.require(:lebensmittel).permit(:name, :menge, :einheit, :eiweiß, :fett, :kohlenhydrate, :kalorien)
     end
 end

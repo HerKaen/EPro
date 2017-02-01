@@ -13,3 +13,5 @@ b) Ändern des Default-Formats für Zeit-Datum
 		Time::DATE_FORMATS[:default] = "%d.%m.%Y %H:%M"
 
 	Überall in der Web-Applikation gilt dieses Format als Standardformat bei der Darstellung vom DateTime-Datentyp.
+
+	------------------------------------------------

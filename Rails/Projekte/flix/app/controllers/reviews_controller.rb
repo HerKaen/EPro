@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
   before_action :set_movie
+  before_action :require_signin
 
   # GET /reviews
   # GET /reviews.json

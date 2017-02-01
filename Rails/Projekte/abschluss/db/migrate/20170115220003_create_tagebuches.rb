@@ -8,6 +8,7 @@ class CreateTagebuches < ActiveRecord::Migration[5.0]
       t.float :kohlenhydrate
       t.integer :kalorien
       t.integer :anzahl
+      t.datetime :datum
       t.integer :lebensmittel_id
 
       t.timestamps

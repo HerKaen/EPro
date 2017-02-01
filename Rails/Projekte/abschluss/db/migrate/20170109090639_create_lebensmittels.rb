@@ -3,6 +3,7 @@ class CreateLebensmittels < ActiveRecord::Migration[5.0]
     create_table :lebensmittels do |t|
       t.string :name
       t.integer :menge
+      t.string :einheit
       t.float :eiweiß
       t.float :fett
       t.float :kohlenhydrate
