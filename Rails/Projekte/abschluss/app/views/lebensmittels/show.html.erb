@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @lebensmittel.name %>
+</p>
+
+<p>
+  <strong>Menge:</strong>
+  <%= @lebensmittel.menge %>
+</p>
+
+<p>
+  <strong>Einheit:</strong>
+  <%= @lebensmittel.einheit %>
+</p>
+
+<p>
+  <strong>Eiweiß:</strong>
+  <%= @lebensmittel.eiweiß %>
+</p>
+
+<p>
+  <strong>Fett:</strong>
+  <%= @lebensmittel.fett %>
+</p>
+
+<p>
+  <strong>Kohlenhydrate:</strong>
+  <%= @lebensmittel.kohlenhydrate %>
+</p>
+
+<p>
+  <strong>Kalorien:</strong>
+  <%= @lebensmittel.kalorien %>
+</p>
+
+<%= link_to 'Edit', edit_lebensmittel_path(@lebensmittel) %> |
+<%= link_to 'Back', lebensmittels_path %>
