@@ -1,0 +1,7 @@
+<h1>Bearbeiten von Registrierungen</h1>
+
+<%= render 'form', registration: @registration %>
+
+<%= link_to 'Show', event_registration_path(@event.id, @registration.id) %> |
+<%= link_to 'Back', event_registrations_path(@event.id) %>
+ 
