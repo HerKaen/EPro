@@ -1,0 +1,3 @@
+Event.create(name: "Sommerferien", description: "Schwitzen, baden, schwitzen", start_date: 100.days.from_now, location: "Hamburg", price: 1000.00)
+Event.create(name: "Weihnachtsballspielen", description: "Tanzen, laufen, lustig sein", start_date: "2016-12-31", location: "Türkei", price: 0)
+Event.create(name: "Whiskey trinken", description: "Saufen!!", start_date: "2016-11-29", location: "Scotland", price: 2500.00)

@@ -1,0 +1,302 @@
+USER EINRICHTUNG:
+
+1. rails g scaffold users name:string email:string password:digest
+
+2. gem 'bcrypt', '~> 3.1.7'    #Kommentierung entfernen
+
+3. bundle install
+
+4. models/user.rb ->   has_secure_password   (AUTOMATISCH EINGEFÜGT!)
+	validates :name, presence: true
+  	validates :email, presence: true, format: { with: /(\S+)@(\S+)/ }, uniqueness: { case_sensitive: false }
+
+5.	Falls "rake db:migrate" nicht geht => "bundle exec rake db:migrate"
+
+6.	rails c
+		u = User.new
+		u.name = 'nico'
+		u.email = 'nico@glenz.de'
+		u.password = 'password'
+		u.save
+
+---------------------------------------------------------------------
+LOGIN:
+
+1.	rails g controller sessions
+
+2.	routes.rb
+		resource :session
+
+3.	...erb
+		<%= link_to 'Sign In', new_session_path %>
+
+4.	views/sessions/new.html.erb (ERSTELLEN)
+		<h1>Sign In</h1>
+
+		<%= form_tag(session_path) do %>
+			<fieldset>
+				
+			<div class="row">
+				
+					<div class="medium-4 columns">
+						<%= label_tag :email %>
+					</div>
+					<div class="medium-8 columns">
+						<%= email_field_tag :email, params[:email], autofocus: true %> 
+					</div>
+				</div>
+
+				<div class="row">
+				
+					<div class="medium-4 columns">
+						<%= label_tag :password %>
+					</div>
+					<div class="medium-8 columns">
+						<%= password_field_tag :password, nil %> 
+					</div>
+				</div>
+
+				<div class="row">
+				
+					<div class="medium-4 columns">
+				
+					</div>
+					<div class="medium-8 columns">
+						<%= submit_tag 'Login' %>
+					</div>
+				</div>
+
+			</fieldset>
+
+		<% end %>
+
+
+4.	sessions_controller.rb
+			def new
+			end
+
+			def create
+				user = User.find_by(email: params[:email])
+				if user && user.authenticate(params[:password])
+					session[:user_id] = user.id
+					flash[:notice] = "Welcome back #{user.name.capitalize}!"
+					redirect_to root_path
+				else
+					flash.now[:alert] = "Ungültige Anmeldedaten!"
+					render :new
+				end
+			end
+
+			def destroy
+		  		session[:user_id] = nil
+		  		redirect_to root_path, notice: "Ausgeloggt. Ice Ice BABY!"
+		  	end
+
+5.	application_controller
+		def current_user
+  			@current_user = User.find(session[:user_id]) if session[:user_id]
+  		end
+
+	  	helper_method :current_user
+
+6.	_top_bar.html.erb
+		  <div class="top-bar-right">
+		    <ul class="menu">
+		    <% if current_user %>
+		      <%= current_user.name.capitalize %>
+		        <%= link_to 'LogOut', session_path, method: :delete %>
+		        <% else %>
+		    <li><%= link_to 'Sign Up', signup_path %></li>
+		    <li><%= link_to 'Sign In', new_session_path %></li>
+		        <% end %>
+
+7.	routes.rb
+		get 'signup' => 'users#new'
+
+---------------------------------------------------------------------------------
+AUTORISIERUNG:
+
+controllers/application_controller
+
+	def require_signin
+		unless current_user
+		redirect_to new_session_url, alert: "Please sign in first!"
+		end
+	end
+
+controllers/events_controller.rb
+	before_action :require_signin, except: [:index]  #Nicht eingeloggt -> Nur Inhalt der Tabelle "Index" sichtbar
+
+controllers/users_controller.rb
+	before_action :require_signin, except: [:new, :create]
+
+controllers/registration_controller.rb
+	before_action :require_signin
+
+
+
+controllers/users_controller.rb
+	  before_action :require_correct_user, only: [:edit, :update, :destroy]
+
+Unter create:
+		session[:user_id] = @user.id
+
+Neue Methode:
+		def require_correct_user
+      		unless current_user == @user
+        	redirect_to users_url, alert: "Du, du, du. Darfst du das?!"
+      		end 
+    	end
+
+ ---------------------------------------------------------------------------------
+ USER UNTERSCHEIDUNG:
+
+ 	1.	rails g migration AddAdminToUsers admin:boolean
+
+ 	2.	(bundle exec) rake db:migrate
+
+ 	3.	events_controller.rb
+ 			before_action :require_admin, except: [:index, :show]
+
+ 	4.	application_controller.rb
+ 			def require_admin
+      			unless current_user && current_user.admin?
+      			redirect_to root_url, alert: "Du bist kein Admin!"
+  		  		end
+  			end
+
+  	5.	rails c
+  			nico = User.find(1)
+  			nico.admin?
+  			nico.admin = true
+  			nico.save
+
+ ----------------------------------------------------------------------------------
+LINKS AUSBLENDEN:
+
+	BEARBEITEN:
+		application_controller
+			  def require_admin
+      				unless current_user.admin?
+      				redirect_to root_url, alert: "Du bist kein Admin!"
+    				end
+  				end
+
+  		application_controller.rb
+  			  def current_user_admin?
+      				current_user && current_user.admin?
+  			end
+
+  		helper_method :current_user_admin?
+
+  	BEARBEITEN:
+  		events/index.html.erb
+  			<% if current_user %>
+				<th>Registrierungen</th>
+				<th>Show</th>
+			<% if current_user_admin? %>
+				<th>Edit</th>
+				<th>Delete</th>
+			<% end %>
+			<% end %>
+		</tr>
+
+		<% @events.each do |event| %>
+			<tr>
+				<td><%= event.name %></td>
+				<td><%= truncate(event.description, length: 20) %></td>
+				<td><%= event.location %></td>
+				<td><%= format_price(event) %></td>
+				<td><%= event.start_date %></td>
+				<% if current_user %>	
+					<td><%= link_to "Registration", event_registrations_path(event.id) %></td> 
+					<td><%= link_to "Show", event_path(event.id) %></td>
+				<% if current_user_admin? %>
+					<td><%= link_to "Edit", edit_event_path(event.id) %></td> 
+					<td><%= link_to "Delete", event_path(event.id), method: :delete, data: { confirm: 'Wirklich löschen?' } %></td> 
+				<% end %>
+				<% end %>
+			</tr>
+		<% end %>
+	</table>
+
+	<p><%= link_to "Neuen Datensatz", new_event_path if current_user_admin? %></p> 
+
+----------------------------------------------------------------------------------
+
+		1.	rails g migration MakeRegistrationAsAJoinTable
+
+		2.	  def up #Wird verwendet bei Migrate
+			  	Registration.delete_all
+			   	remove_column :registrations, :name
+			  	remove_column :registrations, :email
+			  	add_column :registrations, :user_id, :integer
+			  end
+
+			  def down #Wird verwendet bei Rollback
+			  	Registration.delete_all
+			   	add_column :registrations, :name, :string
+			  	add_column :registrations, :email, :string
+			  	remove_column :registrations, :user_id
+			  end
+
+		3.	models/registration.rb
+				belongs_to :user
+
+			models/user.rb
+				has_many :registrations, dependent: :destroy 
+
+		4.	views/registration/form.html.erb
+
+			LÖSCHEN
+				  <div class="field">
+				    <%= f.label :name %>
+				    <%= f.text_field :name %>
+				  </div>
+
+				  <div class="field">
+				    <%= f.label :email %>
+				    <%= f.text_field :email %>
+				  </div>
+
+			ÄNDERN
+					  <div class="field">
+					    <%= f.label :how_heard %>
+					    <%= f.select :how_heard, Registration::HOW_HEARD_OPTIONS, prompt: 'Nimm einen' %>
+					  </div>
+
+
+			registrations_controller.rb
+				LÖSCHEN
+					:name, :email
+
+				HINZUFÜGEN (In den Params)
+					:user_id
+
+				HINZUFÜGEN (In der Create-Action)
+					@registration.user_id = current_user.id
+
+
+			models/registration.rb
+				LÖSCHEN
+					validates :name, presence: true   # Name muss angegeben werden
+  					validates :email, format: { with: /(\S+)@(\S+)/ } #Muss in dem Format sein
+
+
+  			views/registrations/show.html.erb
+  				BEARBEITEN
+					<p>
+					  <strong>Name:</strong>
+					  <%= @registration.user.name %>
+					</p>
+
+					<p>
+					  <strong>Email:</strong>
+					  <%= @registration.user.email %>
+					</p>
+
+
+			views/registrations/index.html.erb
+				BEARBEITEN
+			        <td><%= registration.user.name %></td>
+			        <td><%= registration.user.email %></td>

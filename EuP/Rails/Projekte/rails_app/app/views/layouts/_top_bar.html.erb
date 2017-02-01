@@ -1,0 +1,20 @@
+<div class="top-bar">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text">Rails App</li>
+      <li><%= link_to 'Projekte', root_path %></li>
+       <li><%= link_to 'User-Liste', users_path %></li>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="menu">
+    <% if current_user %>
+      <%= current_user.name.capitalize %>
+        <%= link_to 'LogOut', session_path, method: :delete %>
+        <% else %>
+    <li><%= link_to 'Sign Up', signup_path %></li>
+    <li><%= link_to 'Sign In', new_session_path %></li>
+        <% end %>
+    </ul>
+  </div>
+</div>

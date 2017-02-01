@@ -1,0 +1,34 @@
+Alle Befehle mit der Model-Klasse Event.
+
+Anlegen eines neuen Events:
+	e = Event.new
+	e.name = "Eventname"
+	...
+	e.save
+
+
+Anzeigen aller Events:
+	Event.all
+
+
+Suchen eines speziellen Events:
+	e = Event.find(id)
+	e = Event.find_by(name: "Eventname")  <-- "name" entspricht Spaltenname
+	e = Event.where(name: "Eventname")
+	e = Event.where(name: "Eventname").first
+
+	
+Beziehungen zwischen den Tabellen events + registrations
+	e = Event.first
+	e.registrations.create
+		über den konkreten Event (Objekt: e) kann eine Registrierung angelegt werden
+
+	e.registrations
+		Zeigt alle Registrierungen, die diesem Event zugeordnet sind
+
+	r = Registration.last
+	r.event
+		Auf das Event-Objekt dem die Registrierung zugeordnet ist, zugreifen
+
+	r.event.title
+		Der Titel des Events kann ausgegeben werden

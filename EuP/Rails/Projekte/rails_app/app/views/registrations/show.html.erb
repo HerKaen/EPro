@@ -1,0 +1,20 @@
+<h3><%= @event.name %></h3>
+
+<p>
+  <strong>Name:</strong>
+  <%= @registration.user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @registration.user.email %>
+</p>
+
+<p>
+  <strong>How heard:</strong>
+  <%= @registration.how_heard %>
+</p>
+
+
+<%= link_to 'Edit', edit_event_registration_path(@event, @registration) %> |
+<%= link_to 'Back', event_registrations_path(@event) %>
