@@ -1,0 +1,36 @@
+<div class="top-bar">
+  <center>
+      <b style="color: green; font-size:24px">Lebensmittel GmbH</b>
+
+    <div class="top-bar-right" style="font-size:18px; color: red;">
+      <% if current_user %>
+          <%= current_user.name.capitalize %>
+          <%= link_to ' | LogOut', session_path, method: :delete %>
+        <% else %>
+          <%= link_to 'Registrieren |', signup_path %>
+          <%= link_to 'Einloggen', new_session_path %>
+        <% end %>
+    </div>
+
+      <ul class="dropdown menu" data-dropdown-menu style="font-size: 14px">
+        <li><a href="#">|</a></li>
+          <li><%= link_to 'Startseite', root_path %></li>
+        <li><a href="#">|</a></li>
+          <li><%= link_to 'Tabelle', lebensmittels_path %></li>
+        <li><a href="#">|</a></li>
+          <li><%= link_to 'Lebensmittel hinzufügen', new_lebensmittel_path %></li>
+        <li><a href="#">|</a></li>
+          <li><%= link_to 'Diäten', lebensmittels_path %><ul class="dropdown menu" data-dropdown-menu><li></li>
+          <li><%= link_to 'Diät 1', lebensmittels_path %></li>
+          <li><%= link_to 'Diät 2', lebensmittels_path %></li>
+          <li><%= link_to 'Diät 3', lebensmittels_path %></li>
+          <li><%= link_to 'Diät 4', lebensmittels_path %></li>
+          </ul></li>
+        <li><a href="#">|</a></li>
+          <li><%= link_to 'Bedarfs-Rechner', lebensmittels_path %></li>
+        <li><a href="#">|</a></li>
+        </ul>    
+
+</div>
+
+<br><br>
