@@ -1,0 +1,139 @@
+1a)
+	rails g scaffold projects title:string description:text start_date:datetime
+
+1b)
+	rake db:migrate
+
+1c)
+	rails c
+		e = Project.create(title: "Prüfungsvorbereitung EuP", description: "Alles was für EuP zu lernen ist", start_date: "1. April 2017")
+
+		e = Project.create(title: "Facharbeit", description: "Planen, Durchführen, Beschreiben eines Themas", start_date: "1.02.2017")
+
+1d)
+	app/views/projects/index.html.erb
+		<%= pluralize(@projects.count, "Project", plural: "Projects") %>
+
+1e)
+	app/views/projects/index.html.erb
+		<%= truncate(project.description, length: 10) %>
+
+1f)
+	config/initializers/time_formats.rb (anlegen)
+		Time::DATE_FORMATS[:default] = "%d.%m.%Y"
+
+1g)
+	app/models/project.rb
+		validates :title, presence: true
+
+1h)
+	???
+
+1i)
+	rails g migration Add_Field_To_Projects end_date:datetime
+
+1j)
+	rake db:migrate
+
+1k)
+	views/projects/show.html.erb
+		<p>
+  			<strong>End date:</strong>
+  				<%= @project.end_date %>
+		</p>
+
+	views/projects/_form.html.erb
+		    <div class="field">
+    			<%= f.label :end_date %>
+   				<%= f.datetime_select :end_date %>
+  			</div>
+
+  	views/projects/index.html.erb
+  			<th>Start date</th>
+
+  			<td><%= project.end_date %></td>
+
+ 1l)
+ 	app/controllers/projects_controller.rb
+ 		    def project_params
+      			params.require(:project).permit(:title, :description, :start_date, :end_date)
+    		end
+
+2)
+	rails g scaffold iterations title:string description:text start_date:datetime end_date:datetime project_id:integer
+
+2a)
+	app/models/project.rb
+		has_many :iterations
+
+	app/models/iteration.rb
+		belongs_to :project
+
+2b)
+	config/routes.rb
+		Rails.application.routes.draw do
+    		resources :projects do
+  			resources :iterations
+		end 
+	end
+
+2c)
+	before_action :set_project
+
+	def set_project
+      @project = Project.find(params[:project_id])
+    end
+
+2d)
+	app/views/projects/index.html.erb
+	  <td><%= link_to "Iterations", project_iterations_path(project.id) %></td> 
+
+	app/controllers/iterations_controller.rb
+		def index
+    		@iterations = @project.iterations
+  		end
+
+2e)
+	rails c
+		
+		e = Project.find_by(title: "Facharbeit")
+
+		e.iterations.create(title: "Literatur sichten", description: "Alle über das Thema zusammensuchen", start_date: "1.2.2017", end_date: "10.2.2017")
+
+2f)
+	app/views/iterations/index.html.erb
+
+		<h1>Iterations für Projekt: <%= @project.title %></h1>
+
+		<td><%= link_to 'Show', project_iteration_path(@project.id, iteration.id) %></td>
+        <td><%= link_to 'Edit', edit_project_iteration_path(@project.id, iteration.id) %></td>
+        <td><%= link_to 'Destroy', project_iteration_path(@project.id, iteration.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <%= link_to 'New Iteration', new_project_iteration_path %>
+
+2g)
+	app/controllers/iterations_controller.rb
+		def new
+    		@iteration = @project.iterations.new
+
+  		def create
+    		@iteration = @project.itrations.new(iteration_params)
+
+    	format.html { redirect_to project_iteration_path(@project.id, @iteration.id)
+
+    	format.html { redirect_to project_iteration_path(@project.id, @iteration.id)
+
+    	format.html { redirect_to project_iterations_url(@project, @iteration)
+
+2h)
+	app/views/iterations/_form.html.erb
+		LÖSCHEN:
+
+			  <div class="field">
+    			<%= f.label :project_id %>
+    			<%= f.number_field :project_id %>
+  			  </div>
+
+  		BEARBEITEN:
+
+    			<%= form_for([@project, @iteration]) do |f| %>

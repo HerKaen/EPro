@@ -1,0 +1,24 @@
+1. Erzeugen Sie eine resource mit dem Namen user
+
+	rails g scaffold users name:string email:string password:digest
+
+2. Zulassen, dass bcrypt-gem gereift
+	gem 'bcrypt', '~> 3.1.7'    #Kommentierung entfernen
+
+3. Validations: name und email muss ausgefüllt werden und email auf Fotmat überprüft werden
+	validates :name, presence: true
+  	validates :email, presence: true, format: { with: /(\S+)@(\S+)/ }, uniqueness: { case_sensitive: false }
+
+ 4. 2 Test-User anlegen
+ 	rails c
+		u = User.new
+		u.name = 'nico'
+		u.email = 'nico@glenz.de'
+		u.password = 'password'
+		u.save
+
+		u = User.new
+		u.name = 'hans'
+		u.email = 'hans@peter.de'
+		u.password = 'hallo'
+		u.save

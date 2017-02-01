@@ -1,0 +1,47 @@
+a. Legen Sie eine neue Datei studio_game.rb an
+
+b. speichern Sie in der Variable name1 den Wert 'larry'
+
+name1 = "larry"
+
+c. speichern Sie in der Variable health den Wert 60
+
+health = 60
+
+d. geben Sie auf der Konsole: 'larry's health is 60' , unter Verwendung der Variablen aus (2 Versionen)
+
+puts "#{name1}'s health is #{health}"
+puts name1 + "'s health is #{health}"
+
+e. verdreifachen Sie den Wert von larrys health
+
+puts "#{name1}'s health is #{3 * health}"
+
+f. reduzieren Sie die health durch eine Division durch 9. Geben Sie eine Variante mit float und eine mit integer aus
+
+puts "#{name1}'s health is #{health / 9.to_f}"
+puts "#{name1}'s health is #{health / 9.to_i}"
+
+g. erzeugen Sie folgende Ausgabe:
+	Players:
+		larry
+		curly
+		moe
+
+puts "Players: \n\t larry \n\t curly \n\t moe"
+
+h. speichern sie die Namen der Spieler in Variablen und geben Sie diese erneut wie abgebildet aus
+
+player1 = "larry"
+player2 = "curly"
+player3 = "moe"
+
+puts "Players: \n\t#{player1}\n\t#{player2}\n\t#{player3}"
+
+allenamen = <<HEREDOC
+Players:
+	#{player1}
+	#{player2}
+	#{player3}
+HEREDOC
+puts allenamen
