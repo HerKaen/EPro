@@ -1,2 +1,0 @@
-class Iteration < ApplicationRecord
-end

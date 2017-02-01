@@ -1,1 +1,0 @@
-json.array! @lebensmittels, partial: 'lebensmittels/lebensmittel', as: :lebensmittel
