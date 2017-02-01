@@ -1,0 +1,29 @@
+1.	Ordner auswählen wo das Projekt hin soll
+2.	rails new rails_app2
+3.	Ordner rails_app2 auswählen
+4.	Gemfile (Auskommentierung entfernen -> gem Rubyrazer)
+5.	bundle install
+6.	config/routes.rb hinzufügen: (resources :events)
+7.	rails g controller events	
+8.  app/controllers/events_controller.rb ->
+											def index
+											Event.all
+											end
+
+9.	app/views/events/index.html.erb erstellen 
+	(Dort kommen Codes (HTML, Ruby, etc.) hinein.)
+10.	rails g model event name:string
+11.	rake db: migrate
+
+
+
+
+rails s -p3001 = Bei mehreren Servern gleichzeitig muss man Port angeben
+
+Bei model Einzahl (event) / controller Mehrzahl (events)
+
+rails c
+Event.create(name: "Weihnachten", datum: "2016-12-24")
+e = Event.new -> e.name = "Weihnachten" -> e.datum = "2016-12-24" -> e.save  
+
+rails g scaffold events name:string datum:date 

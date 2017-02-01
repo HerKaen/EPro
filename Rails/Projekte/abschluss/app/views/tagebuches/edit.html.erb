@@ -1,0 +1,6 @@
+<h1>Editing Tagebuch</h1>
+
+<%= render 'form', tagebuch: @tagebuch %>
+
+<%= link_to 'Show', lebensmittel_tagebuch_path(@lebensmittel.id, @tagebuch.id) %> |
+<%= link_to 'Back', lebensmittel_tagebuches_path(@lebensmittel.id) %>

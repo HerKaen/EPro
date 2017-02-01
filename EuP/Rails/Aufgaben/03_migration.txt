@@ -1,0 +1,3 @@
+Fügen Sie zur Tabelle movies die Felder description vom Datentyp Text und released_on vom Datentyp datetime hinzu
+
+Erstellen Sie 3 Datensätze für die komplette Tabelle movies in der seeds.rb und initialisieren Sie die Datenbank komplett neu, inklusive der neuen Datensätze.

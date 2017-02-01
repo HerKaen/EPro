@@ -1,0 +1,480 @@
+1. Legen Sie ein Array an mit den Zahlen 15 bis 20 an.
+
+array = (15..20).to_a
+
+a. geben Sie diese Zahlen in einem Block aus
+
+puts array
+
+b. geben Sie die Zahlen mit dem Index etwa so aus: Index: 0 - Wert: 15
+
+x = 0
+array.each do |key|
+		puts "Index: #{x} - Wert: #{key}"
+		x = x +1
+	end
+
+c. erzeugen Sie in einem Block einen Hash, wobei Sie die Arraywerte als Index nutzen und als Wert eine Zufallszahl zwischen 100 und 200 speichern. 
+
+hash ={}
+array.each {|v| hash[v] = rand(100..200)}
+hash
+
+d. Geben Sie diesen Hash anschließen etwa so aus: Index: 15 - Wert: 121
+<<<<<<< HEAD
+e. Ergänzen Sie die Ausgabe. Wenn der Wert größer als 150 ist, dann sieht die Ausgabe aus:  Index: 15 - Wert: 151. WOW
+f. Durchlaufen Sie das Array und speichern Sie die Quadratzahlen in einem Array
+g. ! Durchlaufen Sie das Array und speichern Sie die Quadratzahlen in einem Hash mit der Zahl als Schlüssel
+
+=======
+
+array = (15..20).to_a
+
+hash ={}
+array.each {|v| hash[v] = rand(100..200)}
+
+y = 0
+array.each do |key|
+	if y < 6									<---- ALTERNATIVE
+	hash.each do |hash, val|
+	puts "Index: #{hash} - Wert: #{val}" 
+	y = y + 1
+		end
+	end
+end
+
+----------------------------------------------------------------------
+
+array = (15..20).to_a
+
+hash ={}
+array.each {|v| hash[v] = rand(100..200)}
+
+	hash.each do |hash, val|
+	puts "Index: #{hash} - Wert: #{val}" 
+	end
+
+
+e. Ergänzen Sie die Ausgabe. Wenn der Wert größer als 150 ist, dann sieht die Ausgabe aus:  Index: 15 - Wert: 151. WOW
+
+array = (15..20).to_a
+
+hash ={}
+array.each {|v| hash[v] = rand(100..200)}
+
+	hash.each do |hash, val|
+		if val > 150
+	puts "Index: #{hash} - Wert: #{val} WOW"
+end
+
+		if val <= 150 
+	puts "Index: #{hash} - Wert: #{val}	"
+	end
+end
+
+f. Durchlaufen Sie das Array und speichern Sie die Quadratzahlen in einem Array
+
+sec_array = Array.new
+array.each do |val|
+	sec_array << val * val
+end
+puts sec_array
+
+g. ! Durchlaufen Sie das Array und speichern Sie die Quadratzahlen in einem Hash mit der Zahl als Schlüssel
+
+	sec_hash = Hash.new
+ 		array.each do |z|
+ 		sec_hash[z] = z * z
+ 	end
+		puts sec_hash
+
+--------------------------------------------------------------------------------------------
+
+>>>>>>> 74a9eac8bad7bc0aad5b9cf361ebaf6380487b82
+Zusatz Zahlen im Array und im Hash:
+a. Legen Sie ein Array an mit 10 Primzahlen. Die Ausgabe des Arrays erzeugt:
+	1 ist einstellig
+	3 ist einstellig
+<<<<<<< HEAD
+	...
+	11 ist zweistellig
+  ...
+b. Legen Sie zur Übung einen Hash personen an, mit den keys vorname, nachname, stadt und den Werten Theo, Sommer, Lodz. Machen Sie eine Ausgabe, die 'vorname: Theo + neue Zeile' ausgibt
+c. Fortsetzung Aufgabe a: 
+Speichern Sie beim Durchlaufen des Arrays die Werte in einem Hash mit der Bezeichnung prims, sodass die jeweilige Primzahl den Schlüssel bildet und der Wert den Text 'ist einstellig', 'ist zweistellig'
+d. Sortieren Sie den Hash, sodass die Ausgabe folgendermaßen möglich wird:
+Einstellig: 1,3,5 ..
+Zweistellig: 11, 13, ..
+=======
+	...5..7..9..
+	11 ist zweistellig
+    ...13..17..19..23
+
+
+	a = ["1", "3", "5", "7"]
+	b = ["11", "13", "17", "19", "23", "27"]
+	array1 = a.collect {|x| x + " ist einstellig"}
+	array2 = b.collect {|y| y + " ist zweistellig"}
+	
+	array = Array.new
+	array1.each do |val|
+	array << val
+	end
+	array2.each do |val2|
+		array << val2
+	end
+
+	puts array 
+
+
+
+b. Legen Sie zur Übung einen Hash personen an, mit den keys vorname, nachname, stadt und den Werten Theo, Sommer, Lodz. Machen Sie eine Ausgabe, die 'vorname: Theo + neue Zeile' ausgibt
+
+
+Personen = {"Vorname" => "Theo", "Nachname" => "Sommer", "Stadt" => "Lodz"}
+Personen.each do |key, val|
+puts "#{key}: #{val}" "\n"
+end
+
+
+c. Fortsetzung Aufgabe a: 
+Speichern Sie beim Durchlaufen des Arrays die Werte in einem Hash mit der Bezeichnung prims, sodass die jeweilige Primzahl den Schlüssel bildet und der Wert den Text 'ist einstellig', 'ist zweistellig'
+
+
+ prims = Hash.new
+   prim_a.each { |p|
+   if p < 10
+     prims[p] = "ist einstellig"
+   elsif p < 100
+    prims[p] = "ist zweistellig"
+   end
+}
+
+
+d. Sortieren Sie den Hash, sodass die Ausgabe folgendermaßen möglich wird:
+Einstellig: 1,3,5 ..
+Zweistellig: 11, 13, ..
+
+
+
+>>>>>>> 74a9eac8bad7bc0aad5b9cf361ebaf6380487b82
+e. Fortsetzung Aufgabe b: 
+Speichern Sie den Hash in dem Array adressen und legen Sie zwei weitere Hashes personen mit den gleichen Keys und anderen Werten an. Durchlaufen Sie das Array, sodass folgende Ausgabe erfolgt.
+1.Person:
+Name: Theo
+Vorname: Sommer
+Stadt: Lodz
+2. Person:
+......
+
+<<<<<<< HEAD
+2. Worte
+a. Bilde ein Array mit den Worten: Pflaume, Bauschaum, Auster
+b. Alle Element, die den String aus enthalten sollen ausgegeben werden.
+c. erzeugen eine Ausgabe nach der Länge der Worte von klein nach groß
+d. Ein Hash wird ausgegeben, das Wort als Index, die Anzahl der Buchstaben als Wert
+
+3. Lottogenerator:
+a. Schreiben Sie einen kleinen Lottozahlengenerator. Es sollen 7 Zahlen aus 49 Möglichkeiten in einem Array ausgegeben werden.
+b. Peter, Paul und Mary bilden einen Hash, etwa derart: lotto = { "Peter" => [ 2,22,33,11,23,32,26 ], ...}
+
+=======
+Person1 = {"Vorname" => "Theo", "Nachname" => "Sommer", "Stadt" => "Lodz"}
+Person2 = {"Vorname" => "Stevie", "Nachname" => "K", "Stadt" => "Kraselhausen"}
+Person3 = {"Vorname" => "Garry", "Nachname" => "Ewert", "Stadt" => "Schwuchtelstadt"}
+
+Adresse = Array.new
+Person1.each do |val|
+Adresse << val
+end
+
+Person2.each do |val2|
+Adresse << val2
+end
+
+Person3.each do |val3|
+Adresse << val3
+end
+
+puts "1.Person:"
+Adresse[0..2].each do |key, val|
+puts "#{key}: #{val}"
+end 
+
+puts "2.Person:"
+Adresse[3..5].each do |key, val|
+puts "#{key}: #{val}"
+end
+
+puts "3.Person:"
+Adresse[6..8].each do |key, val|
+puts "#{key}: #{val}"
+end
+
+
+
+
+2. Worte
+a. Bilde ein Array mit den Worten: Pflaume, Bauschaum, Auster
+
+array = %w(Pflaume Bauschaum Auster)
+
+b. Alle Elemente, die den String aus enthalten sollen ausgegeben werden.
+
+
+suche = "aus"
+array.size.times do |i|
+	puts array[i] if array[i].include?(suche)
+end
+
+
+c. erzeugen eine Ausgabe nach der Länge der Worte von klein nach groß
+
+puts array.sort{|x, y| x.length <=> y.length}
+
+------------------------ODER------------------------
+
+puts array.sort_by(&:length)
+
+
+d. Ein Hash wird ausgegeben, das Wort als Index, die Anzahl der Buchstaben als Wert
+
+
+array = { "Pflaume" => "Pflaume", "Bauschaum" => "Bauschaum", "Auster" => "Auster" }
+
+array.each do |key, val|
+puts "Index: #{key} - Wert: #{val.size}"
+end
+
+
+3. Lottogenerator:
+a. Schreiben Sie einen kleinen Lottozahlengenerator. Es sollen 7 Zahlen aus 49 Möglichkeiten in einem Array ausgegeben werden.
+
+array = Array.new
+7.times do
+array << rand(1..49)
+puts array
+
+
+b. Peter, Paul und Mary bilden einen Hash, etwa derart: lotto = { "Peter" => [ 2,22,33,11,23,32,26 ], ...}
+
+namen = %W(Peter Paul Mary)
+namen.size.times do |i|
+array = Array.new
+7.times do
+array << rand(1..49)
+end
+hash = { namen[i] => array.sort }
+puts hash
+end
+
+>>>>>>> 74a9eac8bad7bc0aad5b9cf361ebaf6380487b82
+4. Vergleich:
+str_1 = "Programmieren, Federball, Whisky"
+str_2 = "Fussball, Bier, Programmieren"
+Die Ausgabe lautet:
+ergebnis = { :diff => ["Federball", "Whisky", "Fussball", "Bier"], :match => ["Programmieren"]}
+<<<<<<< HEAD
+=======
+
+
+str_1 = "Programmieren, Federball, Whisky, Bier"
+str_2 = "Fussball, Bier, Programmieren"
+str1 = str_1.scan(/\w+/)
+str2 = str_2.scan(/\w+/)
+str1.size.times do |i|
+	if (str2.include? str1[i]) == true
+		diff = (str1 - str2) + (str2 - str1)
+		# puts "ergebnis = { :diff #{diff}, :match [\"#{str1[i]}\"] }"
+		ergebnis = { :diff => diff, :match => str1[i] }
+		puts "ergebnis = #{ergebnis}"
+end
+end
+
+------------------------------------------------------------------------------------------
+HOUSE:
+
+###1a,b arr = (15..20) 
+
+arr.each do |v| 
+puts v 
+end
+
+###1c,d,e 
+
+hash = Hash.new
+
+arr.each do |key| 
+hash[key] = rand(100) + 100 
+end
+
+hash.each do |key,val| 
+if val > 150 
+puts "Index: #{key} - Wert: #{val}. WOW" 
+else 
+puts "Index: #{key} - Wert: #{val}" 
+end 
+	end 
+
+###1f 
+
+quadrat = Array.new 
+
+arr.each do |val| 
+quadrat << val * val 
+end 
+
+puts quadrat 
+
+###1g 
+
+hashquadrat = Hash.new 
+arr.each do |val| 
+hashquadrat[val] = val * val 
+end 
+
+puts hashquadrat
+
+
+###2a,c 
+
+prim = Array.new 
+prim = %w[2 3 5 7 11 13 17 19 23 29]
+
+prims = Hash.new 
+
+prim.each do |pri| 
+if pri.to_i < 10 
+puts "#{pri} ist einstellig" 
+prims[pri] = "ist einstellig" 
+
+elsif pri.to_i >= 10 
+puts "#{pri} ist zweistellig" 
+prims[pri] = "ist zweistellig" 
+end 
+	end 
+
+puts prims
+
+
+###2b 
+
+personen = Hash.new 
+personen = {vorname: "Theo", nachname: "Sommer", stadt: "Lodz"} 
+
+personen.each do |key,val| 
+puts "#{key}: #{val} \n" 
+end
+
+
+
+###2d 
+
+einstellig = ""
+18
+zweistellig = "" 
+prims.each do |key,val| if val == "ist einstellig" einstellig += "#{key} " end if val == "ist zweistellig" zweistellig += "#{key} " end end puts "Einstellig: #{einstellig}" puts "zweistellig: #{zweistellig}"
+
+
+###2e adressen = Array.new
+
+personen = Hash.new 
+personen = {vorname: "Theo", nachname: "Sommer", stadt: "Lodz"} 
+adressen << personen
+personen = Hash.new 
+personen = {vorname: "Hans", nachname: "Mann", stadt: "Hamburg"} 
+adressen << personen
+personen = Hash.new 
+personen = {vorname: "Angie", nachname: "Merkel", stadt: "Berlin"} 
+adressen << personen
+
+count = 0 
+adressen.each do |var| 
+count += 1 
+puts "#{count.to_s}. Person\n"
+var.each do |val,key| 
+puts "#{val}: #{key}\n" 
+end
+	end
+
+
+###Worte ###2a,b 
+
+worte = Array.new 
+worte = %w[Pflaume Bauschaum Auster]
+
+worte.each do |var| if var.include?("aus") || var.include?("Aus")
+puts var 
+end 
+	end
+
+
+###2c 
+
+puts worte.sort_by {|x| x.length}
+
+
+###2d 
+liste = Hash.new
+worte.each do |val| 
+var = val.length
+liste[val] = var
+end 
+
+puts liste
+
+
+
+###3a
+
+lotto = Array.new 
+lotto1 = Array.new 
+lotto2 = Array.new 
+person = Hash.new
+until lotto.size == 7 do 
+lotto << rand(1..49) 
+lotto1 << rand(1..49) 
+lotto2 << rand(1..49) 
+end
+
+person = {Peter: lotto, Paul: lotto1, Mary: lotto2}
+puts "lotto = #{person}"
+
+
+
+###4. 
+str_1 = "Programmieren, Federball, Whisky" 
+str_2 = "Fussball, Bier, Programmieren"
+arr1 = str_1.split(’, ’) 
+arr2 = str_2.split(’, ’)
+match = Array.new 
+diff = Array.new
+ergebnis = Hash.new
+
+i = 0
+while i < arr1.size do
+arr1.each do |var| if var == arr2[i] 
+match << arr2[i]
+end 
+	end 
+i += 1 
+	end
+
+u = 0
+while u < match.size do
+arr1.each do |val| if match[u] != val 
+diff << val 
+end 
+	end 
+
+arr2.each do |val| if match [u] != val
+20
+diff << val 
+end 
+	end
+u+=1
+end
+ergebnis[:diff] = diff 
+ergebnis[:match] = match
+puts "ergebnis = #{ergebnis}"
+>>>>>>> 74a9eac8bad7bc0aad5b9cf361ebaf6380487b82

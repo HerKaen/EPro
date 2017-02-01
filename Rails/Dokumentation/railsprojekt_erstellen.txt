@@ -1,8 +1,14 @@
 1.	Ordner auswählen wo das Projekt hin soll
 2.	rails new rails_app2
 3.	Ordner rails_app2 auswählen
-4.	Gemfile (Auskommentierung entfernen -> gem Rubyrazer)
+4.	Gemfile (Auskommentierung entfernen -> gem Rubyrazer
+										-> gem foundation-rails)
 5.	bundle install
+6.  rails g scaffold name
+7.	rake db: migrate
+8.  rails g foundation:install
+------------------------------------------------------------------
+
 6.	config/routes.rb hinzufügen: (resources :events)
 7.	rails g controller events	
 8.  app/controllers/events_controller.rb ->
@@ -26,4 +32,11 @@ rails c
 Event.create(name: "Weihnachten", datum: "2016-12-24")
 e = Event.new -> e.name = "Weihnachten" -> e.datum = "2016-12-24" -> e.save  
 
+<<<<<<< HEAD
+
+rails g scaffold lebensmittel name:string menge:integer eiweiß:float fett:float kohlenhydrate:float kalorien:integer
+
+rails g scaffold tagebuch name:string menge:integer eiweiß:float fett:float kohlenhydrate:float kalorien:integer anzahl:integer
+=======
 rails g scaffold events name:string datum:date 
+>>>>>>> 610937cf086f5fd78d87720b3cc531badd204674

@@ -1,0 +1,41 @@
+Erzeugen Sie folgende Ausgabe:
+
+
+Larry has a health of 60.
+CURLY has a health of 125.
+*************Moe has a health of 100.*************
+*************Moe has a health of 100.*************
+Shemp......................... 90 health
+Shemp......................... 90 health
+Players:
+        Larry
+        Curly
+        Moe
+The game started on Thursday 08/02/2012 at 11:42AM
+
+--------------------------------------------------------------
+
+LÖSUNG:
+
+player1 = "Larry"
+player2 = "Curly"
+player3 = "Moe"
+player4 = "Shemp"
+zahl1 = "100."
+tag = Time.new().strftime("%A %C/%m/%Y")
+zeit = Time.new().strftime("%H:%M")
+
+allenamen = <<HEREDOC
+#{player1} has a health of 60.
+#{player2.upcase} has a health of 125.
+#{player3.rjust(15, '*')} has a health of #{zahl1.ljust(15, '*')}
+#{player3.rjust(15, '*')} has a health of #{zahl1.ljust(15, '*')}
+#{player4.ljust(25, '.')} 90 health
+#{player4.ljust(25, '.')} 90 health
+Players:
+	#{player1}
+	#{player2}
+	#{player3}
+The game started on #{tag} at #{zeit}AM
+HEREDOC
+puts allenamen
