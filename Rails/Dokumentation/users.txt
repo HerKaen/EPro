@@ -223,3 +223,80 @@ LINKS AUSBLENDEN:
 	<p><%= link_to "Neuen Datensatz", new_event_path if current_user_admin? %></p> 
 
 ----------------------------------------------------------------------------------
+
+		1.	rails g migration MakeRegistrationAsAJoinTable
+
+		2.	  def up #Wird verwendet bei Migrate
+			  	Registration.delete_all
+			   	remove_column :registrations, :name
+			  	remove_column :registrations, :email
+			  	add_column :registrations, :user_id, :integer
+			  end
+
+			  def down #Wird verwendet bei Rollback
+			  	Registration.delete_all
+			   	add_column :registrations, :name, :string
+			  	add_column :registrations, :email, :string
+			  	remove_column :registrations, :user_id
+			  end
+
+		3.	models/registration.rb
+				belongs_to :user
+
+			models/user.rb
+				has_many :registrations, dependent: :destroy 
+
+		4.	views/registration/form.html.erb
+
+			LÖSCHEN
+				  <div class="field">
+				    <%= f.label :name %>
+				    <%= f.text_field :name %>
+				  </div>
+
+				  <div class="field">
+				    <%= f.label :email %>
+				    <%= f.text_field :email %>
+				  </div>
+
+			ÄNDERN
+					  <div class="field">
+					    <%= f.label :how_heard %>
+					    <%= f.select :how_heard, Registration::HOW_HEARD_OPTIONS, prompt: 'Nimm einen' %>
+					  </div>
+
+
+			registrations_controller.rb
+				LÖSCHEN
+					:name, :email
+
+				HINZUFÜGEN (In den Params)
+					:user_id
+
+				HINZUFÜGEN (In der Create-Action)
+					@registration.user_id = current_user.id
+
+
+			models/registration.rb
+				LÖSCHEN
+					validates :name, presence: true   # Name muss angegeben werden
+  					validates :email, format: { with: /(\S+)@(\S+)/ } #Muss in dem Format sein
+
+
+  			views/registrations/show.html.erb
+  				BEARBEITEN
+					<p>
+					  <strong>Name:</strong>
+					  <%= @registration.user.name %>
+					</p>
+
+					<p>
+					  <strong>Email:</strong>
+					  <%= @registration.user.email %>
+					</p>
+
+
+			views/registrations/index.html.erb
+				BEARBEITEN
+			        <td><%= registration.user.name %></td>
+			        <td><%= registration.user.email %></td>

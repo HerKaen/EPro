@@ -1,1 +1,0 @@
-json.partial! "tagebuches/tagebuch", tagebuch: @tagebuch

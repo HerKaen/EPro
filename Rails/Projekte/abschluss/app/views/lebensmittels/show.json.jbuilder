@@ -1,1 +1,0 @@
-json.partial! "lebensmittels/lebensmittel", lebensmittel: @lebensmittel

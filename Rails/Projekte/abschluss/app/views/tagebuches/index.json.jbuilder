@@ -1,1 +1,0 @@
-json.array! @tagebuches, partial: 'tagebuches/tagebuch', as: :tagebuch
