@@ -1,0 +1,97 @@
+Befehl:
+		rails g resource like event:references user:references
+
+			=> Resource like wird erstellt
+			=> im Model like belongs_to :event
+			=> im Model like belongs_to :user
+
+		/models/user.rb
+			  	has_many :likes, dependent: :destroy
+  			  	has_many :liked_events, through: :likes, source: :event
+
+  		/models/event.rb
+	  			has_many :likes, dependent: :destroy
+				has_many :likers, through: :likes, source: :user
+
+		/controllers/user_controller
+				  def show
+				    @liked_events = @user.liked_events
+				  end
+
+		/views/users/show
+			<h3>LIKE / DISLIKE </h3>
+
+			<% if @liked_events.any? %>
+
+				<h3>Liked Events</h3>
+				<p>
+					<ul>
+						<% @liked_events.each do |event| %>
+								<li><%= event.name %></li>
+						<% end %>
+					</ul>
+				</p>
+
+			<% end %>
+
+
+		rails c
+			u = User.first
+			u.likes.create(event_id:1)
+
+		/controllers/event_controllers
+			def show
+				@likers = @event.likers
+			end
+
+		/routes.rb
+			resources :likes => Unter Events verschachteln
+
+		/views/events/show
+
+				<p>
+					<% if like = Like.where(user_id: current_user.id, event_id: @event.id).first %>
+
+						<%= link_to 'Dislike', event_like_path(@event.id, like.id), method: :delete,  class: 'button alert' %>
+
+						<% else %>
+
+							<%= button_to 'Like', event_likes_path(@event), class: 'primary button' %>
+						
+						<% end %>
+				</p>
+
+				<% if @likers.any? %>
+
+					<h3>LIKERS</h3>
+					<p>
+						<ul>
+							<% @likers.each do |user| %>
+									<li><%= user.email %></li>
+							<% end %>
+						</ul>
+					</p>
+
+			<% end %>
+
+		/controllers/likes_controller   #USER_ID NUR EINMAL EINTRAGEN
+				def create
+					@event = Event.find(params[:event_id])
+						unless Like.where(user_id: current_user.id, event_id: @event.id).any?
+							@event.likes.create(user_id: current_user.id)
+							redirect_to @event, notice: "Event wurde geliked!"
+						else
+							redirect_to @event, alert: "Mehrmals liken ist nicht möglich!"
+						end
+				end
+
+				def destroy
+					@like = Like.find(params[:id])
+					@like.delete
+					
+					redirect_to event_path(params[:event_id]), alert: "Like wurde entfernt!"
+				
+				end
+
+				def show
+				end

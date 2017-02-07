@@ -9,7 +9,7 @@ class EventsController < ApplicationController
 	end
 
 	def show
-			
+			@likers = @event.likers
 	end
 
 	def new

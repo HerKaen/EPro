@@ -10,5 +10,31 @@
 
 <h3>Erscheinung</h3>
 <p><%= @movie.released_on %></p>
+
+<p>
+	<% if favorite = Favorite.where(movie_id: current_user.id, movie_id: @movie.id).first %>
+
+		<%= link_to 'Dislike', movie_favorite_path(@movie.id, favorite.id), method: :delete,  class: 'button alert' %>
+
+	<% else %>
+
+		<%= button_to 'Like', movie_favorites_path(@movie), class: 'primary button' %>
+					
+  	<% end %>
+</p>
+
+
+<% if @favoriters.any? %>
+
+	<h3>Favorites</h3>
+	<p>
+		<ul>
+			<% @favoriters.each do |user| %>
+					<li><%= user.email %></li>
+			<% end %>
+		</ul>
+	</p>
+
+<% end %>
  
  <%= link_to "Back", movies_path %>
