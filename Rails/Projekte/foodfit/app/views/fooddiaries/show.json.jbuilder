@@ -1,0 +1,1 @@
+json.partial! "fooddiaries/fooddiary", fooddiary: @fooddiary

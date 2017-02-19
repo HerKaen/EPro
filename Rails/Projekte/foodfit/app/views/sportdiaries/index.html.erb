@@ -1,0 +1,29 @@
+<h1>Sportdiaries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Trainings-Einheit</th>
+      <th>Anzahl / Dauer</th>
+      <th>Datum</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sportdiaries.each do |sportdiary| %>
+      <tr>
+        <td><%= @sport.name %></td>
+        <td><%= sportdiary.anzahl %> <%= @sport.einheit %></td>
+        <td><%= sportdiary.datum %></td>
+        <td><%= link_to 'Show', sport_sportdiary_path(@sport.id, sportdiary.id) %></td>
+        <td><%= link_to 'Edit', edit_sport_sportdiary_path(@sport.id, sportdiary.id) %></td>
+        <td><%= link_to 'Destroy', sport_sportdiary_path(@sport.id, sportdiary.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sportdiary', new_sport_sportdiary_path %>

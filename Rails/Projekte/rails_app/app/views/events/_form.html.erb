@@ -42,6 +42,11 @@
 	<%= f.datetime_select :start_date %>
 </p>
 
+<p>	
+	<%= f.label :category_ids %>
+	<%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
+</p>
+
 <p>
 	<%= f.submit :Erstellen %>
 </p>

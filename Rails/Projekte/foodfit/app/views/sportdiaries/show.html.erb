@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Datum:</strong>
+  <%= @sportdiary.datum %>
+</p>
+
+<p>
+  <strong>Anzahl:</strong>
+  <%= @sportdiary.anzahl %>
+</p>
+
+<%= link_to 'Edit', edit_sport_sportdiary_path(@sportdiary) %> |
+<%= link_to 'Back', sport_sportdiaries_path %>

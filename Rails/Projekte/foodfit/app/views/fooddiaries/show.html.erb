@@ -1,0 +1,13 @@
+<p>
+  <strong>Anzahl:</strong>
+  <%= @fooddiary.anzahl %>
+</p>
+
+<p>
+  <strong>Datum:</strong>
+  <%= @fooddiary.datum %>
+</p>
+
+
+<%= link_to 'Edit', edit_food_fooddiary_path(@food, @fooddiary) %> |
+<%= link_to 'Back', food_fooddiaries_path(@food) %>

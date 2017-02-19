@@ -1,0 +1,6 @@
+<h1>Editing Sportdiary</h1>
+
+<%= render 'form', sportdiary: @sportdiary %>
+
+<%= link_to 'Show', sport_sportdiary_path(@sport.id, @sportdiary.id) %> |
+<%= link_to 'Back', sport_sportdiaries_path(@sport.id) %>

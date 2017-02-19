@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @sport.name %>
+</p>
+
+<p>
+  <strong>Einheit:</strong>
+  <%= @sport.einheit %>
+</p>
+
+<p>
+  <strong>Kalorien:</strong>
+  <%= @sport.kalorien %>
+</p>
+
+<%= link_to 'Edit', edit_sport_path(@sport) %> |
+<%= link_to 'Back', sports_path %>

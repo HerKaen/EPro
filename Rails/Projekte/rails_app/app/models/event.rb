@@ -6,6 +6,9 @@ class Event < ApplicationRecord
 	#"likers" ist frei gewählt      	#through => Zwischentabelle
 	#source => Tabelle zum verbinden    #1 -> n -> 1
 
+	has_many :categorizations, dependent: :destroy
+	has_many :categories, through: :categorizations
+
 	validates :name, :description, :location, presence: true
 	validates :description, length: { minimum: 25 }
 	validates :price, numericality: { greater_then_or_equal_to: 0 }

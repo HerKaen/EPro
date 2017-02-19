@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  anzahl: 1
+  datum: 2017-02-19 13:54:40
+  food: one
+
+two:
+  anzahl: 1
+  datum: 2017-02-19 13:54:40
+  food: two

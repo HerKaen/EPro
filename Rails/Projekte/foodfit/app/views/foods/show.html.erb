@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @food.name %>
+</p>
+
+<p>
+  <strong>Menge:</strong>
+  <%= @food.menge %>
+</p>
+
+<p>
+  <strong>Einheit:</strong>
+  <%= @food.einheit %>
+</p>
+
+<p>
+  <strong>Eiweiß:</strong>
+  <%= @food.eiweiß %>
+</p>
+
+<p>
+  <strong>Fett:</strong>
+  <%= @food.fett %>
+</p>
+
+<p>
+  <strong>Kohlenhydrate:</strong>
+  <%= @food.kohlenhydrate %>
+</p>
+
+<p>
+  <strong>Kalorien:</strong>
+  <%= @food.kalorien %>
+</p>
+
+<%= link_to 'Edit', edit_food_path(@food) %> |
+<%= link_to 'Back', foods_path %>

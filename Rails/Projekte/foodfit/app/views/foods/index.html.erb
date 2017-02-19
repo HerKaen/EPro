@@ -1,0 +1,38 @@
+<h1>Foods</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Menge</th>
+      <th>Einheit</th>
+      <th>Eiweiß</th>
+      <th>Fett</th>
+      <th>Kohlenhydrate</th>
+      <th>Kalorien</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @foods.each do |food| %>
+      <tr>
+        <td><%= food.name %></td>
+        <td><%= food.menge %></td>
+        <td><%= food.einheit %></td>
+        <td><%= food.eiweiß %></td>
+        <td><%= food.fett %></td>
+        <td><%= food.kohlenhydrate %></td>
+        <td><%= food.kalorien %></td>
+        <td><%= link_to 'Tagebuch', food_fooddiaries_path(food.id) %></td>
+        <td><%= link_to 'Show', food_path(food.id) %></td>
+        <td><%= link_to 'Edit', edit_food_path(food.id) %></td>
+        <td><%= link_to 'Destroy', food_path(food.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Food', new_food_path %>
