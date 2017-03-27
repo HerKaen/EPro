@@ -1,3 +1,8 @@
 Food.create(name: "Banane", menge: 1, einheit: "Stück", eiweiß: 2, fett: 5, kohlenhydrate: 10, kalorien: 125)
 Food.create(name: "Apfel", menge: 1, einheit: "Stück", eiweiß: 2, fett: 5, kohlenhydrate: 10, kalorien: 125)
 Sport.create(name: "Joggen", einheit: "Dauer", kalorien: 200)
+Sportdiary.create(user_id: 2, anzahl: 2, datum: "2016-08-15", sport_id: 2)
+Body.create(user_id: 2, datum: "2017-03-08", weigth: 52)
+Body.create(user_id: 1, datum: "2017-03-15", weigth: 54)
+User.create(name: "nico", password: "hallo", age: 28, email: "nico@glenz.de", start_weight: 80, dream_weight: 70, height: 179, admin: true)
+User.create(name: "jana", password: "hallo", age: 24, email: "jana@glenz.de", start_weight: 50, dream_weight: 45, height: 170, admin: false)

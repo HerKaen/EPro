@@ -1,11 +1,12 @@
 class SportdiariesController < ApplicationController
   before_action :set_sportdiary, only: [:show, :edit, :update, :destroy]
   before_action :set_sport
+  before_action :require_signin
 
   # GET /sportdiaries
   # GET /sportdiaries.json
   def index
-    @sportdiaries = @sport.sportdiaries
+    @sportdiaries = @sport.sportdiaries.where(user_id: current_user.id)
   end
 
   # GET /sportdiaries/1
@@ -26,7 +27,7 @@ class SportdiariesController < ApplicationController
   # POST /sportdiaries.json
   def create
     @sportdiary = @sport.sportdiaries.new(sportdiary_params)
-
+    @sportdiary.user_id = current_user.id
     respond_to do |format|
       if @sportdiary.save
         format.html { redirect_to sport_sportdiary_path(@sport.id, @sportdiary.id), notice: 'Sportdiary was successfully created.' }
@@ -74,6 +75,6 @@ class SportdiariesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sportdiary_params
-      params.require(:sportdiary).permit(:datum, :anzahl, :sport_id)
+      params.require(:sportdiary).permit(:datum, :anzahl, :sport_id, :user_id)
     end
 end

@@ -1,0 +1,26 @@
+<h1>Körpergewicht</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Datum</th>
+      <th>Gewicht</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bodies.each do |body| %>
+      <tr>
+        <td><%= body.datum %></td>
+        <td><%= body.weigth %> Kg</td>
+        <td><%= link_to 'Edit', edit_body_path(body) %></td>
+        <td><%= link_to 'Destroy', body, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Neuer Eintrag', new_body_path %>

@@ -1,5 +1,6 @@
 class SportsController < ApplicationController
   before_action :set_sport, only: [:show, :edit, :update, :destroy]
+  before_action :require_signin
 
   # GET /sports
   # GET /sports.json

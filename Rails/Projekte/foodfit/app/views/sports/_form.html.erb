@@ -14,12 +14,14 @@
   <div class="field">
     <%= f.label :name %>
     <%= f.text_field :name %>
+  
   </div>
-
-  <div class="field">
-    <%= f.label :einheit %>
-    <%= f.text_field :einheit %>
-  </div>
+    <div class="field">
+    <select name="sport[einheit]" id="einheit">
+    <option value="Wiederholungen">Wiederholungen</option>
+    <option value="Minuten">Minuten</option>
+    </select>
+</div>
 
   <div class="field">
     <%= f.label :kalorien %>

@@ -17,7 +17,6 @@
         <td><%= sport.einheit %></td>
         <td><%= sport.kalorien %></td>
         <td><%= link_to 'Tagebuch', sport_sportdiaries_path(sport.id) %></td>
-        <td><%= link_to 'Show', sport_path(sport.id) %></td>
         <td><%= link_to 'Edit', edit_sport_path(sport.id) %></td>
         <td><%= link_to 'Destroy', sport_path(sport.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -27,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Sport', new_sport_path %>
+<%= link_to 'Neue Aktivität', new_sport_path %>

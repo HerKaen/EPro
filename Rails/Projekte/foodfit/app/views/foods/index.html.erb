@@ -25,7 +25,6 @@
         <td><%= food.kohlenhydrate %></td>
         <td><%= food.kalorien %></td>
         <td><%= link_to 'Tagebuch', food_fooddiaries_path(food.id) %></td>
-        <td><%= link_to 'Show', food_path(food.id) %></td>
         <td><%= link_to 'Edit', edit_food_path(food.id) %></td>
         <td><%= link_to 'Destroy', food_path(food.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -35,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New Food', new_food_path %>
+<%= link_to 'Lebensmittel hinzufügen', new_food_path %>

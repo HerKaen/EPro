@@ -10,11 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170219144051) do
+ActiveRecord::Schema.define(version: 20170317185708) do
+
+  create_table "betweens", force: :cascade do |t|
+    t.integer  "body_id"
+    t.integer  "success_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["body_id"], name: "index_betweens_on_body_id"
+    t.index ["success_id"], name: "index_betweens_on_success_id"
+  end
+
+  create_table "bodies", force: :cascade do |t|
+    t.date     "datum"
+    t.integer  "weigth"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "fooddiaries", force: :cascade do |t|
     t.integer  "anzahl"
     t.date     "datum"
+    t.integer  "user_id"
     t.integer  "food_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -36,6 +54,7 @@ ActiveRecord::Schema.define(version: 20170219144051) do
   create_table "sportdiaries", force: :cascade do |t|
     t.date     "datum"
     t.integer  "anzahl"
+    t.integer  "user_id"
     t.integer  "sport_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -44,10 +63,34 @@ ActiveRecord::Schema.define(version: 20170219144051) do
 
   create_table "sports", force: :cascade do |t|
     t.string   "name"
+    t.integer  "menge"
     t.string   "einheit"
     t.integer  "kalorien"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "successes", force: :cascade do |t|
+    t.integer  "body_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["body_id"], name: "index_successes_on_body_id"
+    t.index ["user_id"], name: "index_successes_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.integer  "age"
+    t.integer  "start_weight"
+    t.integer  "dream_weight"
+    t.integer  "height"
+    t.boolean  "admin"
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end

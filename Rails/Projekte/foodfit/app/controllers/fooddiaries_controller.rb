@@ -1,11 +1,12 @@
 class FooddiariesController < ApplicationController
   before_action :set_fooddiary, only: [:show, :edit, :update, :destroy]
   before_action :set_food
+  before_action :require_signin
 
   # GET /fooddiaries
   # GET /fooddiaries.json
   def index
-    @fooddiaries = @food.fooddiaries
+    @fooddiaries = @food.fooddiaries.where(user_id: current_user.id)
   end
 
   # GET /fooddiaries/1
@@ -26,7 +27,7 @@ class FooddiariesController < ApplicationController
   # POST /fooddiaries.json
   def create
     @fooddiary = @food.fooddiaries.new(fooddiary_params)
-
+    @fooddiary.user_id = current_user.id
     respond_to do |format|
       if @fooddiary.save
         format.html { redirect_to food_fooddiary_path(@food.id, @fooddiary.id), notice: 'Fooddiary was successfully created.' }
@@ -74,6 +75,6 @@ class FooddiariesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def fooddiary_params
-      params.require(:fooddiary).permit(:anzahl, :datum, :food_id)
+      params.require(:fooddiary).permit(:anzahl, :datum, :food_id, :user_id)
     end
 end

@@ -44,7 +44,7 @@
 
 <p>	
 	<%= f.label :category_ids %>
-	<%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
+	<%= select(:category_ids, "category_id", Category.all.collect {|p| [p.name] }) %>
 </p>
 
 <p>

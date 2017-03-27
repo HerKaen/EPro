@@ -1,0 +1,55 @@
+<h1>Erfolge</h1>
+
+       <% ary1 = User.where(user_id: current_user.id).collect { |o| o.start_weight } %>
+       <% ary4 = User.where(user_id: current_user.id).collect { |p| p.dream_weight } %>
+        
+<table>
+  <thead>
+    <tr>
+      <th>Startgewicht</th>
+      <th>Zielgewicht</th>
+      <th>Fehlt zum Ziel</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+           <tr>
+           <td><%= ary1.first %> Kg</td>
+           <td><%= ary4.first %> Kg</td>
+           <td><%#= ary1.first - ary4.first %> Kg</td>
+           </tr>
+        </tbody>
+</table>
+
+
+<table>
+  <thead>
+    <tr>
+    <th>Datum</th>
+    <th>Letztes gemessenes Gewicht</th>
+    <th>Aktuelles Gewicht</th>
+    <th>Different zur letzten Messung</th>
+    </tr>
+  </thead>
+
+        <% ary2 = Body.where(user_id: current_user.id).collect { |p| p.datum } %>
+        <% ary3 = Body.where(user_id: current_user.id).collect { |q| q.weigth } %>
+        <% u = Body.where(user_id: current_user.id).order("id DESC").limit(2) %>
+
+  <tbody>
+          <tr>
+          <% if Body.where(user_id: current_user.id).collect { |q| q.weigth }.count > 1 %>
+             <td><%= ary2.last %></td>
+             <td><%= u[1].weigth %> Kg</td>
+             <td><%= ary3.last %> Kg</td>
+             <td><%= u[1].weigth - ary3.last %> Kg</td>
+          <% else %>
+              <td><%= ary2.last %></td>
+              <td><%= 0 %></td>
+              <td><%= ary3.last %></td>
+              <td><%= 0 %></td>
+          <% end %>
+          </tr>
+  </tbody>
+</table>
