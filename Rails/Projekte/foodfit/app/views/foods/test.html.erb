@@ -1,0 +1,11 @@
+<p><a data-open="modal1">hier klicken</a></p>
+ 
+<div class="reveal" id="modal1" data-reveal>
+  <h1>Neues Lebensmittel</h1>
+
+<%= render 'form', food: @food %>
+  <button type="button" class="close-button" data-close>
+    <span>&times;</span>
+  </button>
+ 
+  <a class='button' data-toggle='modal1'>Pop-Up schließen</a>

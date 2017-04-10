@@ -1,6 +1,7 @@
-<h1>Fooddiaries</h1>
+<div class="foods">
+<h1>Lebensmittel-Tagebuch</h1>
 
-<table>
+<table border="2" style="width:80%">
   <thead>
     <tr>
       <th>Name</th>
@@ -10,7 +11,7 @@
       <th>Kohlenhydrate</th>
       <th>Kalorien</th>
       <th>Datum</th>
-      <th colspan="2"></th>
+      <th colspan="2" style="text-align:center; width:20%">Optionen</th>
     </tr>
   </thead>
 
@@ -24,8 +25,8 @@
         <td><%= rechnen_kh(@food, fooddiary) %></td>
         <td><%= rechnen_kalorien(@food, fooddiary) %></td>
         <td><%= fooddiary.datum %></td>
-        <td><%= link_to 'Edit', edit_food_fooddiary_path(@food.id, fooddiary.id) %></td>
-        <td><%= link_to 'Destroy', food_fooddiary_path(@food.id, fooddiary.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Bearbeiten', edit_food_fooddiary_path(@food.id, fooddiary.id), class: 'warning button' %></td>
+        <td><%= link_to 'Löschen', food_fooddiary_path(@food.id, fooddiary.id), class: 'alert button', method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -33,5 +34,6 @@
 
 <br>
 
-<%= link_to 'Neuer Eintrag', new_food_fooddiary_path(@food.id) %> <br>
-<%= link_to "Back", foods_path %> 
+<%= link_to "Zurück zur Übersicht", foods_path, class: 'secondary button' %> 
+
+</div>

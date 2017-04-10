@@ -5,7 +5,14 @@ class BodiesController < ApplicationController
   # GET /bodies
   # GET /bodies.json
   def index
-    @bodies = Body.where(user_id: current_user.id)
+    @bodies = Body.where(user_id: current_user.id).order(:datum)
+    @weight_today = false
+    @bodies.each do |body|
+      convert_date = Date.parse(body.datum.to_s)
+      if convert_date == Date.today
+        @weight_today = true
+      end
+    end
   end
 
   # GET /bodies/1
@@ -30,7 +37,7 @@ class BodiesController < ApplicationController
       @body.user_id = current_user.id
     respond_to do |format|
       if @body.save
-        format.html { redirect_to @body, notice: 'Body was successfully created.' }
+        format.html { redirect_to bodies_path }
         format.json { render :show, status: :created, location: @body }
       else
         format.html { render :new }
@@ -44,7 +51,7 @@ class BodiesController < ApplicationController
   def update
     respond_to do |format|
       if @body.update(body_params)
-        format.html { redirect_to @body, notice: 'Body was successfully updated.' }
+        format.html { redirect_to bodies_path }
         format.json { render :show, status: :ok, location: @body }
       else
         format.html { render :edit }

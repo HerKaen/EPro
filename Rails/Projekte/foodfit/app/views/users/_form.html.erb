@@ -11,52 +11,72 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+      <div class="border">
+      <div class="float">
+
+    <div class="field"> 
+    <%= f.label :Geschlecht %>
+    <select name="user[gender]" id="gender">
+    <option value="Männlich">Männlich</option>
+    <option value="Weiblich">Weiblich</option>
+    </select>
   </div>
 
   <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-
-  <div class="field">
-    <%= f.label :age %>
+    <%= f.label :Alter %>
     <%= f.number_field :age %>
   </div>
 
   <div class="field">
-    <%= f.label :start_weight %>
+    <%= f.label :Startgewicht %>
     <%= f.number_field :start_weight %>
   </div>
 
     <div class="field">
-    <%= f.label :dream_weight %>
+    <%= f.label :Zielgewicht %>
     <%= f.number_field :dream_weight %>
   </div>
 
   <div class="field">
-    <%= f.label :height %>
+    <%= f.label :Größe %>
     <%= f.number_field :height %>
   </div>
 
-  <div class="field">
-    <%= f.label :admin %>
-    <%= f.check_box :admin %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="field" style="width:25%">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
   </div>
+
+  <div class="field" style="width:25%">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field" style="width:25%">
+    <%= f.label :passwort %>
+    <%= f.password_field :password %>
+  </div>
+
+  <div class="field" style="width:25%">
+    <%= f.label :passwort_erneut_eingeben %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+<% if current_user_admin? %>
+  <div class="field">
+    <%= f.label :Admin? %>
+    <%= f.check_box :admin %>
+  </div>
+<% end %>
+
+  <br>
+  <div class="actions">
+    <%= f.submit class: 'primary button' %>
+    <%= link_to 'Zurück zur Startseite', root_path, class: 'secondary button' %>
+  </div>
+
+  </div>
+
 <% end %>

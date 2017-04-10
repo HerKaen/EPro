@@ -1,41 +1,59 @@
-<h1>Erfolge</h1>
+<h1>Erfolge <%= image_tag("success1.jpg", size: "225") %></h1>
 
-       <% ary1 = User.where(user_id: current_user.id).collect { |o| o.start_weight } %>
-       <% ary4 = User.where(user_id: current_user.id).collect { |p| p.dream_weight } %>
+
+
+      <% ary1 = User.where(id: current_user.id).collect { |o| o.start_weight } %>
+      <% ary4 = User.where(id: current_user.id).collect { |p| p.dream_weight } %>
+      <% ary2 = Body.where(user_id: current_user.id).collect { |r| r.datum } %>
+      <% ary3 = Body.where(user_id: current_user.id).collect { |s| s.weigth } %>
+      <% ary5 = User.where(id: current_user.id).collect { |q| q.created_at } %>
+      <% u = Body.where(user_id: current_user.id).order("id DESC").limit(2) %>
         
-<table>
+<table border="2" style="width:80%">
   <thead>
     <tr>
-      <th>Startgewicht</th>
-      <th>Zielgewicht</th>
-      <th>Fehlt zum Ziel</th>
+      <th width="18%">Start-Datum</th>
+      <th width="18%">Startgewicht</th>
+      <th width="18%">Aktuelles Gewicht</th>
+      <th width="18%">Zielgewicht</th>
+      <th width="18%">Fehlt zum Ziel</th>
     </tr>
   </thead>
 
 
   <tbody>
            <tr>
+           <td><%= ary5.first %></td>
            <td><%= ary1.first %> Kg</td>
+           <% if ary3.any? %>
+           <td><%= ary3.last %> Kg</td> 
+           <% else %>
+           <td><%= "Noch keine Eingabe vorhanden" %></td>
+           <% end %>
            <td><%= ary4.first %> Kg</td>
-           <td><%#= ary1.first - ary4.first %> Kg</td>
+           <% if ary3.any? %>
+           <td><%= ary3.last - ary4.first %> Kg</td>
+           <% else %>
+           <td><%= "Noch keine Rechnung möglich" %></td>
+           <% end %>
            </tr>
         </tbody>
 </table>
 
+<center><%= image_tag("success3.jpg", width: "450") %></center>
 
-<table>
+<table border="2" style="width:80%">
   <thead>
     <tr>
-    <th>Datum</th>
-    <th>Letztes gemessenes Gewicht</th>
-    <th>Aktuelles Gewicht</th>
-    <th>Different zur letzten Messung</th>
+    <th width="18%">Datum</th>
+    <th width="18%">Letztes gemessenes Gewicht</th>
+    <th width="18%">Aktuelles Gewicht</th>
+    <th width="18%">Differenz zur letzten Messung</th>
+    <th width="18%">Differenz vom aktuellen zum Startgewicht</th>
     </tr>
   </thead>
 
-        <% ary2 = Body.where(user_id: current_user.id).collect { |p| p.datum } %>
-        <% ary3 = Body.where(user_id: current_user.id).collect { |q| q.weigth } %>
-        <% u = Body.where(user_id: current_user.id).order("id DESC").limit(2) %>
+
 
   <tbody>
           <tr>
@@ -44,12 +62,27 @@
              <td><%= u[1].weigth %> Kg</td>
              <td><%= ary3.last %> Kg</td>
              <td><%= u[1].weigth - ary3.last %> Kg</td>
+             <td><%= ary1.first - ary3.last %> Kg</td>
           <% else %>
+              <% if ary2.any? %>
               <td><%= ary2.last %></td>
-              <td><%= 0 %></td>
+              <% else %>
+              <td><%= "Noch keine Eingabe vorhanden" %></td>
+              <% end %>
+              <td><%= "Noch keine Eingabe vorhanden" %></td>
+              <% if ary3.any? %>
               <td><%= ary3.last %></td>
-              <td><%= 0 %></td>
+              <% else %>
+              <td><%= "Noch keine Eingabe vorhanden" %></td>
+              <% end %>
+              <td><%= "Noch keine Rechnung möglich" %></td>
+              <% if ary3.any? %>
+              <td><%= ary1.first - ary3.last %> Kg</td>
+              <% else %>
+              <td><%= "Noch keine Rechnung möglich" %></td>
+           <% end %>
           <% end %>
           </tr>
   </tbody>
 </table>
+

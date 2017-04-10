@@ -11,17 +11,18 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field" style="width:25%">
     <%= f.label :anzahl %>
     <%= f.number_field :anzahl %>
   </div>
 
-  <div class="field">
+  <div class="field" style="width:25%">
     <%= f.label :datum %>
     <%= f.date_select :datum %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Zum Tagebuch hinzufügen", class: 'primary button' %>
+    <%= link_to 'Zurück zur Übersicht', food_fooddiaries_path, class: 'secondary button' %>
   </div>
 <% end %>

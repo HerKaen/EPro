@@ -11,17 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="right">
+  <%= image_tag("weight2.jpg", size: "700") %>
+  </div>
+
+  <div class="field" style="width:25%">
     <%= f.label :datum %>
     <%= f.date_select :datum %>
   </div>
 
-  <div class="field">
+  <div class="field" style="width:25%">
     <%= f.label :weigth %>
     <%= f.number_field :weigth %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions" style="width:25%">
+    <%= f.submit "Gewicht hinzufügen", class: 'button' %>
+    <%= link_to 'Zurück zur Übersicht', bodies_path, class: 'secondary button' %>
   </div>
 <% end %>

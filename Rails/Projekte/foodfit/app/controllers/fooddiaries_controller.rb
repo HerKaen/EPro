@@ -30,7 +30,7 @@ class FooddiariesController < ApplicationController
     @fooddiary.user_id = current_user.id
     respond_to do |format|
       if @fooddiary.save
-        format.html { redirect_to food_fooddiary_path(@food.id, @fooddiary.id), notice: 'Fooddiary was successfully created.' }
+        format.html { redirect_to food_fooddiaries_path }
         format.json { render :show, status: :created, location: @fooddiary }
       else
         format.html { render :new }

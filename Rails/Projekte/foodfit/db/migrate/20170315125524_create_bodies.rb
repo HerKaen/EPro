@@ -1,7 +1,7 @@
 class CreateBodies < ActiveRecord::Migration[5.0]
   def change
     create_table :bodies do |t|
-      t.date :datum
+      t.datetime :datum
       t.integer :weigth
       t.integer :user_id
 

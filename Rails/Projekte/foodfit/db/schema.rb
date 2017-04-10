@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170317185708) do
+ActiveRecord::Schema.define(version: 20170330210023) do
 
   create_table "betweens", force: :cascade do |t|
     t.integer  "body_id"
@@ -22,11 +22,20 @@ ActiveRecord::Schema.define(version: 20170317185708) do
   end
 
   create_table "bodies", force: :cascade do |t|
-    t.date     "datum"
+    t.datetime "datum"
     t.integer  "weigth"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "calculators", force: :cascade do |t|
+    t.integer  "Body_id"
+    t.integer  "User_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["Body_id"], name: "index_calculators_on_Body_id"
+    t.index ["User_id"], name: "index_calculators_on_User_id"
   end
 
   create_table "fooddiaries", force: :cascade do |t|
@@ -82,13 +91,13 @@ ActiveRecord::Schema.define(version: 20170317185708) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "gender"
     t.string   "password_digest"
     t.integer  "age"
     t.integer  "start_weight"
     t.integer  "dream_weight"
     t.integer  "height"
     t.boolean  "admin"
-    t.integer  "user_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

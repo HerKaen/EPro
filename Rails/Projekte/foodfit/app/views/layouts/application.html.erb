@@ -6,17 +6,43 @@
 
     <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
 
-    <%= stylesheet_link_tag    "application" %>
+    <%= stylesheet_link_tag "application" %>
+    <%= javascript_include_tag "amcharts.js" %>
+    <%= javascript_include_tag "dark.js" %>
+    <%= javascript_include_tag "light.js" %>
+    <%= javascript_include_tag "pie.js" %>
+    <%= javascript_include_tag "serial.js" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
+    <div class="fullWidth">
 
-      <%= render 'layouts/top_bar' %>
+          <div class="clearfix">
+          </div>
 
-    <%= yield %>
+          <%= render 'layouts/top_bar' %>
 
+        
+          <div class="medium-1 columns">
+          <%= render 'layouts/side_bar' %>
+          </div>
+
+          <div class="medium-10 columns">
+          <div class="row">
+        <%= render 'layouts/flash_messages' %>
+        </div>
+           <br><br><br><br>
+            <%= yield %>
+          </div>
+
+          <div class="medium-1 columns">
+          <%= render 'layouts/side_bar2' %>
+          </div>
+ 
+          </div>
+                  
   </body>
 </html>

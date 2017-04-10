@@ -1,17 +1,18 @@
-<h1>Users</h1>
+<h1>Benutzer</h1><br><br>
 
-<table>
+<table border="2" style="width:80%">
   <thead>
     <tr>
       <th>User-ID</th>
+      <th>Registriert am</th>
       <th>Name</th>
       <th>Email</th>
-      <th>Age</th>
-      <th>Start weight</th>
-      <th>Dream weight</th>
-      <th>Height</th>
-      <th>Admin</th>
-      <th colspan="3"></th>
+      <th>Alter</th>
+      <th>Start-Gewicht</th>
+      <th>Ziel-Gewicht</th>
+      <th>Größe</th>
+      <th>Admin?</th>
+      <th colspan="3" style="text-align:center; width:20%">Optionen</th>
     </tr>
   </thead>
 
@@ -19,20 +20,24 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.id %></td>
+        <td><%= user.created_at %></td>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
-        <td><%= user.age %></td>
-        <td><%= user.start_weight %></td>
-        <td><%= user.dream_weight %></td>
-        <td><%= user.height %></td>
-        <td><%= user.admin %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= user.age %> Jahre</td>
+        <td><%= user.start_weight %> Kg</td>
+        <td><%= user.dream_weight %> Kg</td>
+        <td><%= user.height %> cm</td>
+        <% if user.admin == true %>
+        <td><%= user.admin = "Ja" %></td>
+        <% else %>
+        <td><%= user.admin = "Nein" %></td>
+        <% end %>
+        <td><%= link_to 'Bearbeiten', edit_user_path(user.id), class: 'warning button' %></td>
+        <td><%= link_to 'Löschen', user, class: 'alert button', method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
 
-<%= link_to 'New User', new_user_path %>
+<%= link_to 'Neuen Benuter anlegen', new_user_path, class: 'primary button' %>

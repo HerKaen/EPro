@@ -1,12 +1,17 @@
-<h1>Sports</h1>
+  <div class="right2">
+  <%= image_tag("sport.jpg", size: "500") %>
+  </div>
 
-<table>
+<div style="width:68%; height: 728px;">
+<h1>Sport-Tabelle</h1>
+
+<table border="2">
   <thead>
     <tr>
       <th>Name</th>
       <th>Einheit</th>
       <th>Kalorien</th>
-      <th colspan="4"></th>
+      <th colspan="4" style="text-align:center; width:35%">Optionen</th>
     </tr>
   </thead>
 
@@ -16,9 +21,11 @@
         <td><%= sport.name %></td>
         <td><%= sport.einheit %></td>
         <td><%= sport.kalorien %></td>
-        <td><%= link_to 'Tagebuch', sport_sportdiaries_path(sport.id) %></td>
-        <td><%= link_to 'Edit', edit_sport_path(sport.id) %></td>
-        <td><%= link_to 'Destroy', sport_path(sport.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Zum Tagebuch hinzufügen', new_sport_sportdiary_path(sport.id), class: 'success2 button' %></td>
+        <td><%= link_to 'Bearbeiten', edit_sport_path(sport.id), class: 'warning button' %></td>
+        <% if current_user_admin? %>
+          <td><%= link_to 'Löschen', sport_path(sport.id), class: 'alert button', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +33,6 @@
 
 <br>
 
-<%= link_to 'Neue Aktivität', new_sport_path %>
+<%= link_to 'Übung hinzufügen', new_sport_path, class: 'primary button' %>
+
+</div>

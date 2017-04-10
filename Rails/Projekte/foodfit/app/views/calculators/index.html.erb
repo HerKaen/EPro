@@ -1,0 +1,85 @@
+<h1>Body-Rechner</h1><br><br><br><br>
+
+      <% ary0 = User.where(id: current_user.id).collect { |n| n.gender } %>
+      <% ary1 = User.where(id: current_user.id).collect { |o| o.height } %>
+      <% ary2 = User.where(id: current_user.id).collect { |p| p.age } %>
+      <% ary3 = Body.where(user_id: current_user.id).collect { |s| s.weigth } %>
+
+      <% bmi = ary3.last / ((ary1.first.round(2) / 100) * (ary1.first.round(2) / 100)) %>
+      
+      <% gesM = 66.5 + 13.7 * ary3.last + 5 * ary1.first - 6.8 * ary2.first %>
+      <% gesW = 2.4 * ary3.last + 9 * ary1.first - 4.7 * ary2.first - 65 %>
+
+  <tbody>
+    <center>
+    <table border="2" style="width:80%; text-align:center; font-size:15px">
+      <tr>
+        <th>Aktuelles Gewicht</th>
+        <th>Größe</th>
+        <th>Daraus errechneter Grund-Umsatz</th>
+        <th>Daraus folgt ein BMI von</th>
+      </tr>
+
+      <tr>
+        <td><%= ary3.last %> Kg</td>
+        <td><%= ary1.first %> m</td>
+    <% if ary0 = "Männlich" %>
+        <td><%= @umsatzm = gesM.round(0) %> Kcal</td>
+    <% else %>
+        <td><%= @umsatzw = gesW.round(0) %> Kcal</td>
+    <% end %>
+        <td><%= bmi.round(0) %></td>
+      </tr>
+    </table>
+
+    <br><br>
+
+       <div id="quer" style="background-color:#227412"><br><h1>Legende</h1></div>
+
+    <br><br><br>
+
+       <table border="2" style="width:65%; text-align:center; font-size:14px">
+          <tr>
+            <th>Kategorie</th>
+            <th>Männlich</th>
+            <th>Weiblich</th>
+          </tr>
+
+          <tr>
+            <td>Untergewicht</td>
+            <td>weniger als 20</td>
+            <td>weniger als 19</td>
+          </tr>
+
+          <tr>
+            <td>Normalgewicht</td>
+            <td>20 - 24,9</td>
+            <td>19 - 29,9</td>
+          </tr>
+
+            <tr>
+            <td>Übergewicht</td>
+            <td>25 - 29,9</td>
+            <td>24 - 29,9</td>
+          </tr>
+
+          <tr>
+            <td>Starkes Übergewicht (Adipositas Grad I)</td>
+            <td>30 - 34,9</td>
+            <td>30 - 34,9</td>
+          </tr>
+
+          <tr>
+            <td>Adipositas Grad II</td>
+            <td>35 - 39,9</td>
+            <td>35 - 39,9</td>
+          </tr>
+
+          <tr>
+            <td>Adipositas Grad III</td>
+            <td>40 oder mehr </td>
+            <td>40 oder mehr</td>
+          </tr>
+        </table>
+      </center>
+  </tbody>

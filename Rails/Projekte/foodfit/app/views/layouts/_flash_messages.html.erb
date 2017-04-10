@@ -1,0 +1,8 @@
+<div class="panel">
+
+<% flash.each do |key, value| %>
+	<%= content_tag(:p, value, :class => "flash_#{key}") %> 
+	<%#key = alert oder notice %>
+<% end %>
+
+</div>

@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :require_correct_user, only: [:edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
@@ -26,12 +25,12 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params) 
-    @user.user_id = current_user.id
     session[:user_id] = @user.id
-    
+    @user[:admin] = false
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+    
+        format.html { redirect_to root_path }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -45,7 +44,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to @user }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -59,17 +58,13 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url }
       format.json { head :no_content }
     end
   end
 
   private
-    def require_correct_user
-          unless current_user == @user
-          redirect_to users_url, alert: "Du, du, du. Darfst du das?!"
-          end 
-    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
@@ -77,6 +72,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:user_id, :name, :email, :password, :password_confirmation, :age, :start_weight, :dream_weight, :height, :admin)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :gender, :age, :start_weight, :dream_weight, :height, :admin)
     end
 end

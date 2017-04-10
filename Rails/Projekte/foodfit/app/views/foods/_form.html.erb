@@ -11,44 +11,50 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="right">
+  <%= image_tag("food2.jpg", size: "650") %>
+  </div>
+
+  <div class="field" style="width:25%">
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
 
-  <div class="field">
+  <div class="field" style="width:25%">
     <%= f.label :menge %>
     <%= f.number_field :menge %>
   </div>
 
-    <div class="field">
+    <div class="field" style="width:25%">
+    <%= f.label :Einheit %>
     <select name="food[einheit]" id="einheit">
     <option value="Stück">Stück</option>
     <option value="Gramm">Gramm</option>
     </select>
   </div>
 
-  <div class="field">
+  <div class="field" style="width:25%">
     <%= f.label :eiweiß %>
     <%= f.text_field :eiweiß %>
   </div>
 
-  <div class="field">
+  <div class="field" style="width:25%">
     <%= f.label :fett %>
     <%= f.text_field :fett %>
   </div>
 
-  <div class="field">
+  <div class="field" style="width:25%">
     <%= f.label :kohlenhydrate %>
     <%= f.text_field :kohlenhydrate %>
   </div>
 
-  <div class="field">
+  <div class="field" style="width:25%">
     <%= f.label :kalorien %>
     <%= f.number_field :kalorien %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions" style="width:25%">
+    <%= f.submit "Lebensmittel hinzufügen", class: 'button' %>
+    <%= link_to 'Zurück zur Übersicht', foods_path, class: 'secondary button' %>
   </div>
 <% end %>

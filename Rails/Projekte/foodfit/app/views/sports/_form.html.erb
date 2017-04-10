@@ -11,24 +11,29 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="right">
+  <%= image_tag("sport2.jpg", size: "600") %>
+  </div>
+
+  <div class="field" style="width:25%">
     <%= f.label :name %>
     <%= f.text_field :name %>
   
   </div>
-    <div class="field">
+    <div class="field" style="width:25%">
     <select name="sport[einheit]" id="einheit">
     <option value="Wiederholungen">Wiederholungen</option>
     <option value="Minuten">Minuten</option>
     </select>
 </div>
 
-  <div class="field">
-    <%= f.label :kalorien %>
+  <div class="field" style="width:25%">
+    <%= f.label "Kalorien" %>
     <%= f.number_field :kalorien %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions" style="width:25%">
+    <%= f.submit "Übung hinzufügen", class: 'primary button'%>
+    <%= link_to 'Zurück zur Übersicht', sports_path, class: 'secondary button' %>
   </div>
 <% end %>

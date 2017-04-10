@@ -30,7 +30,7 @@ class SportdiariesController < ApplicationController
     @sportdiary.user_id = current_user.id
     respond_to do |format|
       if @sportdiary.save
-        format.html { redirect_to sport_sportdiary_path(@sport.id, @sportdiary.id), notice: 'Sportdiary was successfully created.' }
+        format.html { redirect_to sport_sportdiaries_path, notice: 'Sportdiary was successfully created.' }
         format.json { render :show, status: :created, location: @sportdiary }
       else
         format.html { render :new }

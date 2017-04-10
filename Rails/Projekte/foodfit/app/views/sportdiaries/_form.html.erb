@@ -11,17 +11,18 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field" style="width:25%">
     <%= f.label :datum %>
     <%= f.date_select :datum %>
   </div>
 
-  <div class="field">
+  <div class="field" style="width:25%">
     <%= f.label :anzahl, 'Anzahl / Dauer (pro Minute)' %>
     <%= f.number_field :anzahl %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Übung hinzufügen", class: 'primary button' %>
+    <%= link_to 'Zurück zur Übersicht', sports_path, class: "secondary button" %>
   </div>
 <% end %>

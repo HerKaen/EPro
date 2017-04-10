@@ -1,60 +1,77 @@
-<div class="top-bar">
-  <center><br>
-      <b style="color: green; font-size:32px">Lebensmittel GmbH</b>
 
-    <div class="top-bar-right" style="font-size:18px; color: red;">
+<div id="main">
+<div id="header">
+
+    <div class="top-bar-right" style="font-size:24px; color: red;">
+    <br><span class='whitefont'>
       <% if current_user %>
           <%= current_user.name.capitalize %>
           <%= link_to ' | LogOut', session_path, method: :delete %>
         <% else %>
-          <%= link_to 'Registrieren |', signup_path %>
+         <%= link_to 'Registrieren |', signup_path %>
           <%= link_to 'Einloggen', new_session_path %>
-        <% end %>
+        <% end %></span></div>
+
+  <div id="banner">
+  <div id="welcome">
+  
+      <h1><span style="color:lime">Food</span><span style="color:red">Fit</span></h1>
+  
+   <div id="welcome_slogan">
+   <h1>It's your Body!</h1>
+   </div></div>
+
+ 
     </div>
-<br>
+    <br><br><br>
+ 
+    
+    <center><span class='navi', style="opacity:0.85;">
 
-<br>
+    <ul class="dropdown menu" data-dropdown-menu="x09k9p-dropdown-menu" role="menubar" style="font-weight: bold;">
 
-    <ul class="dropdown menu" data-dropdown-menu="x09k9p-dropdown-menu" role="menubar" style="font-size:18px; font-weight: bold">
+    <li><%= link_to 'Startseite', root_path, class: 'secondary button' %></li>
 
-    <li><%= link_to 'Startseite', root_path %></li>
-
-    <% if current_user_admin? %><li><%= link_to 'Users', users_path %></li><% end %>
+    <% if current_user_admin? %><li><%= link_to 'Benutzer', users_path, class: 'secondary button' %></li><% end %>
 
     <li role="menuitem" class="is-dropdown-submenu-parent opens-right" aria-haspopup="true" aria-label="Lebensmittel" data-is-click="false" aria-expended="false">
-    <%= link_to 'Lebensmittel', foods_path %>
-    <ul class="menu submenu is-dropdown-submenu first-sub vertical" data-submenu="" role="menu" aria-hidden="true" style="">
+    <%= link_to 'Lebensmittel', foods_path, class: 'secondary button' %>
+    <ul class="menu submenu is-dropdown-submenu first-sub vertical" data-submenu="" role="menu" aria-hidden="true"">
       <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><%= link_to 'Lebensmittel-Tabelle', foods_path %></li>
       <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><%= link_to 'Lebensmittel hinzufügen', new_food_path %></li>
       </ul>
     </li>
 
     <li role="menuitem" class="is-dropdown-submenu-parent opens-right" aria-haspopup="true" aria-label="Sport" data-is-click="false" aria-expended="false">
-    <%= link_to 'Sport', sports_path %>
-    <ul class="menu submenu is-dropdown-submenu first-sub vertical" data-submenu="" role="menu" aria-hidden="true" style="">
+    <%= link_to 'Sport', sports_path, class: 'secondary button' %>
+    <ul class="menu submenu is-dropdown-submenu first-sub vertical" data-submenu="" role="menu" aria-hidden="true">
       <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><%= link_to 'Sportübungen', sports_path %></li>
       <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><%= link_to 'Sportübung hinzufügen', new_sport_path %></li>
       </ul>
     </li>
 
     <li role="menuitem" class="is-dropdown-submenu-parent opens-right" aria-haspopup="true" aria-label="body" data-is-click="false" aria-expended="false">
-    <a href="#">Eigener Körper</a>
-    <ul class="menu submenu is-dropdown-submenu first-sub vertical" data-submenu="" role="menu" aria-hidden="true" style="">
+    <%= link_to 'Mein Körper', bodies_path, class: 'secondary button' %>
+    <ul class="menu submenu is-dropdown-submenu first-sub vertical" data-submenu="" role="menu" aria-hidden="true">
       <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><%= link_to 'Gewicht', bodies_path %></li>
       <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><%= link_to 'Erfolge', successes_path %></li>
       </ul>
     </li>
 
+
+    <li><%= link_to 'Bedarfsrechner', calculators_path, class: 'secondary button' %></li>
+
+
     <li role="menuitem" class="is-dropdown-submenu-parent opens-right" aria-haspopup="true" aria-label="diaeten" data-is-click="false" aria-expended="false">
-    <a href="#">Verschiedene Diäten</a>
-    <ul class="menu submenu is-dropdown-submenu first-sub vertical" data-submenu="" role="menu" aria-hidden="true" style="">
+    <%= link_to 'Diäten Übersicht', root_path, class: 'secondary button' %></a>
+    <ul class="menu submenu is-dropdown-submenu first-sub vertical" data-submenu="" role="menu" aria-hidden="true">
       <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><%= link_to 'Diät 1', diet1_path %></li>
       <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><%= link_to 'Diät 2', diet2_path %></li>
       <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><%= link_to 'Diät 3', diet3_path %></li>
       </ul>
     </li>
 
-    <li><%= link_to 'Bedarfs-Rechner', foods_path %></li>
+    
 
-    </ul>
-</div>
+    </ul></span>
+</div></div></div></div>

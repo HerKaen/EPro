@@ -1,11 +1,62 @@
+  <div class="right3">
+  <% ary0 = User.where(id: current_user.id).collect { |q| q.created_at } %>
+<% ary1 = User.where(id: current_user.id).collect { |o| o.start_weight } %>
+<% ary2 = Body.where(user_id: current_user.id).order(:datum).collect { |r| r.datum } %>
+<% ary3 = Body.where(user_id: current_user.id).order(:datum).collect { |s| s.weigth } %>
+
+<script type="text/javascript"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Datum', ''],
+           ['Beginn', <%= ary1.first %>],
+        <% i = 0 %>
+        <% while i < ary2.count do %>
+        ['<%= ary2[i] %>', <%= ary3[i] %>],
+        <% i = i + 1 %>
+        <% end %>
+        ]);
+
+        var options = {
+          title: 'Gewichts-Verlauf',
+          curveType: 'function',
+          legend: { position: 'bottom' },
+          vAxis: {
+            title: 'Gewicht',
+            viewWindowMode:'explicit',
+            viewWindow: {
+              max:120,
+              min:30
+            },
+            ticks: [0, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120]
+          },
+          hAxis: {
+            title: 'Datum'
+          }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+
+    </script>
+    <div id="curve_chart" style="width: 1000px; height: 700px"></div>
+      
+  </div>
+
+<div style="width:35%; height: 728px;">
 <h1>Körpergewicht</h1>
 
-<table>
+<table border="2">
   <thead>
     <tr>
       <th>Datum</th>
       <th>Gewicht</th>
-      <th colspan="3"></th>
+      <th colspan="3" style="width:15%">Optionen</th>
     </tr>
   </thead>
 
@@ -14,13 +65,17 @@
       <tr>
         <td><%= body.datum %></td>
         <td><%= body.weigth %> Kg</td>
-        <td><%= link_to 'Edit', edit_body_path(body) %></td>
-        <td><%= link_to 'Destroy', body, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Bearbeiten', edit_body_path(body), class: 'warning button' %></td>
+        <% if current_user.admin? %>
+        <td><%= link_to 'Löschen', body, class: 'alert button', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+<br> 
 
-<%= link_to 'Neuer Eintrag', new_body_path %>
+<%= link_to 'Neuer Eintrag', new_body_path, class: 'primary button' unless @weight_today %>
+
+      </div>

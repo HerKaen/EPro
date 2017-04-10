@@ -7,7 +7,7 @@ def new
 				user = User.find_by(email: params[:email])
 				if user && user.authenticate(params[:password])
 					session[:user_id] = user.id
-					flash[:notice] = "Welcome back #{user.name.capitalize}!"
+					flash[:notice] = "Willkommen zurück #{user.name.capitalize}!"
 					redirect_to root_path
 				else
 					flash.now[:alert] = "Ungültige Anmeldedaten!"
@@ -17,7 +17,7 @@ def new
 
 			def destroy
 		  		session[:user_id] = nil
-		  		redirect_to root_path, notice: "Ausgeloggt. Ice Ice BABY!"
+		  		redirect_to root_path, notice: "Sie haben sich erfolgreich Ausgeloggt."
 		  	end
 
 end

@@ -1,5 +1,6 @@
 class SuccessesController < ApplicationController
   before_action :set_success, only: [:show, :edit, :update, :destroy]
+  before_action :require_signin
 
   # GET /successes
   # GET /successes.json
