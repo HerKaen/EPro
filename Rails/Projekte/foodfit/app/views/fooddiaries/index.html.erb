@@ -18,7 +18,7 @@
   <tbody>
     <% @fooddiaries.each do |fooddiary| %>
       <tr>
-        <td><%= @food.name %></td>
+        <td><%= fooddiary.name %></td>
         <td><%= fooddiary.anzahl %></td>
         <td><%= rechnen_eiweiß(@food, fooddiary) %></td>
         <td><%= rechnen_fett(@food, fooddiary) %></td>

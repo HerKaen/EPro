@@ -5,7 +5,12 @@ class FoodsController < ApplicationController
   # GET /foods
   # GET /foods.json
   def index
-    @foods = Food.all
+    #@foods = Food.all
+    if params[:search]
+      @foods = Food.where(name: params[:search])
+    else
+      @foods = Food.all
+    end
   end
 
   # GET /foods/1
@@ -15,7 +20,8 @@ class FoodsController < ApplicationController
 
   # GET /foods/new
   def new
-    @food = Food.new
+      @food = Food.new
+        respond_to :js
   end
 
   # GET /foods/1/edit

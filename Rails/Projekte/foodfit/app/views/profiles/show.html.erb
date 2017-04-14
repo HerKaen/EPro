@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @profile.user %>
+</p>
+
+<p>
+  <strong>Calculator:</strong>
+  <%= @profile.calculator %>
+</p>
+
+<p>
+  <strong>Food:</strong>
+  <%= @profile.food %>
+</p>
+
+<p>
+  <strong>Fooddiary:</strong>
+  <%= @profile.fooddiary %>
+</p>
+
+<p>
+  <strong>Sport:</strong>
+  <%= @profile.sport %>
+</p>
+
+<p>
+  <strong>Sportdiary:</strong>
+  <%= @profile.sportdiary %>
+</p>
+
+<%= link_to 'Edit', edit_profile_path(@profile) %> |
+<%= link_to 'Back', profiles_path %>

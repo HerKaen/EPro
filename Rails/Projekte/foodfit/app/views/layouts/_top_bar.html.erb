@@ -32,6 +32,8 @@
 
     <li><%= link_to 'Startseite', root_path, class: 'secondary button' %></li>
 
+    <li><%= link_to 'Profil', profiles_path, class: 'secondary button' %></li>
+
     <% if current_user_admin? %><li><%= link_to 'Benutzer', users_path, class: 'secondary button' %></li><% end %>
 
     <li role="menuitem" class="is-dropdown-submenu-parent opens-right" aria-haspopup="true" aria-label="Lebensmittel" data-is-click="false" aria-expended="false">

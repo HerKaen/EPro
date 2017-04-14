@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :profiles
   resources :calculators
     root 'application#index'
 	   get 'signup' => 'users#new'

@@ -28,6 +28,8 @@ class SportdiariesController < ApplicationController
   def create
     @sportdiary = @sport.sportdiaries.new(sportdiary_params)
     @sportdiary.user_id = current_user.id
+    @sportdiary.name = @sport.name
+    @sportdiary.kalorien = @sport.kalorien
     respond_to do |format|
       if @sportdiary.save
         format.html { redirect_to sport_sportdiaries_path, notice: 'Sportdiary was successfully created.' }
@@ -75,6 +77,6 @@ class SportdiariesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sportdiary_params
-      params.require(:sportdiary).permit(:datum, :anzahl, :sport_id, :user_id)
+      params.require(:sportdiary).permit(:datum, :name, :anzahl, :kalorien, :sport_id, :user_id)
     end
 end

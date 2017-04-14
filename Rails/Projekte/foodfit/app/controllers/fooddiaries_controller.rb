@@ -28,6 +28,11 @@ class FooddiariesController < ApplicationController
   def create
     @fooddiary = @food.fooddiaries.new(fooddiary_params)
     @fooddiary.user_id = current_user.id
+    @fooddiary.name = @food.name
+    @fooddiary.eiweiß = @food.eiweiß
+    @fooddiary.fett = @food.fett
+    @fooddiary.kohlenhydrate = @food.kohlenhydrate
+    @fooddiary.kalorien = @food.kalorien
     respond_to do |format|
       if @fooddiary.save
         format.html { redirect_to food_fooddiaries_path }
@@ -75,6 +80,6 @@ class FooddiariesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def fooddiary_params
-      params.require(:fooddiary).permit(:anzahl, :datum, :food_id, :user_id)
+      params.require(:fooddiary).permit(:anzahl, :name, :datum, :eiweiß, :fett, :kohlenhydrate, :kalorien, :food_id, :user_id)
     end
 end

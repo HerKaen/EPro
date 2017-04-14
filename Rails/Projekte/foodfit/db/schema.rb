@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330210023) do
+ActiveRecord::Schema.define(version: 20170410131159) do
 
   create_table "betweens", force: :cascade do |t|
     t.integer  "body_id"
@@ -40,11 +40,16 @@ ActiveRecord::Schema.define(version: 20170330210023) do
 
   create_table "fooddiaries", force: :cascade do |t|
     t.integer  "anzahl"
+    t.string   "name"
     t.date     "datum"
+    t.float    "eiweiß"
+    t.float    "fett"
+    t.float    "kohlenhydrate"
+    t.integer  "kalorien"
     t.integer  "user_id"
     t.integer  "food_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.index ["food_id"], name: "index_fooddiaries_on_food_id"
   end
 
@@ -60,9 +65,28 @@ ActiveRecord::Schema.define(version: 20170330210023) do
     t.datetime "updated_at",    null: false
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "calculator_id"
+    t.integer  "food_id"
+    t.integer  "fooddiary_id"
+    t.integer  "sport_id"
+    t.integer  "sportdiary_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["calculator_id"], name: "index_profiles_on_calculator_id"
+    t.index ["food_id"], name: "index_profiles_on_food_id"
+    t.index ["fooddiary_id"], name: "index_profiles_on_fooddiary_id"
+    t.index ["sport_id"], name: "index_profiles_on_sport_id"
+    t.index ["sportdiary_id"], name: "index_profiles_on_sportdiary_id"
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
   create_table "sportdiaries", force: :cascade do |t|
+    t.string   "name"
     t.date     "datum"
     t.integer  "anzahl"
+    t.integer  "kalorien"
     t.integer  "user_id"
     t.integer  "sport_id"
     t.datetime "created_at", null: false

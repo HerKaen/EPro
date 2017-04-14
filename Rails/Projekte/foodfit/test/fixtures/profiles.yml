@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  calculator: one
+  food: one
+  fooddiary: one
+  sport: one
+  sportdiary: one
+
+two:
+  user: two
+  calculator: two
+  food: two
+  fooddiary: two
+  sport: two
+  sportdiary: two
