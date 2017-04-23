@@ -1,31 +1,29 @@
-<%= form_for(food) do |f| %>
-  <% if food.errors.any? %>
+<%= form_for(@food) do |f| %>
+  <% if @food.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(food.errors.count, "error") %> prohibited this food from being saved:</h2>
+      <h2><%= pluralize(@food.errors.count, "error") %> prohibited this food from being saved:</h2>
 
       <ul>
-      <% food.errors.full_messages.each do |message| %>
+      <% @food.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="right">
-  <%= image_tag("food2.jpg", size: "650") %>
-  </div>
+  <h3>Neues Lebensmittel hinzufügen</h3>
 
-  <div class="field" style="width:25%">
+  <div class="field">
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
 
-  <div class="field" style="width:25%">
+  <div class="field">
     <%= f.label :menge %>
     <%= f.number_field :menge %>
   </div>
 
-    <div class="field" style="width:25%">
+    <div class="field">
     <%= f.label :Einheit %>
     <select name="food[einheit]" id="einheit">
     <option value="Stück">Stück</option>
@@ -33,28 +31,27 @@
     </select>
   </div>
 
-  <div class="field" style="width:25%">
+  <div class="field">
     <%= f.label :eiweiß %>
     <%= f.text_field :eiweiß %>
   </div>
 
-  <div class="field" style="width:25%">
+  <div class="field">
     <%= f.label :fett %>
     <%= f.text_field :fett %>
   </div>
 
-  <div class="field" style="width:25%">
+  <div class="field">
     <%= f.label :kohlenhydrate %>
     <%= f.text_field :kohlenhydrate %>
   </div>
 
-  <div class="field" style="width:25%">
+  <div class="field">
     <%= f.label :kalorien %>
     <%= f.number_field :kalorien %>
   </div>
 
-  <div class="actions" style="width:25%">
+  <div class="actions">
     <%= f.submit "Lebensmittel hinzufügen", class: 'button' %>
-    <%= link_to 'Zurück zur Übersicht', foods_path, class: 'secondary button' %>
   </div>
 <% end %>

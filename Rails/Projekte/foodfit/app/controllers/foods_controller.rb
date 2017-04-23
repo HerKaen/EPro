@@ -7,9 +7,9 @@ class FoodsController < ApplicationController
   def index
     #@foods = Food.all
     if params[:search]
-      @foods = Food.where(name: params[:search])
+      @foods = Food.where(name: params[:search]).order("name").paginate(:page => params[:page], :per_page => 22)
     else
-      @foods = Food.all
+      @foods = Food.all.order("name").paginate(:page => params[:page], :per_page => 22)
     end
   end
 
@@ -20,8 +20,11 @@ class FoodsController < ApplicationController
 
   # GET /foods/new
   def new
-      @food = Food.new
-        respond_to :js
+    @food = Food.new
+    respond_to do |format|
+      format.html 
+      format.js
+    end
   end
 
   # GET /foods/1/edit
@@ -35,7 +38,7 @@ class FoodsController < ApplicationController
 
     respond_to do |format|
       if @food.save
-        format.html { redirect_to foods_path, notice: 'Food was successfully created.' }
+        format.html { redirect_to foods_path }
         format.json { render :show, status: :created, location: @food }
       else
         format.html { render :new }
@@ -49,7 +52,7 @@ class FoodsController < ApplicationController
   def update
     respond_to do |format|
       if @food.update(food_params)
-        format.html { redirect_to @food, notice: 'Food was successfully updated.' }
+        format.html { redirect_to @food }
         format.json { render :show, status: :ok, location: @food }
       else
         format.html { render :edit }
@@ -63,7 +66,7 @@ class FoodsController < ApplicationController
   def destroy
     @food.destroy
     respond_to do |format|
-      format.html { redirect_to foods_url, notice: 'Food was successfully destroyed.' }
+      format.html { redirect_to foods_url }
       format.json { head :no_content }
     end
   end

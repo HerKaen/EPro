@@ -1,6 +1,4 @@
-  <div class="right2">
-  <%= image_tag("sport.jpg", size: "500") %>
-  </div>
+<div id="sport_new"><%= link_to raw("Übung hinzufügen"), new_sport_path, class: 'primary button', remote: true %></div>
 
 <div style="width:68%; height: 728px;">
 <h1>Sport-Tabelle</h1>
@@ -11,7 +9,11 @@
       <th>Name</th>
       <th>Einheit</th>
       <th>Kalorien</th>
-      <th colspan="4" style="text-align:center; width:35%">Optionen</th>
+    <% if current_user_admin? %>
+      <th colspan="3" style="text-align:center; width:50%">Optionen</th>
+    <% else %>
+      <th colspan="3" style="text-align:center; width:23%">Optionen</th>
+    <% end %>
     </tr>
   </thead>
 
@@ -21,18 +23,16 @@
         <td><%= sport.name %></td>
         <td><%= sport.einheit %></td>
         <td><%= sport.kalorien %></td>
-        <td><%= link_to 'Zum Tagebuch hinzufügen', new_sport_sportdiary_path(sport.id), class: 'success2 button' %></td>
-        <td><%= link_to 'Bearbeiten', edit_sport_path(sport.id), class: 'warning button' %></td>
+        <div id="sportdiary_new">
+        <td><%= link_to raw('Zum Tagebuch hinzufügen'), new_sport_sportdiary_path(sport.id), class: 'success2 button', remote: true %></td>
+        </div>
         <% if current_user_admin? %>
-          <td><%= link_to 'Löschen', sport_path(sport.id), class: 'alert button', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Bearbeiten', edit_sport_path(sport.id), class: 'warning button' %></td>
+        <td><%= link_to 'Löschen', sport_path(sport.id), class: 'alert button', method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'Übung hinzufügen', new_sport_path, class: 'primary button' %>
 
 </div>

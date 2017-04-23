@@ -1,0 +1,31 @@
+<%= form_for(@chat) do |f| %>
+  <% if @chat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@chat.errors.count, "error") %> prohibited this chat from being saved:</h2>
+
+      <ul>
+      <% @chat.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% namen = User.where(id: current_user.id).collect { |y| y.name } %>
+
+  <div class="field" style="width:60%"> 
+    <%= f.label :name %>
+    <select name="chat[name]" id="name">
+    <option value="<%= namen[0].capitalize %>"><%= namen[0].capitalize %></option>
+    </select>
+  </div>
+
+  <div class="field" style="width:60%">
+    <%= f.label :text %>
+    <%= f.text_area :text, rows: "10" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Nachricht abschicken", class: 'primary button' %>
+  </div>
+<% end %>

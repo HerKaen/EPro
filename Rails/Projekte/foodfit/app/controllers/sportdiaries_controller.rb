@@ -6,7 +6,11 @@ class SportdiariesController < ApplicationController
   # GET /sportdiaries
   # GET /sportdiaries.json
   def index
-    @sportdiaries = @sport.sportdiaries.where(user_id: current_user.id)
+    if params[:search]
+      @sportdiaries = Sportdiary.where(datum: params[:search], user_id: current_user.id).order(:datum)
+    else
+      @sportdiaries = Sportdiary.where(user_id: current_user.id).order(:datum)
+    end
   end
 
   # GET /sportdiaries/1
@@ -17,6 +21,10 @@ class SportdiariesController < ApplicationController
   # GET /sportdiaries/new
   def new
     @sportdiary = @sport.sportdiaries.new
+    respond_to do |format|
+      format.html 
+      format.js
+    end
   end
 
   # GET /sportdiaries/1/edit
@@ -32,7 +40,7 @@ class SportdiariesController < ApplicationController
     @sportdiary.kalorien = @sport.kalorien
     respond_to do |format|
       if @sportdiary.save
-        format.html { redirect_to sport_sportdiaries_path, notice: 'Sportdiary was successfully created.' }
+        format.html { redirect_to sports_path }
         format.json { render :show, status: :created, location: @sportdiary }
       else
         format.html { render :new }
@@ -46,7 +54,7 @@ class SportdiariesController < ApplicationController
   def update
     respond_to do |format|
       if @sportdiary.update(sportdiary_params)
-        format.html { redirect_to sport_sportdiary_path(@sport.id, @sportdiary.id), notice: 'Sportdiary was successfully updated.' }
+        format.html { redirect_to sport_sportdiary_path(@sport.id, @sportdiary.id) }
         format.json { render :show, status: :ok, location: @sportdiary }
       else
         format.html { render :edit }

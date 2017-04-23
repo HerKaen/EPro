@@ -1,133 +1,32 @@
-<h1>Profil von <%= current_user.name.capitalize %></h1>
+<center><h1><u>Profil von <span style="color:red"><%= current_user.name.capitalize %></span></u></h1></center><br>
 
 <ul class="tabs" data-tabs id="example-tabs">
-  <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Tab 1</a></li>
-  <li class="tabs-title"><a href="#panel2">Tab 2</a></li>
-  <li class="tabs-title"><a href="#panel3">Tab 3</a></li>
-  <li class="tabs-title"><a href="#panel4">Tab 4</a></li>
+  <li class="tabs-title is-active"><a href="#panel1" aria-selected="true"><h5><b style="color:black">Profil-Übersicht</b></h5></a></li>
+  <li class="tabs-title"><a href="#panel2"><h5><b style="color:black">Lebensmittel-Tagebuch</b></h5></a></li>
+  <li class="tabs-title"><a href="#panel3"><h5><b style="color:black">Sport-Tagebuch</b></h5></a></li>
+  <li class="tabs-title"><a href="#panel4"><h5><b style="color:black">Erfolge</b></h5></a></li>
 </ul>
 <div class="tabs-content" data-tabs-content="example-tabs">
   <div class="tabs-panel is-active" id="panel1">
 
-<div style="width:25%">
- <%= date_select :profile, :neuesdatum %>
-<%= submit_tag("Send", name: 'profile[submit]') %>
-</div>
-
-<br><br>
-
-<table>
-  <thead>
-    <tr>
-      <th>Datum</th>
-      <th>Lebensmittel</th>
-      <th>Anzahl</th>
-      <th>Eiweiß</th>
-      <th>Fett</th>
-      <th>Kohlenhydrate</th>
-      <th>Kalorien</th>
-    </tr>
-  </thead>
-
-  <% ary6 = User.where(id: current_user.id).collect { |o| o.name } %>
-  <% ary7 = Body.where(user_id: current_user.id).collect { |s| s.weigth } %>
-  <% ary8 = Fooddiary.where(user_id: current_user.id).collect { |t| t.name } %>
-  <% ary9 = Fooddiary.where(user_id: current_user.id).collect { |u| u.anzahl } %>
-  <% ary10 = Sportdiary.where(user_id: current_user.id).collect { |v| v.name } %>
-  <% ary11 = Sportdiary.where(user_id: current_user.id).collect { |w| w.anzahl } %>
-  <% ary12 = Fooddiary.where(user_id: current_user.id).collect { |x| x.datum } %>
-  <% ary13 = Fooddiary.where(user_id: current_user.id).collect { |a| a.anzahl } %>
-  <% ary14 = Fooddiary.where(user_id: current_user.id).collect { |b| b.eiweiß } %>
-  <% ary15 = Fooddiary.where(user_id: current_user.id).collect { |c| c.fett } %>
-  <% ary16 = Fooddiary.where(user_id: current_user.id).collect { |d| d.kohlenhydrate } %>
-  <% ary17 = Fooddiary.where(user_id: current_user.id).collect { |e| e.kalorien } %>
-
-<% i = 0 %>
-<% while i < ary12.count %>
-
-  <tbody>
-    <tr>
-        <td><%= ary12[i] %></td>
-        <td><%= ary8[i] %></td>
-        <td><%= ary13[i] %></td>
-        <td><%= ary14[i] * ary13[i] %></td>
-        <td><%= ary15[i] * ary13[i] %></td>
-        <td><%= ary16[i] * ary13[i] %></td>
-        <td><%= ary17[i] * ary13[i] %></td>
-        <% i = i + 1 %>
-      <% end %>
-      </tr>
-  </tbody>
-</table>
+<%= render 'useredit' %>
 
   </div>
 
   <div class="tabs-panel" id="panel2">
-<div style="width:25%">
- <%= date_select :profile, :neuesdatum %>
-<%= submit_tag("Send", name: 'profile[submit]') %>
-</div>
 
-<br><br>
+<%= render 'food' %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Datum</th>
-      <th>Übung</th>
-      <th>Anzahl/Dauer</th>
-      <th>Kalorien</th>
-    </tr>
-  </thead>
-
-  <% ary10 = Sportdiary.where(user_id: current_user.id).collect { |v| v.name } %>
-  <% ary11 = Sportdiary.where(user_id: current_user.id).collect { |w| w.anzahl } %>
-  <% ary18 = Sportdiary.where(user_id: current_user.id).collect { |g| g.kalorien } %>
-  <% ary19 = Sportdiary.where(user_id: current_user.id).collect { |h| h.datum } %>
-
-<% i = 0 %>
-<% while i < ary19.count %>
-
-  <tbody>
-    <tr>
-        <td><%= ary19[i] %></td>
-        <td><%= ary10[i] %></td>
-        <td><%= ary11[i] %></td>
-        <td><%= ary18[i] * ary11[i] %></td>
-        <% i = i + 1 %>
-      <% end %>
-      </tr>
-  </tbody>
-</table>
-  
-<br><br><br>
-
-<center>
-
-<table style="width:25%; text-align:center; font-size:18px">
-  <thead>
-    <tr>
-      <th style="text-align:center">Kalorien Insgesamt</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-        <td><%=  %> Kalorien</td>
-    </tr>
-  </tbody>
-</table>
 </div>
 
   <div class="tabs-panel" id="panel3">
     
+<%= render 'sport' %>
+
 </div>
 
   <div class="tabs-panel" id="panel4">
-    YO4!
-</div>
 
-</center>
+<%= render 'success' %>
 
   </div>
-

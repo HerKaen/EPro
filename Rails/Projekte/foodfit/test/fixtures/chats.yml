@@ -1,9 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  body: one
-  success: one
+  text: MyText
 
 two:
-  body: two
-  success: two
+  text: MyText

@@ -74,7 +74,9 @@
   <br>
   <div class="actions">
     <%= f.submit class: 'primary button' %>
-    <%= link_to 'Zurück zur Startseite', root_path, class: 'secondary button' %>
+    <% if current_user %>
+    <%= link_to 'Zurück zum Profil', profiles_path, class: 'secondary button' %>
+    <% end %>
   </div>
 
   </div>

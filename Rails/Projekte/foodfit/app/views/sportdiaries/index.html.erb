@@ -3,10 +3,10 @@
 <table border="2" style="width:80%">
   <thead>
     <tr>
+      <th>Datum</th>
       <th>Trainings-Einheit</th>
       <th>Anzahl / Dauer</th>
       <th>Kalorien</th>
-      <th>Datum</th>
       <th colspan="2" style="text-align:center; width:15%">Optionen</th>
     </tr>
   </thead>
@@ -14,10 +14,10 @@
   <tbody>
     <% @sportdiaries.each do |sportdiary| %>
       <tr>
+        <td><%= sportdiary.datum %></td>
         <td><%= @sport.name %></td>
         <td><%= sportdiary.anzahl %></td>
         <td><%= rechnen_sport(@sport, sportdiary) %></td>
-        <td><%= sportdiary.datum %></td>
         <td><%= link_to 'Bearbeiten', edit_sport_sportdiary_path(@sport.id, sportdiary.id), class: 'warning button' %></td>
         <td><%= link_to 'Löschen', sport_sportdiary_path(@sport.id, sportdiary.id), class: 'alert button', method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

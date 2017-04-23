@@ -15,7 +15,11 @@ class SportsController < ApplicationController
 
   # GET /sports/new
   def new
-    @sport = Sport.new
+      @sport = Sport.new
+      respond_to do |format|
+          format.html 
+          format.js
+      end
   end
 
   # GET /sports/1/edit
@@ -29,7 +33,7 @@ class SportsController < ApplicationController
 
     respond_to do |format|
       if @sport.save
-        format.html { redirect_to sports_path, notice: 'Sport was successfully created.' }
+        format.html { redirect_to sports_path }
         format.json { render :show, status: :created, location: @sport }
       else
         format.html { render :new }
@@ -43,7 +47,7 @@ class SportsController < ApplicationController
   def update
     respond_to do |format|
       if @sport.update(sport_params)
-        format.html { redirect_to @sport, notice: 'Sport was successfully updated.' }
+        format.html { redirect_to @sport }
         format.json { render :show, status: :ok, location: @sport }
       else
         format.html { render :edit }
@@ -57,7 +61,7 @@ class SportsController < ApplicationController
   def destroy
     @sport.destroy
     respond_to do |format|
-      format.html { redirect_to sports_url, notice: 'Sport was successfully destroyed.' }
+      format.html { redirect_to sports_url }
       format.json { head :no_content }
     end
   end

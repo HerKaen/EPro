@@ -1,7 +1,27 @@
-// Place all the styles related to the bodies controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.diet h1, h5{
+  text-align: center;
+}
 
+.diet p, ul{
+  font-size: 14px;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.apple_pagination {
+  float: left;
+  margin-left:0%;
+  display: inline-block;
+  background: #f1f1f1;
+  border: 1px solid #e5e5e5;
+  text-align: center;
+  padding: 1em;
+  font-size: 17px;
+  font-weight: bold;
+      .gap{
+        display : none !important;
+    }
+}
 
 .whitefont { 
   float: right;
@@ -40,7 +60,7 @@ border-color:black;
 .right2 { 
   float: right;
   margin-right: -4%;
-  margin-top: 3%
+  margin-top: 3%;
 }
 
 .right3 { 
@@ -49,11 +69,42 @@ border-color:black;
   margin-top: 0%;
 }
 
+.right4 { 
+  float: right;
+  margin-right: 17%;
+  margin-top: 0%;
+  width: 15%;
+}
+
 .float { 
   float: right;
   margin-right: 40%;
   margin-top: 0%;
   width: 25%;
+}
+
+#food_new {
+  float: right;
+  margin-right: -67.5%;
+  margin-top: -4%;
+}
+
+#fooddiary_new {
+  float: right;
+  margin-top: 7.5%;
+  margin-right: -100%;
+}
+
+#sport_new {
+  float: right;
+  margin-top: 2.5%;
+  margin-right: 5%;
+}
+
+#sportdiary_new {
+  float: right;
+  margin-top: 6.5%;
+  margin-right: -48%;
 }
 
 .search { 
@@ -66,14 +117,12 @@ border-color:black;
   width: 110%;
   height: 70px;
   margin-left: -70px;
-  background-color:#227412;
 }
 
 #quer H1
 { font: normal 270% Arial, Helvetica, sans-serif;
   letter-spacing: -2px;
-  text-shadow: 1px 1px #57B442;
-  color: #ff0;}
+}
 
 .text {
   font-size:17px;
@@ -105,7 +154,7 @@ h1, h2, h3, h4, h5, h6
 
 
 #sidebar
-{ height: 800px;
+{ height: 1600px;
   width: 100px;
   margin-left: -15px;
   margin-top: 0px;
@@ -113,7 +162,7 @@ h1, h2, h3, h4, h5, h6
 }
 
 #sidebar2
-{ height: 800px;
+{ height: 1600px;
   width: 100px;
   margin-left: 33.5px;
   margin-top: 0px;
@@ -158,3 +207,20 @@ h1, h2, h3, h4, h5, h6
   letter-spacing: -2px;
   text-shadow: 1px 1px #57B442;
   color: #ff0;}  
+
+  #chat_new {
+  float: right;
+  margin-top: 0%;
+  margin-right: -2%;
+  width: 30%;
+}
+
+.rund {
+  font-size:18px;
+  width: 40%;
+  height: auto;
+  border: 1px solid black;
+  border-radius: 20px;
+  margin-left: 15px;
+  margin-top: 10px;
+  }

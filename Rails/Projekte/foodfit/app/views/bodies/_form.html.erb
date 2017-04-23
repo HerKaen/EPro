@@ -1,32 +1,27 @@
-<%= form_for(body) do |f| %>
-  <% if body.errors.any? %>
+<%= form_for(@body) do |f| %>
+  <% if @body.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(body.errors.count, "error") %> prohibited this body from being saved:</h2>
+      <h2><%= pluralize(@body.errors.count, "error") %> prohibited this body from being saved:</h2>
 
       <ul>
-      <% body.errors.full_messages.each do |message| %>
+      <% @body.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="right">
-  <%= image_tag("weight2.jpg", size: "700") %>
-  </div>
-
-  <div class="field" style="width:25%">
+  <div class="field" style="width:50%">
     <%= f.label :datum %>
     <%= f.date_select :datum %>
   </div>
 
-  <div class="field" style="width:25%">
+  <div class="field" style="width:50%">
     <%= f.label :weigth %>
     <%= f.number_field :weigth %>
   </div>
 
-  <div class="actions" style="width:25%">
+  <div class="actions" style="width:50%">
     <%= f.submit "Gewicht hinzufügen", class: 'button' %>
-    <%= link_to 'Zurück zur Übersicht', bodies_path, class: 'secondary button' %>
   </div>
 <% end %>

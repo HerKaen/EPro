@@ -1,28 +1,29 @@
 <%= form_for([@sport, @sportdiary]) do |f| %>
-  <% if sportdiary.errors.any? %>
+  <% if @sportdiary.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(sportdiary.errors.count, "error") %> prohibited this sportdiary from being saved:</h2>
+      <h2><%= pluralize(@sportdiary.errors.count, "error") %> prohibited this sportdiary from being saved:</h2>
 
       <ul>
-      <% sportdiary.errors.full_messages.each do |message| %>
+      <% @sportdiary.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field" style="width:25%">
+  <h3>Sport-Übung zum Tagebuch hinzufügen</h3>
+
+  <div class="field" style="width:85%">
     <%= f.label :datum %>
     <%= f.date_select :datum %>
   </div>
 
-  <div class="field" style="width:25%">
+  <div class="field" style="width:85%">
     <%= f.label :anzahl, 'Anzahl / Dauer (pro Minute)' %>
     <%= f.number_field :anzahl %>
   </div>
 
   <div class="actions">
     <%= f.submit "Übung hinzufügen", class: 'primary button' %>
-    <%= link_to 'Zurück zur Übersicht', sports_path, class: "secondary button" %>
   </div>
 <% end %>

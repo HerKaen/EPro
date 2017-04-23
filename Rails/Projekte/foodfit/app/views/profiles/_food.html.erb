@@ -1,0 +1,62 @@
+<% food_id = Fooddiary.where(user_id: current_user.id).collect { |y| y.food_id } %>
+
+<% if food_id.count > 0 %>
+ <div class="search" style="width:30%"><%= form_tag(food_fooddiaries_path(food_id), :method => "get", id:"search-form") do %>
+ <%= text_field_tag :search, params[:search], placeholder: "Datum eingeben" %>
+ <center><%= submit_tag "Suchen", :datum => nil, class: 'primary button' %></center>
+ <% end %> 
+
+<br>
+
+<br><br>
+
+</div>
+
+<br><br><br><br><br><br>
+
+<%= link_to 'Einträge Bearbeiten', food_fooddiaries_path(food_id), class: 'warning button' %>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:14.285714286%">Datum</th>
+      <th style="width:14.285714286%">Lebensmittel</th>
+      <th style="width:14.285714286%">Anzahl</th>
+      <th style="width:14.285714286%">Eiweiß</th>
+      <th style="width:14.285714286%">Fett</th>
+      <th style="width:14.285714286%">Kohlenhydrate</th>
+      <th style="width:14.285714286%">Kalorien</th>
+    </tr>
+  </thead>
+
+  <% ary6 = User.where(id: current_user.id).collect { |o| o.name } %>
+  <% ary7 = Body.where(user_id: current_user.id).collect { |s| s.weigth } %>
+  <% ary8 = Fooddiary.where(user_id: current_user.id).collect { |t| t.name } %>
+  <% ary9 = Fooddiary.where(user_id: current_user.id).collect { |u| u.anzahl } %>
+  <% ary10 = Sportdiary.where(user_id: current_user.id).collect { |v| v.name } %>
+  <% ary11 = Sportdiary.where(user_id: current_user.id).collect { |w| w.anzahl } %>
+  <% ary12 = Fooddiary.where(user_id: current_user.id).order(:datum).collect { |x| x.datum } %>
+  <% ary13 = Fooddiary.where(user_id: current_user.id).collect { |a| a.anzahl } %>
+  <% ary14 = Fooddiary.where(user_id: current_user.id).collect { |b| b.eiweiß } %>
+  <% ary15 = Fooddiary.where(user_id: current_user.id).collect { |c| c.fett } %>
+  <% ary16 = Fooddiary.where(user_id: current_user.id).collect { |d| d.kohlenhydrate } %>
+  <% ary17 = Fooddiary.where(user_id: current_user.id).collect { |e| e.kalorien } %>
+
+<% i = 0 %>
+<% while i < ary12.count %>
+
+  <tbody>
+    <tr>
+        <td><%= ary12[i] %></td>
+        <td><%= ary8[i] %></td>
+        <td><%= ary13[i] %></td>
+        <td><%= ary14[i] * ary13[i] %></td>
+        <td><%= ary15[i] * ary13[i] %></td>
+        <td><%= ary16[i] * ary13[i] %></td>
+        <td><%= ary17[i] * ary13[i] %></td>
+        <% i = i + 1 %>
+      <% end %>
+      </tr>
+  </tbody>
+</table>
+<% end %>

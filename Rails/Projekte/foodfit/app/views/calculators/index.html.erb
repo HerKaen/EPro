@@ -4,24 +4,42 @@
       <% ary1 = User.where(id: current_user.id).collect { |o| o.height } %>
       <% ary2 = User.where(id: current_user.id).collect { |p| p.age } %>
       <% ary3 = Body.where(user_id: current_user.id).collect { |s| s.weigth } %>
+      <% ary33 = User.where(id: current_user.id).collect { |t| t.start_weight } %>
 
+      <% if ary3.count < 1 %>
+      <% bmi = ary33.first / ((ary1.first.round(2) / 100) * (ary1.first.round(2) / 100)) %>
+      <% else %>
       <% bmi = ary3.last / ((ary1.first.round(2) / 100) * (ary1.first.round(2) / 100)) %>
+      <% end %>
       
+      <% if ary3.count < 1 %>
+      <% gesM = 66.5 + 13.7 * ary33.first + 5 * ary1.first - 6.8 * ary2.first %>
+      <% gesW = 2.4 * ary33.first + 9 * ary1.first - 4.7 * ary2.first - 65 %>
+      <% else %>
       <% gesM = 66.5 + 13.7 * ary3.last + 5 * ary1.first - 6.8 * ary2.first %>
       <% gesW = 2.4 * ary3.last + 9 * ary1.first - 4.7 * ary2.first - 65 %>
+      <% end %> 
 
   <tbody>
     <center>
     <table border="2" style="width:80%; text-align:center; font-size:15px">
       <tr>
+      <% if ary3.count < 1 %>
+        <th>Start Gewicht</th>
+      <% else %>
         <th>Aktuelles Gewicht</th>
+      <% end %>
         <th>Größe</th>
         <th>Daraus errechneter Grund-Umsatz</th>
         <th>Daraus folgt ein BMI von</th>
       </tr>
 
       <tr>
+      <% if ary3.count < 1 %>
+        <td><%= ary33.first %> Kg</td>
+      <% else %>
         <td><%= ary3.last %> Kg</td>
+      <% end %>
         <td><%= ary1.first %> m</td>
     <% if ary0 = "Männlich" %>
         <td><%= @umsatzm = gesM.round(0) %> Kcal</td>
@@ -32,11 +50,11 @@
       </tr>
     </table>
 
-    <br><br>
-
-       <div id="quer" style="background-color:#227412"><br><h1>Legende</h1></div>
-
     <br><br><br>
+
+       <div id="quer"><br><h1>Legende</h1></div>
+
+    <br>
 
        <table border="2" style="width:65%; text-align:center; font-size:14px">
           <tr>

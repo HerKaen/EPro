@@ -10,16 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170410131159) do
-
-  create_table "betweens", force: :cascade do |t|
-    t.integer  "body_id"
-    t.integer  "success_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["body_id"], name: "index_betweens_on_body_id"
-    t.index ["success_id"], name: "index_betweens_on_success_id"
-  end
+ActiveRecord::Schema.define(version: 20170420183354) do
 
   create_table "bodies", force: :cascade do |t|
     t.datetime "datum"
@@ -36,6 +27,15 @@ ActiveRecord::Schema.define(version: 20170410131159) do
     t.datetime "updated_at", null: false
     t.index ["Body_id"], name: "index_calculators_on_Body_id"
     t.index ["User_id"], name: "index_calculators_on_User_id"
+  end
+
+  create_table "chats", force: :cascade do |t|
+    t.text     "text"
+    t.string   "name"
+    t.integer  "User_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["User_id"], name: "index_chats_on_User_id"
   end
 
   create_table "fooddiaries", force: :cascade do |t|

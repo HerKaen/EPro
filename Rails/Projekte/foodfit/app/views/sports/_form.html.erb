@@ -1,39 +1,36 @@
-<%= form_for(sport) do |f| %>
-  <% if sport.errors.any? %>
+<%= form_for(@sport) do |f| %>
+  <% if @sport.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(sport.errors.count, "error") %> prohibited this sport from being saved:</h2>
+      <h2><%= pluralize(@sport.errors.count, "error") %> prohibited this sport from being saved:</h2>
 
       <ul>
-      <% sport.errors.full_messages.each do |message| %>
+      <% @sport.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="right">
-  <%= image_tag("sport2.jpg", size: "600") %>
-  </div>
+    <h3>Neue Sport-Übung hinzufügen</h3>
 
-  <div class="field" style="width:25%">
+  <div class="field">
     <%= f.label :name %>
     <%= f.text_field :name %>
   
   </div>
-    <div class="field" style="width:25%">
+    <div class="field">
     <select name="sport[einheit]" id="einheit">
     <option value="Wiederholungen">Wiederholungen</option>
     <option value="Minuten">Minuten</option>
     </select>
 </div>
 
-  <div class="field" style="width:25%">
+  <div class="field">
     <%= f.label "Kalorien" %>
     <%= f.number_field :kalorien %>
   </div>
 
-  <div class="actions" style="width:25%">
+  <div class="actions">
     <%= f.submit "Übung hinzufügen", class: 'primary button'%>
-    <%= link_to 'Zurück zur Übersicht', sports_path, class: 'secondary button' %>
   </div>
 <% end %>

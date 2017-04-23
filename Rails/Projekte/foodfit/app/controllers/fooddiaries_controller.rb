@@ -6,7 +6,11 @@ class FooddiariesController < ApplicationController
   # GET /fooddiaries
   # GET /fooddiaries.json
   def index
-    @fooddiaries = @food.fooddiaries.where(user_id: current_user.id)
+    if params[:search]
+      @fooddiaries = Fooddiary.where(datum: params[:search], user_id: current_user.id).order(:datum)
+    else
+      @fooddiaries = Fooddiary.where(user_id: current_user.id).order(:datum)
+    end
   end
 
   # GET /fooddiaries/1
@@ -17,6 +21,10 @@ class FooddiariesController < ApplicationController
   # GET /fooddiaries/new
   def new
     @fooddiary = @food.fooddiaries.new
+    respond_to do |format|
+      format.html 
+      format.js
+    end
   end
 
   # GET /fooddiaries/1/edit
@@ -35,7 +43,7 @@ class FooddiariesController < ApplicationController
     @fooddiary.kalorien = @food.kalorien
     respond_to do |format|
       if @fooddiary.save
-        format.html { redirect_to food_fooddiaries_path }
+        format.html { redirect_to foods_path }
         format.json { render :show, status: :created, location: @fooddiary }
       else
         format.html { render :new }
@@ -49,7 +57,7 @@ class FooddiariesController < ApplicationController
   def update
     respond_to do |format|
       if @fooddiary.update(fooddiary_params)
-        format.html { redirect_to food_fooddiary_path(@food.id, @fooddiary.id), notice: 'Fooddiary was successfully updated.' }
+        format.html { redirect_to food_fooddiary_path(@food.id, @fooddiary.id) }
         format.json { render :show, status: :ok, location: @fooddiary }
       else
         format.html { render :edit }
@@ -63,7 +71,7 @@ class FooddiariesController < ApplicationController
   def destroy
     @fooddiary.destroy
     respond_to do |format|
-      format.html { redirect_to food_fooddiaries_url(@food.id), notice: 'Fooddiary was successfully destroyed.' }
+      format.html { redirect_to food_fooddiaries_url(@food.id) }
       format.json { head :no_content }
     end
   end

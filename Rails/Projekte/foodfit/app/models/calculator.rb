@@ -1,4 +1,4 @@
 class Calculator < ApplicationRecord
-  belongs_to :Body
-  belongs_to :User
+  belongs_to :body
+  belongs_to :user
 end

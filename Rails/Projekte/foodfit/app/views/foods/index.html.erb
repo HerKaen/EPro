@@ -1,5 +1,5 @@
+ <body>
  <center>
-
  <div class="search" style="width:30%"><%= form_tag(foods_path, :method => "get", id:"search-form") do %>
  <%= text_field_tag :search, params[:search], placeholder: "Lebensmittel eingeben" %>
  <%= submit_tag "Suchen", :name => nil, class: 'primary button' %>
@@ -8,14 +8,19 @@
  <h5 style="color:red">Wenn trotzdem gewünscht, <%= params[:search] %> selber hinzufügen.</h5>
  <% end %>
  <% end %> 
+
+  <div class="apple_pagination">
+    <%= will_paginate @chats, :previous_label => '« Zurück | ', :next_label => ' | Vor »', :container => false  %>
+    </div>
+
 </div></center>
+<br><br><br><br>
+  
+    <div id="food_new"><%= link_to raw("Lebensmittel hinzufügen"), new_food_path, class: 'primary button', remote: true %>
+      
+    </div>
 
-  <div class="right2">
-  <%= image_tag("food.jpg", size: "500") %>
-  </div>
-
-<div style="width:65%; height: 728px;">
-<h1>Lebensmittel</h1><%= link_to 'Lebensmittel hinzufügen', new_food_path, class: 'primary button' %><br><br>
+<div style="width:72.5%; height: 728px;">
 
 <table border="2" class="table1">
   <thead>
@@ -27,7 +32,7 @@
       <th>Fett</th>
       <th>Kohlenhydrate</th>
       <th>Kalorien</th>
-      <th colspan="4" style="text-align:center">Optionen</th>
+      <th colspan="4" style="text-align:center; width:45%">Optionen</th>
     </tr>
   </thead>
 
@@ -41,9 +46,11 @@
         <td><%= food.fett %></td>
         <td><%= food.kohlenhydrate %></td>
         <td><%= food.kalorien %></td>
-        <td><%= link_to 'Zum Tagebuch hinzufügen', new_food_fooddiary_path(food.id), class: 'success2 button' %></td>
-        <td><%= link_to 'Bearbeiten', edit_food_path(food.id), class: 'warning button' %></td>
+        <div id="fooddiary_new">
+        <td><%= link_to raw('Zum Tagebuch hinzufügen'), new_food_fooddiary_path(food.id), class: 'success2 button', remote: true %></td>
+        </div>
         <% if current_user_admin? %>
+        <td><%= link_to 'Bearbeiten', edit_food_path(food.id), class: 'warning button' %></td>
           <td><%= link_to 'Löschen', food_path(food.id), class: 'alert button', method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
@@ -52,8 +59,8 @@
 </table>
 
 
-  <div id="comment_new"></div>
-
-    <%= link_to raw("Link"), new_food_path, title: "Neuen Kommentar hinzufügen.", remote: true %>
-
     </div>
+
+</div>
+
+</body>

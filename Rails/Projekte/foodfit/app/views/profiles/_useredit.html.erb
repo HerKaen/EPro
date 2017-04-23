@@ -1,0 +1,41 @@
+<div class="right4">
+<%= image_tag('profile.jpg') %>
+</div>
+
+<center><br><br>
+<table style="width:35%; font-size:18px; text-align:left">
+  <tr>
+    <th>Name:</th>
+    <th style="font-size:18px"><%= User.where(id: current_user.id).collect { |a| a.name }.first.capitalize %></th>
+  </tr>
+
+  <tr>
+    <th>Email:</th>
+    <th style="font-size:18px"><%= User.where(id: current_user.id).collect { |b| b.email }.first %></th>
+  </tr>
+
+  <tr>
+    <th>Alter:</th>
+    <th style="font-size:18px"><%= User.where(id: current_user.id).collect { |c| c.age }.first %></th>
+  </tr>
+
+  <tr>
+    <th>Start-Gewicht:</th>
+    <th style="font-size:18px"><%= User.where(id: current_user.id).collect { |d| d.start_weight }.first %></th>
+  </tr>
+
+  <tr>
+    <th>Ziel-Gewicht:</th>
+    <th style="font-size:18px"><%= User.where(id: current_user.id).collect { |e| e.dream_weight }.first %></th>
+  </tr>
+
+  <tr>
+    <th>Größe:</th>
+    <th style="font-size:18px"><%= User.where(id: current_user.id).collect { |f| f.height }.first %></th>
+  </tr>
+</table>
+
+<br>
+
+<%= link_to 'Daten bearbeiten', edit_user_path(id: current_user.id), class: 'warning button' %>
+</center>

@@ -1,0 +1,69 @@
+  <% sport_id = Sportdiary.where(user_id: current_user.id).collect { |y| y.sport_id } %>
+
+<% if sport_id.count > 0 %>
+
+ <div class="search" style="width:30%"><%= form_tag(sport_sportdiaries_path(sport_id), :method => "get", id:"search-form") do %>
+ <%= text_field_tag :search, params[:search], placeholder: "Datum eingeben" %>
+ <center><%= submit_tag "Suchen", :datum => nil, class: 'primary button' %></center>
+ <% end %> 
+
+<br>
+
+<br><br>
+
+</div>
+
+<br><br><br><br><br><br>
+
+<%= link_to 'Einträge Bearbeiten', sport_sportdiaries_path(sport_id), class: 'warning button' %>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:25%">Datum</th>
+      <th style="width:25%">Übung</th>
+      <th style="width:25%">Anzahl/Dauer</th>
+      <th style="width:25%">Kalorien</th>
+    </tr>
+  </thead>
+
+  <% ary10 = Sportdiary.where(user_id: current_user.id).collect { |v| v.name } %>
+  <% ary11 = Sportdiary.where(user_id: current_user.id).collect { |w| w.anzahl } %>
+  <% ary18 = Sportdiary.where(user_id: current_user.id).collect { |g| g.kalorien } %>
+  <% ary19 = Sportdiary.where(user_id: current_user.id).collect { |h| h.datum } %>
+
+<% i = 0 %>
+<% if ary19.count > 0 %>
+<% while i < ary19.count %>
+
+  <tbody>
+    <tr>
+        <td><%= ary19[i] %></td>
+        <td><%= ary10[i] %></td>
+        <td><%= ary11[i] %></td>
+        <td><%= ary18[i] * ary11[i] %></td>
+        <% i = i + 1 %>
+      <% end %>
+      </tr>
+  </tbody>
+</table>
+  <% end %>
+  
+<br><br><br>
+
+<center>
+
+<table style="width:25%; text-align:center; font-size:18px">
+  <thead>
+    <tr>
+      <th style="text-align:center">Kalorien Insgesamt</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+        <td><%=  %> Kalorien</td>
+    </tr>
+  </tbody>
+</table>
+<% end %>

@@ -3,4 +3,5 @@ class Sport < ApplicationRecord
 
 	validates :kalorien, :numericality => { :greater_than => 0 }
 	validates :name, :kalorien, :presence => true
+	validates :name, uniqueness: true
 end

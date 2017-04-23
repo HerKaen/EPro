@@ -23,8 +23,12 @@ class BodiesController < ApplicationController
 
   # GET /bodies/new
   def new
-    @body = Body.new
-  end
+      @body = Body.new
+      respond_to do |format|
+          format.html 
+          format.js
+      end
+    end
 
   # GET /bodies/1/edit
   def edit
@@ -65,7 +69,7 @@ class BodiesController < ApplicationController
   def destroy
     @body.destroy
     respond_to do |format|
-      format.html { redirect_to bodies_url, notice: 'Body was successfully destroyed.' }
+      format.html { redirect_to bodies_url }
       format.json { head :no_content }
     end
   end

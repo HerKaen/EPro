@@ -12,7 +12,7 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Datum', ''],
-           ['Beginn', <%= ary1.first %>],
+           ['Startpunkt', <%= ary1.first %>],
         <% i = 0 %>
         <% while i < ary2.count do %>
         ['<%= ary2[i] %>', <%= ary3[i] %>],
@@ -76,6 +76,6 @@
 
 <br> 
 
-<%= link_to 'Neuer Eintrag', new_body_path, class: 'primary button' unless @weight_today %>
+      <div id="body_new"><%= link_to raw("Neuer Eintrag"), new_body_path, class: 'primary button', remote: true unless @weight_today %></div>
 
       </div>

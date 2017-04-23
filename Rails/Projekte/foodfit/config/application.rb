@@ -8,7 +8,7 @@ Bundler.require(*Rails.groups)
 
 module Foodfit
   class Application < Rails::Application
-  	  	config.i18n.available_locales = [:de, :en]
+  	config.i18n.available_locales = [:de, :en]
     config.time_zone = "Berlin"
 	config.i18n.default_locale = :de
     # Settings in config/environments/* take precedence over those specified here.

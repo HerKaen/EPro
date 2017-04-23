@@ -1,28 +1,29 @@
 <%= form_for([@food, @fooddiary]) do |f| %>
-  <% if fooddiary.errors.any? %>
+  <% if @fooddiary.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(fooddiary.errors.count, "error") %> prohibited this fooddiary from being saved:</h2>
+      <h2><%= pluralize(@fooddiary.errors.count, "error") %> prohibited this fooddiary from being saved:</h2>
 
       <ul>
-      <% fooddiary.errors.full_messages.each do |message| %>
+      <% @fooddiary.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field" style="width:25%">
+  <h3>Lebensmittel zum Tagebuch hinzufügen</h3>
+
+  <div class="field" style="width:70%">
     <%= f.label :anzahl %>
     <%= f.number_field :anzahl %>
   </div>
 
-  <div class="field" style="width:25%">
+  <div class="field" style="width:70%">
     <%= f.label :datum %>
     <%= f.date_select :datum %>
   </div>
 
   <div class="actions">
     <%= f.submit "Zum Tagebuch hinzufügen", class: 'primary button' %>
-    <%= link_to 'Zurück zur Übersicht', food_fooddiaries_path, class: 'secondary button' %>
   </div>
 <% end %>
