@@ -1,9 +1,49 @@
-<div id="sport_new"><%= link_to raw("Übung hinzufügen"), new_sport_path, class: 'primary button', remote: true %></div>
+<body>
+<center>
 
-<div style="width:68%; height: 728px;">
-<h1>Sport-Tabelle</h1>
+ <div class="search" style="width:30%"><%= form_tag(sports_path, :method => "get", id:"search-form") do %>
+ <%= text_field_tag :search, params[:search], placeholder: "Groß- & Kleinschreibung beachten!" %>
+ <%= submit_tag "Suchen", :name => nil, class: 'primary button' %>
+ <br><br><% if @sports.blank? %>
+ <h4 class="bg-danger"><%= params[:search] %> ist nicht in der Tabelle vorhanden</h4>
+ <h5 style="color:red">Wenn trotzdem gewünscht, <%= params[:search] %> selber hinzufügen.</h5>
+ <% end %>
+ <% end %> 
 
-<table border="2">
+   <% counter = Sport.all.collect { |a| a.name }.count %>
+
+  <% if counter > 22 %>
+
+  <div class="apple_pagination">
+    <%= will_paginate @sports, :previous_label => '« Zurück | ', :next_label => ' | Vor »', :container => false  %>
+    </div></div>
+
+    <% end %>
+
+    </center>
+
+
+    <script type="text/javascript">
+$(document).ready(function(){
+  $('.b1').click(function(){
+       $('#sportdiary_new').toggle();
+if ($('#sportdiary_new').is(':visible')) {
+  $('#sport_new').hide();
+} else {
+  $('#sport_new').show();
+}
+    });
+});
+</script>
+
+  <div id="sport_new">
+    <h3>Neue Sport-Übung hinzufügen</h3>
+    <%= render 'form', sport: @sport %>
+  </div>
+
+    <div style="width:68%; height: 728px;">
+
+<table border="2" class="table1">
   <thead>
     <tr>
       <th>Name</th>
@@ -24,7 +64,7 @@
         <td><%= sport.einheit %></td>
         <td><%= sport.kalorien %></td>
         <div id="sportdiary_new">
-        <td><%= link_to raw('Zum Tagebuch hinzufügen'), new_sport_sportdiary_path(sport.id), class: 'success2 button', remote: true %></td>
+        <td><%= link_to raw('Zum Tagebuch hinzufügen'), new_sport_sportdiary_path(sport.id), class: 'success2 button b1', remote: true %></td>
         </div>
         <% if current_user_admin? %>
         <td><%= link_to 'Bearbeiten', edit_sport_path(sport.id), class: 'warning button' %></td>
@@ -34,5 +74,4 @@
     <% end %>
   </tbody>
 </table>
-
 </div>

@@ -1,7 +1,6 @@
-  <% sport_id = Sportdiary.where(user_id: current_user.id).collect { |y| y.sport_id } %>
+<% sport_id = Sportdiary.where(user_id: current_user.id).collect { |x| x.sport_id } %>
 
 <% if sport_id.count > 0 %>
-
  <div class="search" style="width:30%"><%= form_tag(sport_sportdiaries_path(sport_id), :method => "get", id:"search-form") do %>
  <%= text_field_tag :search, params[:search], placeholder: "Datum eingeben" %>
  <center><%= submit_tag "Suchen", :datum => nil, class: 'primary button' %></center>
@@ -53,17 +52,4 @@
 
 <center>
 
-<table style="width:25%; text-align:center; font-size:18px">
-  <thead>
-    <tr>
-      <th style="text-align:center">Kalorien Insgesamt</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-        <td><%=  %> Kalorien</td>
-    </tr>
-  </tbody>
-</table>
 <% end %>

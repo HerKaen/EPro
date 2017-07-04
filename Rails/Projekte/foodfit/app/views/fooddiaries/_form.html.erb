@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <h3>Lebensmittel zum Tagebuch hinzufügen</h3>
+  <h3><%= @food.name %></h3>
 
   <div class="field" style="width:70%">
     <%= f.label :anzahl %>
@@ -25,5 +25,6 @@
 
   <div class="actions">
     <%= f.submit "Zum Tagebuch hinzufügen", class: 'primary button' %>
+    <%= link_to 'Zurück zur Übersicht', food_fooddiaries_path, class: 'secondary button' %>
   </div>
 <% end %>

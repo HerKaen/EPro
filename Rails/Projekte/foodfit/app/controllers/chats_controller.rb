@@ -1,10 +1,11 @@
 class ChatsController < ApplicationController
   before_action :set_chat, only: [:show, :edit, :update, :destroy]
+  before_action :require_signin
 
   # GET /chats
   # GET /chats.json
   def index
-    @chats = Chat.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 4)
+    @chats = Chat.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 8)
   end
 
   # GET /chats/1

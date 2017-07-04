@@ -1,8 +1,8 @@
-  <div class="right3">
+<div class="right3">
   <% ary0 = User.where(id: current_user.id).collect { |q| q.created_at } %>
-<% ary1 = User.where(id: current_user.id).collect { |o| o.start_weight } %>
-<% ary2 = Body.where(user_id: current_user.id).order(:datum).collect { |r| r.datum } %>
-<% ary3 = Body.where(user_id: current_user.id).order(:datum).collect { |s| s.weigth } %>
+  <% ary1 = User.where(id: current_user.id).collect { |o| o.start_weight } %>
+  <% ary2 = Body.where(user_id: current_user.id).order(:datum).collect { |r| r.datum } %>
+  <% ary3 = Body.where(user_id: current_user.id).order(:datum).collect { |s| s.weigth } %>
 
 <script type="text/javascript"></script>
     <script type="text/javascript">
@@ -50,6 +50,16 @@
 
 <div style="width:35%; height: 728px;">
 <h1>Körpergewicht</h1>
+
+  <% counter = Body.where(user_id: current_user.id).collect { |a| a.weigth }.count %>
+
+  <% if counter > 8 %>
+
+  <div class="apple_pagination">
+    <%= will_paginate @bodies, :previous_label => '« Zurück | ', :next_label => ' | Vor »', :container => false  %>
+    </div>
+
+  <% end %>
 
 <table border="2">
   <thead>

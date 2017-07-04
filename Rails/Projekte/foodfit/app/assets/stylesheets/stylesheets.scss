@@ -8,6 +8,99 @@
   margin-right: 20%;
 }
 
+div:hover first, second, third, fourth{
+border:2px solid #ccc;
+background:#eee;
+}
+
+
+.gesamt {
+  width: 100%;
+  weight: 100%;
+}
+
+.first {
+  float: left;
+  width: 720px;
+  height: 400px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 2px solid;
+  border-radius: 15px;
+}
+
+.second {
+  float: left;
+  width: 720px;
+  height: 400px;
+  margin-left: 50.5%;
+  margin-top: -27.5%;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 2px solid;
+  border-radius: 15px;
+}
+
+.third {
+  float: right;
+  width: 720px;
+  height: 400px;
+  margin-top: 1%;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 2px solid;
+  border-radius: 15px;
+}
+
+.fourth {
+  float: left;
+  width: 720px;
+  height: 400px;
+  margin-top: 1%;
+  margin-left: 0%;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 2px solid;
+  border-radius: 15px;
+}
+
+.bild {
+  margin-top: -4.9%;
+}
+
+/*.starten {
+  background: url("start2.jpg");
+  background-repeat:no-repeat;
+  background-position: center;
+  width: 100%;
+  weight: 100%;
+}
+
+.bg {
+  background-color: #227412;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
+  width: 12%;
+  weight: 10%;
+}
+
+.startsite {
+  float: left;
+  background-color: white;
+  width: 50%;
+  weight: 70%;
+  margin-left: 20%;
+  margin-top: 8%;
+  opacity: 0.1;
+}*/
+
 .apple_pagination {
   float: left;
   margin-left:0%;
@@ -86,25 +179,25 @@ border-color:black;
 #food_new {
   float: right;
   margin-right: -67.5%;
-  margin-top: -4%;
+  margin-top: 7%;
 }
 
 #fooddiary_new {
   float: right;
-  margin-top: 7.5%;
-  margin-right: -100%;
+  margin-top: 10%;
+  margin-right: -99%;
 }
 
 #sport_new {
   float: right;
-  margin-top: 2.5%;
-  margin-right: 5%;
+  margin-top: 12.5%;
+  margin-right: -65%;
 }
 
 #sportdiary_new {
   float: right;
-  margin-top: 6.5%;
-  margin-right: -48%;
+  margin-top: 18%;
+  margin-right: -102%;
 }
 
 .search { 

@@ -68,7 +68,7 @@ class SportdiariesController < ApplicationController
   def destroy
     @sportdiary.destroy
     respond_to do |format|
-      format.html { redirect_to sport_sportdiaries_url(@sport.id), notice: 'Sportdiary was successfully destroyed.' }
+      format.html { redirect_to sport_sportdiaries_url(@sport.id) }
       format.json { head :no_content }
     end
   end

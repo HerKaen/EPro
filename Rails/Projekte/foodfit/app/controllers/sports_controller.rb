@@ -5,7 +5,12 @@ class SportsController < ApplicationController
   # GET /sports
   # GET /sports.json
   def index
-    @sports = Sport.all
+    @sport = Sport.new
+    if params[:search]
+      @sports = Sport.where(name: params[:search]).order("name").paginate(:page => params[:page], :per_page => 22)
+    else
+      @sports = Sport.all.order("name").paginate(:page => params[:page], :per_page => 22)
+    end
   end
 
   # GET /sports/1
@@ -47,7 +52,7 @@ class SportsController < ApplicationController
   def update
     respond_to do |format|
       if @sport.update(sport_params)
-        format.html { redirect_to @sport }
+        format.html { redirect_to sports_path }
         format.json { render :show, status: :ok, location: @sport }
       else
         format.html { render :edit }

@@ -41,3 +41,4 @@ module FooddiariesHelper
 	end
 
 end
+

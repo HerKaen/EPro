@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170420183354) do
+ActiveRecord::Schema.define(version: 20170425063120) do
 
   create_table "bodies", force: :cascade do |t|
     t.datetime "datum"
-    t.integer  "weigth"
+    t.float    "weigth"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -101,15 +101,6 @@ ActiveRecord::Schema.define(version: 20170420183354) do
     t.integer  "kalorien"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "successes", force: :cascade do |t|
-    t.integer  "body_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["body_id"], name: "index_successes_on_body_id"
-    t.index ["user_id"], name: "index_successes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

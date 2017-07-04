@@ -1,20 +1,43 @@
-<div class="start" style="width:100%; height: 728px;">
-
 <center>
-<h1>Noch zu erledigen:</h1></center>
-<br><br>
 
+<div class="bild">
+<%= image_tag('start2', width: '700') %>
+</div>
 
-<ul style="font-size:24px">
-<li>popup New AUCH für EDIT einfügen?!</li> <br>
-<li>Übersicht Diäten als wirkliche Übersichtsseite zum Thema Diät allgemein?</li> <br>
-<li>Alle Created Meldung auf Deutsch überprüfen</li> <br>
-<li>Gewicht mit Komma !</li> <br>
-<li>BOGNER => AUTO-Höhe von Side-Bar's !!!</li> <br>
-<li>BOGNER => WENN Popup 1 dann Popup 2 = deaktiviert !</li> <br>
-<li>success aus Schema entfernen</li> <br>
-<li>Datensatz begrenzung für Sport</li> <br>
+<h4>Herzlich willkommen bei FoodFit!</h4><br>
+<b style="font-size:18px">Auf unserer Seite dreht sich alles um Fitness & Ernährung<br>
+Hier ein paar Ausschnitte, was Sie bei uns erwartet:</b>
+<br><br><br>
 
-</ul>
+<div class="gesamt">
+	<%= link_to profiles_path do %>
+		<div class="first">
+			<h2>Profil</h2>
+			<%= image_tag('first', width: '800') %>
+		</div>
+	<% end %>
+
+	<%= link_to foods_path do %>
+		<div class="second">
+			<h2>Lebensmittel</h2>
+			<%= image_tag('second', width: '800') %>
+		</div>
+	<% end %>
+
+	<%= link_to sports_path do %>
+		<div class="third">
+			<h2>Sport</h2>
+			<%= image_tag('third', width: '800') %>
+		</div>
+	<% end %>
+
+	<%= link_to bodies_path do %>
+		<div class="fourth">
+			<h2>Gewicht</h2>
+			<%= image_tag('fourth', width: '800') %>
+		</div>
+	<% end %>
 
 </div>
+
+</center>

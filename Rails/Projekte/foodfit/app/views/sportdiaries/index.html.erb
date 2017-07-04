@@ -15,7 +15,7 @@
     <% @sportdiaries.each do |sportdiary| %>
       <tr>
         <td><%= sportdiary.datum %></td>
-        <td><%= @sport.name %></td>
+        <td><%= sportdiary.name %></td>
         <td><%= sportdiary.anzahl %></td>
         <td><%= rechnen_sport(@sport, sportdiary) %></td>
         <td><%= link_to 'Bearbeiten', edit_sport_sportdiary_path(@sport.id, sportdiary.id), class: 'warning button' %></td>
@@ -24,3 +24,5 @@
     <% end %>
   </tbody>
 </table>
+
+<%= link_to "Zurück zur Übersicht", profiles_path, class: 'secondary button' %> 

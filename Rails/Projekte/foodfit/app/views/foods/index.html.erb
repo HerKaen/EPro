@@ -1,7 +1,8 @@
  <body>
  <center>
+ 
  <div class="search" style="width:30%"><%= form_tag(foods_path, :method => "get", id:"search-form") do %>
- <%= text_field_tag :search, params[:search], placeholder: "Lebensmittel eingeben" %>
+ <%= text_field_tag :search, params[:search], placeholder: "Groß- & Kleinschreibung beachten!" %>
  <%= submit_tag "Suchen", :name => nil, class: 'primary button' %>
  <br><br><% if @foods.blank? %>
  <h4 class="bg-danger"><%= params[:search] %> ist nicht in der Tabelle vorhanden</h4>
@@ -9,16 +10,36 @@
  <% end %>
  <% end %> 
 
+  <% counter = Food.all.collect { |a| a.name }.count %>
+
+  <% if counter > 22 %>
+
   <div class="apple_pagination">
-    <%= will_paginate @chats, :previous_label => '« Zurück | ', :next_label => ' | Vor »', :container => false  %>
+    <%= will_paginate @foods, :previous_label => '« Zurück | ', :next_label => ' | Vor »', :container => false  %>
     </div>
+
+    <% end %>
 
 </div></center>
 <br><br><br><br>
   
-    <div id="food_new"><%= link_to raw("Lebensmittel hinzufügen"), new_food_path, class: 'primary button', remote: true %>
-      
-    </div>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.b2').click(function(){
+       $('#fooddiary_new').toggle();
+if ($('#fooddiary_new').is(':visible')) {
+  $('#food_new').hide();
+} else {
+  $('#food_new').show();
+}
+    });
+});
+</script>
+
+  <div id="food_new">
+  <h3>Neues Lebensmittel hinzufügen</h3>
+    <%= render 'form', food: @food %>
+  </div>
 
 <div style="width:72.5%; height: 728px;">
 
@@ -32,7 +53,11 @@
       <th>Fett</th>
       <th>Kohlenhydrate</th>
       <th>Kalorien</th>
+    <% if current_user_admin? %>
       <th colspan="4" style="text-align:center; width:45%">Optionen</th>
+    <% else %>
+      <th colspan="4" style="text-align:center; width:22%">Optionen</th>
+    <% end %>
     </tr>
   </thead>
 
@@ -47,7 +72,7 @@
         <td><%= food.kohlenhydrate %></td>
         <td><%= food.kalorien %></td>
         <div id="fooddiary_new">
-        <td><%= link_to raw('Zum Tagebuch hinzufügen'), new_food_fooddiary_path(food.id), class: 'success2 button', remote: true %></td>
+        <td><%= link_to raw('Zum Tagebuch hinzufügen'), new_food_fooddiary_path(food.id), class: 'success2 button b2', remote: true %></td>
         </div>
         <% if current_user_admin? %>
         <td><%= link_to 'Bearbeiten', edit_food_path(food.id), class: 'warning button' %></td>

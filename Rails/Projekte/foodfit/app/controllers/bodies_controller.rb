@@ -5,7 +5,7 @@ class BodiesController < ApplicationController
   # GET /bodies
   # GET /bodies.json
   def index
-    @bodies = Body.where(user_id: current_user.id).order(:datum)
+    @bodies = Body.where(user_id: current_user.id).order(:datum).paginate(:page => params[:page], :per_page => 8)
     @weight_today = false
     @bodies.each do |body|
       convert_date = Date.parse(body.datum.to_s)

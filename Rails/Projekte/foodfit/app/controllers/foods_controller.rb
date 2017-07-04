@@ -5,7 +5,7 @@ class FoodsController < ApplicationController
   # GET /foods
   # GET /foods.json
   def index
-    #@foods = Food.all
+    @food = Food.new
     if params[:search]
       @foods = Food.where(name: params[:search]).order("name").paginate(:page => params[:page], :per_page => 22)
     else
@@ -52,7 +52,7 @@ class FoodsController < ApplicationController
   def update
     respond_to do |format|
       if @food.update(food_params)
-        format.html { redirect_to @food }
+        format.html { redirect_to foods_path }
         format.json { render :show, status: :ok, location: @food }
       else
         format.html { render :edit }

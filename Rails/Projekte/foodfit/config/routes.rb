@@ -3,17 +3,16 @@ Rails.application.routes.draw do
 
     root 'application#index'
 	   get 'signup' => 'users#new'
-     get 'diet1' => 'application#index2'
-     get 'diet2' => 'application#index3'
-     get 'diet3' => 'application#index4'
+     get 'overview' => 'application#overview'
+     get 'diet1' => 'application#lowcarb'
+     get 'diet2' => 'application#lowfat'
+     get 'diet3' => 'application#trennkost'
 
   resources :chats
   resources :profiles
   resources :calculators   
-
   resources :users
   resources :bodies
-
   resource :session
 
   resources :foods do

@@ -2,10 +2,15 @@
 <h1>Community</h1>
     <div id="chat_new"><%= link_to raw("Kommentar hinzufügen"), new_chat_path, class: 'primary button', remote: true %></div>
 
+    <% arychat = Chat.all.collect { |a| a.name } %>
+
+  <% if arychat.count > 8 %>
+
     <div class="apple_pagination">
     <%= will_paginate @chats, :previous_label => 'Zurück ', :next_label => ' Vor', :container => false  %>
     </div>
 
+  <% end %>
 
     <% @chats.each do |chat| %>
       <div class="rund">

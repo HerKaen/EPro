@@ -21,10 +21,10 @@
         <td><%= fooddiary.datum %></td>
         <td><%= fooddiary.name %></td>
         <td><%= fooddiary.anzahl %></td>
-        <td><%= rechnen_eiweiß(@food, fooddiary) %></td>
-        <td><%= rechnen_fett(@food, fooddiary) %></td>
-        <td><%= rechnen_kh(@food, fooddiary) %></td>
-        <td><%= rechnen_kalorien(@food, fooddiary) %></td>
+        <td><%= (fooddiary.anzahl * fooddiary.eiweiß).round(2) %></td>
+        <td><%= (fooddiary.anzahl * fooddiary.fett).round(2) %></td>
+        <td><%= (fooddiary.anzahl * fooddiary.kohlenhydrate).round(2) %></td>
+        <td><%= (fooddiary.anzahl * fooddiary.kalorien) %></td>
         <td><%= link_to 'Bearbeiten', edit_food_fooddiary_path(@food.id, fooddiary.id), class: 'warning button' %></td>
         <td><%= link_to 'Löschen', food_fooddiary_path(@food.id, fooddiary.id), class: 'alert button', method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -34,6 +34,6 @@
 
 <br>
 
-<%= link_to "Zurück zur Übersicht", foods_path, class: 'secondary button' %> 
+<%= link_to "Zurück zur Übersicht", profiles_path, class: 'secondary button' %> 
 
 </div>

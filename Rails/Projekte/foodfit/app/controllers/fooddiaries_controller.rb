@@ -57,7 +57,7 @@ class FooddiariesController < ApplicationController
   def update
     respond_to do |format|
       if @fooddiary.update(fooddiary_params)
-        format.html { redirect_to food_fooddiary_path(@food.id, @fooddiary.id) }
+        format.html { redirect_to foods_path }
         format.json { render :show, status: :ok, location: @fooddiary }
       else
         format.html { render :edit }
