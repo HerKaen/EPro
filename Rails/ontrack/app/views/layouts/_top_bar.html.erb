@@ -1,0 +1,20 @@
+<div class="top-bar">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text">G16 Prüfung</li>
+      <li class="name"><%= link_to 'Projekte', root_path %></li>
+    </ul>
+  </div>
+
+  <div class="top-bar-right">
+    <ul class="menu">
+      <% if current_user %>
+       <li><%= link_to "Logout", session_path(current_user), method: :delete %></li>
+      <% else %>      
+        <li><%= link_to("Register", new_user_path) %></li>
+        <li><%= link_to "Login", new_session_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+

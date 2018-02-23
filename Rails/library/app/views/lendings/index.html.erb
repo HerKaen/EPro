@@ -1,0 +1,21 @@
+<h1>Lendings von <%= @user.login %></h1>
+
+<div class="docs-code-live"><div class="row collapse">
+  <div class="medium-3 columns">
+    <ul class="tabs vertical" id="example-vert-tabs" data-tabs>
+      <li class="tabs-title is-active"><a href="#panel1v" aria-selected="true">Aktuell ausgeliehene Bücher</a></li>
+      <li class="tabs-title"><a href="#panel2v">Zurückgegebene Bücher</a></li>
+    </ul>
+    </div>
+    
+    <div class="medium-9 columns">
+    <div class="tabs-content vertical" data-tabs-content="example-vert-tabs">
+      <div class="tabs-panel is-active" id="panel1v">
+    	<%= render 'listing', lendings: @lendings_open  %>    
+      </div>
+      <div class="tabs-panel" id="panel2v">
+       	<%= render 'listing', lendings: @lendings_returned  %>
+      </div>
+    </div>
+  </div>
+</div>

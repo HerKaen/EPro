@@ -1,0 +1,32 @@
+AB PUNKT 5:
+
+6.	authors_controller ->
+	def set_book
+      @book = Book.find(params[:book_id])
+    end
+
+    books_controller ->
+
+    before_action :set_author
+
+    def set_author
+      @author = Autor.find(params[:author_id])      
+    end
+
+    def index
+    	@books = @author.books
+  	end
+
+  	def new
+    	@book = @author.books.new
+  	end
+
+  	def create
+    	@book = @author.books.new(book_params)
+    format.html { redirect_to author_book_path(@author.id, @book.id),
+    format.html { redirect_to author_book_path(@author.id, @book.id),
+
+    def destroy
+    	format.html { redirect_to author_books_url(@author.id),
+
+    

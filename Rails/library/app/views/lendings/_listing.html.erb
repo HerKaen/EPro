@@ -1,0 +1,21 @@
+<table>
+  <thead>
+    <tr>
+      <th>Book</th>
+      <th>Lending date</th>
+      <th>Return date</th>
+      <th>Zurückgeben</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% lendings.each do |lending| %>
+      <tr>
+        <td><%= lending.book.title %></td>
+        <td><%= lending.lending_date %></td>
+        <td><%= lending.return_date %></td>
+        <td><%= button_to 'Zurückgeben', user_lending_path(current_user.id, lending.id), method: :patch %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

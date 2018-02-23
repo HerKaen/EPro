@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+    <header>
+      <%= image_tag('g16_logo-green.png', :size => '280x100', title: "Prüfung - G16 Farmsen") %>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span style="color:#e36a16; font-size:2em; border-bottom: 3px #79B578 solid;">FIT Prüfung</span>
+      <%= render 'layouts/top_bar' %>
+    </header>
+
+    <%= render "layouts/messages" %>
+    
+    <%= yield %>
+
+  </body>
+</html>

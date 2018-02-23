@@ -1,0 +1,34 @@
+<h1>Books</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Year</th>
+      <th>Description</th>
+      <th>Author</th>
+      <th colspan="3">Optionen</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= book.title %></td>
+        <td><%= book.year %></td>
+        <td><%= book.description %></td>
+        <td><%= book.author.firstname %> <%= book.author.lastname %></td>
+
+        <td><%= button_to 'Leihen', user_lendings_path(current_user.id, book_id: book.id, lending_date: Date.today) %></td>
+
+        <td><%= link_to 'Show', author_book_path(@author.id, book.id) %></td>
+        <td><%= link_to 'Edit', edit_author_book_path(@author.id, book.id) %></td>
+        <td><%= link_to 'Destroy', author_book_path(@author.id, book.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Book', new_author_book_path(@author.id) %>
